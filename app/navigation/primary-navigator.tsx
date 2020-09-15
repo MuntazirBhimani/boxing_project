@@ -14,7 +14,7 @@ import { Icon, Text } from "../components"
 import { color, typography } from "../theme"
 import { HomeScreen } from "../screens/home-screen/home-screen"
 import { FacilityScreen } from "../screens/patient/tabs/facility/facility-screen"
-import { WelcomeScreen, DemoScreen, PatientProfile,PatientDiagnosis } from "../screens"
+import { DemoScreen, PatientProfile, PatientDiagnosis, PatientMedications } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -33,6 +33,7 @@ export type PrimaryParamList = {
   demo: undefined
   patient_profile: undefined
   patient_diagnosis: undefined
+  patient_medications: undefined
 }
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
@@ -142,7 +143,7 @@ function PatientTabs() {
       {tabPatientItem("Profile", PatientProfile)}
       {tabPatientItem("Facility", FacilityScreen)}
       {tabPatientItem("Diagnosis", PatientDiagnosis)}
-      {tabPatientItem("Medications", HomeScreen)}
+      {tabPatientItem("Medications", PatientMedications)}
     </TOP_TAB.Navigator>
   )
 }
@@ -161,7 +162,8 @@ export function PrimaryNavigator() {
       {/* <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
-      <Stack.Screen name="patient_diagnosis" component={PatientDiagnosis} />
+      {/* <Stack.Screen name="patient_diagnosis" component={PatientDiagnosis} /> */}
+      <Stack.Screen name="patient_medications" component={PatientMedications} />
     </Stack.Navigator>
   )
 }
