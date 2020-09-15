@@ -28,4 +28,13 @@ export const typography = {
    * Lets get fancy with a monospace font!
    */
   code: Platform.select({ ios: "Courier", android: "monospace" }),
+
+  latoMedium: Platform.select({ ios: "Lato-Medium", android: "Lato-Medium"}),
+
+  latoRegular: Platform.select({ ios: "Lato-Regular", android: "Lato-Regular"}),
+  latoBold: Platform.select({ ios: "Lato-Bold", android: "Lato-Bold"}),
+  latoSemiBold: Platform.select({ ios: "Lato-SemiBold", android: "Lato-SemiBold"}),
+  latoMedium: Platform.select({ ios: "Lato-Medium", android: "Lato-Medium"}),
+  CooperMdBTMedium: Platform.select({ios: "CooperBT-Medium", android: "CooperMdBTMedium"})
+
 }

@@ -7,4 +7,8 @@ export const palette = {
   lightGrey: "#939AA4",
   lighterGrey: "#CDD4DA",
   angry: "#dd3333",
+  seperatorColor: "rgba(189, 189, 189, 1)",
+  textLightGray: "rgba(130, 130, 130, 1)",
+  textDarkGray: "rgba(79, 79, 79, 1)"
+
 }

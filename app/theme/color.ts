@@ -49,6 +49,12 @@ export const color = {
    */
   error: palette.angry,
 
+  textLightGray: palette.textLightGray,
+
+  textDarkGray: palette.textDarkGray,
+
+  seperatorColor: palette.seperatorColor,
+
   /**
    * Storybook background for Text stories, or any stories where
    * the text color is color.text, which is white by default, and does not show
