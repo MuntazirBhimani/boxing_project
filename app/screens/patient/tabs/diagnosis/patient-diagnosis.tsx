@@ -61,14 +61,6 @@ const DATE: TextStyle = {
   color: color.textLightGray,
 }
 
-const ARROW: ImageStyle = {
-    flex: 0.10,
-    resizeMode: 'center',
-    width: '100%',
-    position: 'absolute',
-    aspectRatio: 1
-}
-
 export const DiagnosisItems = ({ info, onPress,}: { info: any, onPress: (info: any) => void }) => {
         return (
             <TouchableOpacity
