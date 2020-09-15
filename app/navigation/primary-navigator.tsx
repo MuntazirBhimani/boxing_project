@@ -7,7 +7,7 @@
 import React from "react"
 
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
-import { WelcomeScreen, DemoScreen, PatientProfile,PatientDiagnosis } from "../screens"
+import { WelcomeScreen, DemoScreen, PatientProfile,PatientDiagnosis,PatientMedications } from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -26,6 +26,7 @@ export type PrimaryParamList = {
   demo: undefined
   patient_profile: undefined
   patient_diagnosis: undefined
+  patient_medications: undefined
 }
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
@@ -42,7 +43,8 @@ export function PrimaryNavigator() {
       {/* <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
-      <Stack.Screen name="patient_diagnosis" component={PatientDiagnosis} />
+      {/* <Stack.Screen name="patient_diagnosis" component={PatientDiagnosis} /> */}
+      <Stack.Screen name="patient_medications" component={PatientMedications} />
     </Stack.Navigator>
   )
 }
