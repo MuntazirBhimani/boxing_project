@@ -158,7 +158,7 @@ export const LatestVitalsItems = ({ info, onPress, }: { info: any, onPress: (inf
         )
     }
 
-export const BasicInfoItems = ({ info, onPress, isBasicInfo, }: { info: any,  isBasicInfo: bool, onPress: (info: any) => void }) => {
+ const BasicInfoItems = ({ info, onPress, isBasicInfo, }: { info: any,  isBasicInfo: boolean, onPress: (info: any) => void }) => {
         return (
             <TouchableOpacity
                 onPress={() => onPress(info)}>
