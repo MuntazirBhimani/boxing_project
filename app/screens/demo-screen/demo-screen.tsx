@@ -80,7 +80,7 @@ const HINT: TextStyle = {
 export const DemoScreen = observer(function DemoScreen() {
   const navigation = useNavigation()
   const goBack = () => navigation.goBack()
-
+  const nextScreen = () => navigation.navigate("patient_profile");
   const demoReactotron = React.useMemo(
     () => async () => {
       console.tron.log("Your Friendly tron log message")
@@ -141,7 +141,7 @@ export const DemoScreen = observer(function DemoScreen() {
             style={DEMO}
             textStyle={DEMO_TEXT}
             tx="demoScreen.reactotron"
-            onPress={demoReactotron}
+            onPress={nextScreen}
           />
           <Text style={HINT} tx={`demoScreen.${Platform.OS}ReactotronHint`} />
         </View>

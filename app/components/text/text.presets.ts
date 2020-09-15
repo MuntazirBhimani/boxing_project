@@ -5,8 +5,8 @@ import { color, typography } from "../../theme"
  * All text will start off looking like this.
  */
 const BASE: TextStyle = {
-  fontFamily: typography.primary,
-  color: color.text,
+  fontFamily: typography.latoBold,
+  color: color.textLightGray,
   fontSize: 15,
 }
 
@@ -40,6 +40,12 @@ export const presets = {
    * A smaller piece of secondard information.
    */
   secondary: { ...BASE, fontSize: 9, color: color.dim } as TextStyle,
+  medium: {
+    ...BASE,
+    fontSize: 14,
+    color: color.textLightGray,
+    fontFamily: typography.latoSemiBold,
+  } as TextStyle,
 }
 
 /**

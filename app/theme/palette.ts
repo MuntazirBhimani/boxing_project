@@ -9,4 +9,8 @@ export const palette = {
   angry: "#dd3333",
   inactiveTab: "#828282",
   activeTab: "#4073e2",
+  seperatorColor: "rgba(189, 189, 189, 1)",
+  textLightGray: "rgba(130, 130, 130, 1)",
+  textDarkGray: "rgba(79, 79, 79, 1)"
+
 }
