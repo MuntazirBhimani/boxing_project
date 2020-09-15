@@ -78,9 +78,9 @@ export const DiagnosisItems = ({ info, onPress,}: { info: any, onPress: (info: a
                             <Text style={DATE} text={info.no}/>
                             <Text style={DATE} text={info.time}/>
                         </View>
+                        <Icon style={{height: 15, marginRight: -10}} containerStyle={{position: 'absolute',alignSelf:'flex-end'}} icon={"next"}/>
                         <Text style={TITLE} text={info.title}/>
                         <Text style={DESC} text={info.desc}/>
-                        <Icon style={{height: 15, position: 'absolute',justifyContent: 'center',alignSelf:'flex-end'}} icon={"next"}/>
                     </View>
             </TouchableOpacity>
         )
