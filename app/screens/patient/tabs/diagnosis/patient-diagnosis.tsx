@@ -37,7 +37,7 @@ const INNERCONTAINER: ViewStyle = {
 const DESC: TextStyle = {
   fontSize: 12,
   lineHeight: 20,
-  color: color.textDarkGray,
+  color: color.textLightGray,
   marginLeft: 18,
   marginRight: 41,
   marginBottom: 38,
