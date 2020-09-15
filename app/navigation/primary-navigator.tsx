@@ -5,9 +5,14 @@
  * You'll likely spend most of your time in this file.
  */
 import React from "react"
+import { ImageStyle, View, ViewStyle } from "react-native"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
+import { Icon, Text } from "../components"
 import { WelcomeScreen, DemoScreen } from "../screens"
+import { color } from "../theme"
+import { HomeScreen } from "../screens/home-screen/home-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -29,6 +34,86 @@ export type PrimaryParamList = {
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
 const Stack = createNativeStackNavigator<PrimaryParamList>()
 
+const Tab = createBottomTabNavigator()
+const TAB_ICON: ImageStyle = {
+  height: 22,
+  width: 22,
+  alignSelf: "center",
+}
+
+const ACTIVE_TAB_ICON: ImageStyle = {
+  ...TAB_ICON,
+  tintColor: color.palette.activeTab,
+}
+const INACTIVE_TAB_ICON: ImageStyle = {
+  ...TAB_ICON,
+  tintColor: color.palette.inactiveTab,
+}
+const TAB_VIEW: ViewStyle = {
+  borderTopColor: color.palette.activeTab,
+  borderTopWidth: 0,
+  minWidth: "100%",
+  flex: 1,
+  height: 80,
+  justifyContent: "center",
+}
+function tabIcon(focused, name) {
+  return (
+    <View style={[TAB_VIEW, focused && { borderTopWidth: 3 }]}>
+      <Icon style={focused ? ACTIVE_TAB_ICON : INACTIVE_TAB_ICON} icon={"home"} />
+      <Text
+        style={[
+          { color: focused ? color.activeTab : color.inactiveTab },
+          { fontSize: 10, textAlign: "center", marginTop: 5 },
+        ]}
+        text={name}
+      />
+    </View>
+  )
+}
+
+function tabBarLabel(focused, name) {
+  return (
+    <Text
+      style={[
+        { color: focused ? color.activeTab : color.inactiveTab },
+        { fontSize: 10, textAlign: "center" },
+      ]}
+      text={"d"}
+    />
+  )
+}
+
+const tabItem = (screen, stack): any => {
+  return (
+    <Tab.Screen
+      options={{
+        tabBarIcon: ({ focused }) => tabIcon(focused, screen),
+      }}
+      name={screen}
+      component={stack}
+    />
+  )
+}
+function HomeTabs() {
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        style: {
+          height: 60,
+        },
+        showLabel: false,
+      }}
+    >
+      {tabItem("Home", HomeScreen)}
+      {tabItem("Evaluations", HomeScreen)}
+      {tabItem("Patient", HomeScreen)}
+      {tabItem("Scheduling", HomeScreen)}
+      {tabItem("Lab Results", HomeScreen)}
+    </Tab.Navigator>
+  )
+}
+
 export function PrimaryNavigator() {
   return (
     <Stack.Navigator
@@ -37,7 +122,7 @@ export function PrimaryNavigator() {
         gestureEnabled: true,
       }}
     >
-      <Stack.Screen name="welcome" component={WelcomeScreen} />
+      <Stack.Screen name="welcome" component={HomeTabs} />
       <Stack.Screen name="demo" component={DemoScreen} />
     </Stack.Navigator>
   )

@@ -48,6 +48,8 @@ export const color = {
    * Error messages and icons.
    */
   error: palette.angry,
+  inactiveTab: palette.inactiveTab,
+  activeTab: palette.activeTab,
 
   /**
    * Storybook background for Text stories, or any stories where
