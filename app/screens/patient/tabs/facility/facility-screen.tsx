@@ -148,9 +148,6 @@ const MadicalProfessionalsItems = ({
           <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
         </View>
       </View>
-      <View style={{ marginHorizontal: 5, justifyContent: "center", alignSelf: "flex-end" }}>
-        <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
-      </View>
     </TouchableOpacity>
   )
 }
