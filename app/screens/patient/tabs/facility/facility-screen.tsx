@@ -14,11 +14,41 @@ import { observer } from "mobx-react-lite"
 import { BulletItem, Button, Header, Text, Screen, Wallpaper, Icon } from "../../../../components"
 import { color, spacing, typography } from "../../../../theme"
 import { screenWidth, screenHeight } from "../../../../theme/size"
+import MapView from "react-native-maps"
 
 const FULL: ViewStyle = { flex: 1 }
 
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
+}
+
+const CHILD_CONTAINER: ViewStyle = {
+  flex: 1,
+  marginLeft: 20,
+  marginRight: 30,
+}
+
+const DETAIL_CONTAINER_VIEW: ViewStyle = {
+  flex: 1,
+  marginRight: 10,
+  flexDirection: "row",
+}
+
+const TITLE: TextStyle = {
+  fontSize: 12,
+  lineHeight: 18,
+  width: "30%",
+  textAlign: "left",
+  color: color.textLightGray,
+  fontFamily: typography.latoSemiBold,
+}
+
+const DETAILS: TextStyle = {
+  fontSize: 14,
+  lineHeight: 22,
+  textAlign: "left",
+  color: color.textDarkGray,
+  fontFamily: typography.latoMedium,
 }
 
 const OUTER_SHADOW_VIEW: ViewStyle = {
@@ -28,21 +58,10 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowOpacity: 0.2,
   shadowOffset: { width: 0, height: 5 },
   shadowRadius: 10,
-  overflow: "hidden",
   backgroundColor: "white",
   padding: 10,
   margin: 10,
   elevation: 5,
-}
-
-const ItemMainView: ViewStyle = {
-  flex: 1,
-  flexDirection: "row",
-}
-
-const imageView: ViewStyle = {
-  flex: 0.3,
-  alignItems: "center",
 }
 
 const HEADER: TextStyle = {
@@ -56,79 +75,66 @@ const HEADER: TextStyle = {
   marginTop: 16,
 }
 
-const TITLE: TextStyle = {
-  fontSize: 12,
-  lineHeight: 18,
-  width: "30%",
-  textAlign: "left",
-  fontFamily: typography.latoSemiBold,
+const MEDICAL_OFFICER_VIEW_CONTAINER: ViewStyle = {
+  flex: 1,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
 }
 
-const DETAILS: TextStyle = {
+const MEDICAL_OFFICER_IMAGE_CONTAINER: ViewStyle = {
+  marginLeft: 10,
+  height: screenHeight * 0.09,
+  aspectRatio: 1,
+  backgroundColor: "red",
+  borderRadius: 15,
+  elevation: 5,
+  shadowColor: "black",
+  shadowOpacity: 0.4,
+  shadowOffset: { width: 0, height: 2 },
+  shadowRadius: 10,
+}
+
+const MEDICAL_OFFICER_NAME: TextStyle = {
+  fontFamily: typography.latoSemiBold,
   fontSize: 14,
   lineHeight: 22,
   textAlign: "left",
   color: color.textDarkGray,
-  fontFamily: typography.latoMedium,
 }
 
-const NAME: TextStyle = {
-  fontSize: 16,
-  lineHeight: 22,
-  textAlign: "left",
-  color: color.textDarkGray,
-  marginBottom: 5,
-}
-
-const IMAGE_CONTAINER: ViewStyle = {
-  width: "65%",
-  aspectRatio: 1,
-  backgroundColor: "red",
-  borderRadius: 15,
-  marginTop: 10,
-  elevation: 5,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
-}
-
-const IMAGE: ImageStyle = {
-  flex: 1,
-  // width: '65%',
-  // aspectRatio: 1,
-  // backgroundColor: 'red',
-  // borderRadius: 15,
-  // marginTop: 10
-}
-
-const ContainerView: ViewStyle = {
-  flex: 0.6,
-  flexDirection: "column",
-}
-
-const insiderView: ViewStyle = {
-  flexDirection: "row",
-  width: "100%",
-  paddingVertical: 3,
-}
-
-const DATE: TextStyle = {
+const MEDICAL_OFFICER_DESIGNATION: TextStyle = {
   fontFamily: typography.latoMedium,
   fontSize: 12,
-  lineHeight: 20,
-  textAlign: "right",
-  marginRight: 16,
-  marginTop: 16,
+  lineHeight: 18,
+  textAlign: "left",
   color: color.textLightGray,
 }
 
-const ARROW: ImageStyle = {
-  flex: 0.1,
-  resizeMode: "center",
-  width: "100%",
-  position: "absolute",
-  aspectRatio: 1,
+const MAPVIEW_CONTAINER: ViewStyle = {
+  height: 124,
+  borderRadius: 20,
+  marginBottom: 35,
+  marginTop: 25,
+  overflow: "hidden",
+  marginHorizontal: 10,
+}
+
+const MAP_VIEW: ViewStyle = {
+  flex: 1,
+}
+
+export const ItemSeperator = () => {
+  return (
+    <View
+      style={{
+        height: 0.4,
+        marginVertical: 10,
+        marginHorizontal: 15,
+        backgroundColor: color.seperatorColor,
+      }}
+    />
+  )
 }
 
 const MadicalProfessionalsItems = ({
@@ -139,35 +145,21 @@ const MadicalProfessionalsItems = ({
   onPress: (info: any) => void
 }) => {
   return (
-    <TouchableOpacity
-      onPress={() => onPress(info)}
-      style={{ flex: 1, marginTop: 20, marginBottom: 20 }}
-    >
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <View
-          style={{
-            marginLeft: 20,
-            height: screenHeight * 0.09,
-            aspectRatio: 1,
-            backgroundColor: "red",
-          }}
-        >
+    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginVertical: 20 }}>
+      <View style={MEDICAL_OFFICER_VIEW_CONTAINER}>
+        <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
           <Image style={{ flex: 1 }} />
         </View>
-        <View style={{ flex: 1, marginLeft: 10 }}>
-          <Text text={info.name} />
-          <Text text={info.designation} />
+        <View style={{ flex: 1, marginLeft: 20 }}>
+          <Text style={MEDICAL_OFFICER_NAME} text={info.name} />
+          <Text style={MEDICAL_OFFICER_DESIGNATION} text={info.designation} />
         </View>
-        <View style={{ marginHorizontal: 5, justifyContent: "center", alignSelf: "flex-end" }}>
+        <View style={{ marginHorizontal: 5, justifyContent: "center" }}>
           <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
         </View>
+      </View>
+      <View style={{ marginHorizontal: 5, justifyContent: "center", alignSelf: "flex-end" }}>
+        <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
       </View>
     </TouchableOpacity>
   )
@@ -183,34 +175,33 @@ const FacilityInfoItems = ({
 }) => {
   return (
     <TouchableOpacity onPress={() => onPress(info)}>
-      <View style={ItemMainView}>
-        <View style={imageView}>
-          <View style={IMAGE_CONTAINER}>
-            <Image style={IMAGE} />
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
+              <Image style={{ flex: 1 }} />
+            </View>
+            <View style={CHILD_CONTAINER}>
+              <View style={DETAIL_CONTAINER_VIEW}>
+                <Text style={TITLE} text="Name" />
+                <Text style={DETAILS} text={info.name} />
+              </View>
+              <View style={DETAIL_CONTAINER_VIEW}>
+                <Text style={TITLE} text="Phone" />
+                <Text style={DETAILS} text={info.phone} />
+              </View>
+              <View style={DETAIL_CONTAINER_VIEW}>
+                <Text style={TITLE} text="Address" />
+                <Text style={[DETAILS, { color: color.activeTab }]} text={info.address} />
+              </View>
+            </View>
+            <View style={{ justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}>
+              <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+            </View>
           </View>
         </View>
-        <View style={ContainerView}>
-          <View style={insiderView}>
-            <Text style={TITLE} text="Name" />
-            <Text text={info.name} style={NAME} />
-          </View>
-          <View style={insiderView}>
-            <Text style={TITLE} text="Phone" />
-            <Text style={DETAILS} text={info.phone} />
-          </View>
-          <View style={insiderView}>
-            <Text style={TITLE} text="Address" />
-            <Text style={[DETAILS, { color: color.activeTab, marginEnd: 5 }]} text={info.address} />
-          </View>
-
-          <View style={{ height: 100, justifyContent: "center" }}>
-            <Text text={"MapView"} />
-          </View>
-        </View>
-        <View
-          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}
-        >
-          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+        <View style={MAPVIEW_CONTAINER}>
+          <MapView style={MAP_VIEW} region={info.mapRegion} />
         </View>
       </View>
     </TouchableOpacity>
@@ -224,6 +215,12 @@ export const FacilityScreen = observer(function FacilityScreen() {
       name: "Nicholas Torres",
       phone: "Son",
       address: "110 Irving St NW, Washington, DC 20010",
+      mapRegion: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
     },
   ]
   const medicalProfessionals = [
@@ -255,7 +252,7 @@ export const FacilityScreen = observer(function FacilityScreen() {
             <Text text="Medical Professionals" style={HEADER} />
           </View>
           {medicalProfessionals.map((item, index) => {
-            return <MadicalProfessionalsItems info={item} onPress={() => {}} isBasicInfo={true} />
+            return <MadicalProfessionalsItems info={item} onPress={() => {}} />
           })}
         </View>
       </Screen>

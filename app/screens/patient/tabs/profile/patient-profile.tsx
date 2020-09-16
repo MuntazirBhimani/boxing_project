@@ -26,7 +26,6 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowOpacity: 0.2,
   shadowOffset: { width: 0, height: 5 },
   shadowRadius: 10,
-  overflow: "hidden",
   backgroundColor: "white",
   padding: 10,
   margin: 10,
