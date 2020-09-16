@@ -122,14 +122,6 @@ const DATE: TextStyle = {
   color: color.textLightGray,
 }
 
-const ARROW: ImageStyle = {
-  flex: 0.1,
-  resizeMode: "center",
-  width: "100%",
-  position: "absolute",
-  aspectRatio: 1,
-}
-
 export const LatestVitalsItems = ({
   info,
   onPress,
