@@ -15,7 +15,7 @@ import { color, typography } from "../theme"
 import { HomeScreen } from "../screens/home-screen/home-screen"
 import { FacilityScreen } from "../screens/patient/tabs/facility/facility-screen"
 import { DemoScreen, PatientProfile, PatientDiagnosis, PatientMedications } from "../screens"
-
+import {screenHeight} from '../theme'
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -117,7 +117,7 @@ function HomeTabs() {
     <Tab.Navigator
       tabBarOptions={{
         style: {
-          height: 60,
+          height: screenHeight*0.10,
         },
         showLabel: false,
       }}
