@@ -4,6 +4,7 @@ import {
   ImageStyle,
   Platform,
   TextStyle,
+  SafeAreaView,
   View,
   ViewStyle,
   FlatList,
@@ -327,7 +328,7 @@ export const PatientProfile = observer(function PatientProfile() {
   ]
 
   return (
-    <View style={FULL}>
+    <SafeAreaView style={FULL}>
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Basic Info" style={HEADER} />
@@ -362,6 +363,6 @@ export const PatientProfile = observer(function PatientProfile() {
           />
         </View>
       </Screen>
-    </View>
+    </SafeAreaView>
   )
 })

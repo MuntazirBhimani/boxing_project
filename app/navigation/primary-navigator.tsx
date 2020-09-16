@@ -5,18 +5,16 @@
  * You'll likely spend most of your time in this file.
  */
 import React from "react"
-import { ImageStyle, View, ViewStyle } from "react-native"
+import { ImageStyle, View, ViewStyle, Platform } from "react-native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
-
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { Icon, Text } from "../components"
-import { color, typography } from "../theme"
+import { color } from "../theme"
 import { HomeScreen } from "../screens/home-screen/home-screen"
-import { FacilityScreen } from "../screens/patient/tabs/facility/facility-screen"
-import { DemoScreen, PatientProfile, PatientDiagnosis, PatientMedications } from "../screens"
-import {screenHeight} from '../theme'
+import { DemoScreen, PatientMedications } from "../screens"
+import { screenHeight } from "../theme"
 import PatientScreen from "../screens/patient/patient-screen"
+import DeviceInfo from "react-native-device-info"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -39,9 +37,8 @@ export type PrimaryParamList = {
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
 const Stack = createNativeStackNavigator<PrimaryParamList>()
-
+const isIphoneX = DeviceInfo.hasNotch()
 const Tab = createBottomTabNavigator()
-const TOP_TAB = createMaterialTopTabNavigator()
 
 const TAB_ICON: ImageStyle = {
   height: 22,
@@ -80,16 +77,6 @@ function tabIcon(focused, name) {
   )
 }
 
-function tabPatientLabel(focused, name) {
-  return (
-    <Text
-      numberOfLines={1}
-      style={[{ color: focused ? color.activeTab : color.inactiveTab }, { textAlign: "center" }]}
-      text={name}
-    />
-  )
-}
-
 const tabItem = (screen, stack): any => {
   return (
     <Tab.Screen
@@ -102,23 +89,13 @@ const tabItem = (screen, stack): any => {
   )
 }
 
-const tabPatientItem = (screen, stack): any => {
-  return (
-    <TOP_TAB.Screen
-      options={{
-        tabBarLabel: ({ focused }) => tabPatientLabel(focused, screen),
-      }}
-      name={screen}
-      component={stack}
-    />
-  )
-}
 function HomeTabs() {
   return (
     <Tab.Navigator
       tabBarOptions={{
         style: {
-          height: screenHeight*0.10,
+          height: screenHeight * 0.1,
+          marginBottom: Platform.select({ ios: isIphoneX ? -34 : 0, android: 0 }),
         },
         showLabel: false,
       }}
@@ -129,23 +106,6 @@ function HomeTabs() {
       {tabItem("Scheduling", HomeScreen)}
       {tabItem("Lab Results", HomeScreen)}
     </Tab.Navigator>
-  )
-}
-
-function PatientTabs() {
-  return (
-    <TOP_TAB.Navigator
-      tabBarOptions={{
-        style: {
-          height: 60,
-        },
-      }}
-    >
-      {tabPatientItem("Profile", PatientProfile)}
-      {tabPatientItem("Facility", FacilityScreen)}
-      {tabPatientItem("Diagnosis", PatientDiagnosis)}
-      {tabPatientItem("Medications", PatientMedications)}
-    </TOP_TAB.Navigator>
   )
 }
 
