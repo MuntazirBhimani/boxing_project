@@ -2,12 +2,10 @@ import React from "react"
 import {
   Image,
   ImageStyle,
-  Platform,
   TextStyle,
   SafeAreaView,
   View,
   ViewStyle,
-  FlatList,
   TouchableOpacity,
 } from "react-native"
 import { useNavigation } from "@react-navigation/native"
@@ -226,7 +224,7 @@ const BasicInfoItems = ({
   )
 }
 
-export const ItemSeperator = () => {
+export const ItemSeparator = () => {
   return (
     <View
       style={{
@@ -292,7 +290,8 @@ export const PatientProfile = observer(function PatientProfile() {
       DOB: "02/1/1957 (63)",
       MD: "Katherine Jo-Yang",
       location: "PPCU 115-1",
-      allergies: "No Known AllergiesNo Known Allergies No Known Allergies No Known Allergies No Known Allergies",
+      allergies:
+        "No Known AllergiesNo Known Allergies No Known Allergies No Known Allergies No Known Allergies",
     },
   ]
   const latestVitals = [
@@ -332,35 +331,29 @@ export const PatientProfile = observer(function PatientProfile() {
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Basic Info" style={HEADER} />
-          <FlatList
-            data={basicInfo}
-            renderItem={({ item }) => (
-              <BasicInfoItems info={item} onPress={() => {}} isBasicInfo={true} />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          {basicInfo.map((item, index) => {
+            return <BasicInfoItems info={item} onPress={() => {}} isBasicInfo={true} />
+          })}
         </View>
         <View style={OUTER_SHADOW_VIEW}>
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <Text text="Latest Vitals" style={HEADER} />
             <Text text="6/28/2020 8:57am" style={DATE} />
           </View>
-          <FlatList
-            data={latestVitals}
-            renderItem={({ item }) => <LatestVitalsItems info={item} onPress={() => {}} />}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          {latestVitals.map((item, index) => {
+            return <LatestVitalsItems info={item} onPress={() => {}} />
+          })}
         </View>
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Emergency Contacts" style={HEADER} />
-          <FlatList
-            data={eContacts}
-            ItemSeparatorComponent={ItemSeperator}
-            renderItem={({ item }) => (
-              <EmergencyContactsItems info={item} onPress={() => {}} isBasicInfo={false} />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          {eContacts.map((item, index) => {
+            return (
+              <View>
+                <EmergencyContactsItems info={item} onPress={() => {}} />
+                {eContacts.length != index + 1 && ItemSeparator()}
+              </View>
+            )
+          })}
         </View>
       </Screen>
     </SafeAreaView>

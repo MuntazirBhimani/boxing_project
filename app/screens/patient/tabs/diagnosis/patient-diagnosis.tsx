@@ -97,6 +97,9 @@ export const PatientDiagnosis = observer(function PatientDiagnosis() {
   return (
     <View style={FULL}>
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
+      {diagnosisData.map((item, index) => {
+            return <DiagnosisItems info={item} onPress={() => {}} isBasicInfo={true} />
+          })}
         <FlatList
             data={diagnosisData}
             renderItem={({ item }) => <DiagnosisItems info={item} onPress={() => {}} />}

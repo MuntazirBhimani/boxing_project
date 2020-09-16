@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { BulletItem, Button, Header, Text, Screen, Wallpaper, Icon } from "../../../../components"
 import { color, spacing, typography } from "../../../../theme"
-import {screenWidth, screenHeight} from '../../../../theme/size';
+import { screenWidth, screenHeight } from "../../../../theme/size"
 
 const FULL: ViewStyle = { flex: 1 }
 
@@ -139,19 +139,36 @@ const MadicalProfessionalsItems = ({
   onPress: (info: any) => void
 }) => {
   return (
-    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-            <View style={{marginLeft: 20, height: screenHeight*0.09, aspectRatio: 1, backgroundColor: 'red'}}>
-               <Image style={{flex: 1}}/>
-            </View>
-            <View style={{ flex: 1, marginLeft: 10}}>
-              <Text text={info.name}/>
-              <Text text={info.designation}/>
-            </View>
-            <View style={{marginHorizontal: 5,justifyContent: 'center', alignSelf: 'flex-end'}}>
-              <Icon style={{height: 15, aspectRatio: 1}} icon={"next"}/>
-            </View>
+    <TouchableOpacity
+      onPress={() => onPress(info)}
+      style={{ flex: 1, marginTop: 20, marginBottom: 20 }}
+    >
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <View
+          style={{
+            marginLeft: 20,
+            height: screenHeight * 0.09,
+            aspectRatio: 1,
+            backgroundColor: "red",
+          }}
+        >
+          <Image style={{ flex: 1 }} />
         </View>
+        <View style={{ flex: 1, marginLeft: 10 }}>
+          <Text text={info.name} />
+          <Text text={info.designation} />
+        </View>
+        <View style={{ marginHorizontal: 5, justifyContent: "center", alignSelf: "flex-end" }}>
+          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+        </View>
+      </View>
     </TouchableOpacity>
   )
 }
@@ -201,8 +218,6 @@ const FacilityInfoItems = ({
 }
 
 export const FacilityScreen = observer(function FacilityScreen() {
-  const navigation = useNavigation()
-  const goBack = () => navigation.goBack()
   const facilityInfo = [
     {
       title: "Facility Information",
@@ -231,23 +246,17 @@ export const FacilityScreen = observer(function FacilityScreen() {
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Facility Information" style={HEADER} />
-          <FlatList
-            data={facilityInfo}
-            renderItem={({ item }) => (
-              <FacilityInfoItems info={item} onPress={() => {}} isBasicInfo={true} />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          {facilityInfo.map((item, index) => {
+            return <FacilityInfoItems info={item} onPress={() => {}} isBasicInfo={true} />
+          })}
         </View>
         <View style={OUTER_SHADOW_VIEW}>
           <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <Text text="Medical Professionals" style={HEADER} />
           </View>
-          <FlatList
-            data={medicalProfessionals}
-            renderItem={({ item }) => <MadicalProfessionalsItems info={item} onPress={() => {}} />}
-            keyExtractor={(item, index) => index.toString()}
-          />
+          {medicalProfessionals.map((item, index) => {
+            return <MadicalProfessionalsItems info={item} onPress={() => {}} isBasicInfo={true} />
+          })}
         </View>
       </Screen>
     </View>
