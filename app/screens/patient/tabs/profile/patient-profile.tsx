@@ -26,7 +26,7 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowRadius: 10,
   backgroundColor: "white",
   padding: 10,
-  margin: 10,
+  margin: 13,
   elevation: 5,
 }
 
@@ -38,6 +38,7 @@ const ItemMainView: ViewStyle = {
 const imageView: ViewStyle = {
   flex: 0.3,
   alignItems: "center",
+  marginLeft: -8,
 }
 
 const HEADER: TextStyle = {
@@ -46,9 +47,9 @@ const HEADER: TextStyle = {
   textAlign: "left",
   color: color.textDarkGray,
   fontFamily: typography.CooperMdBTMedium,
-  marginBottom: 18,
-  marginLeft: 16,
-  marginTop: 16,
+  marginBottom: 10,
+  marginLeft: 10,
+  marginTop: 10,
 }
 
 const TITLE: TextStyle = {
@@ -100,7 +101,8 @@ const IMAGE: ImageStyle = {
 
 const ContainerView: ViewStyle = {
   flex: 0.57,
-  marginHorizontal: 10,
+  marginHorizontal: 5,
+  marginBottom : 10,
   flexDirection: "column",
 }
 
@@ -155,9 +157,8 @@ export const LatestVitalsItems = ({
           </View>
         </View>
         <View
-          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}
-        >
-          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}>
+          <Icon style={{ height: 15, aspectRatio: 1 }} containerStyle={{marginRight: -14}} icon={"next"} />
         </View>
       </View>
     </TouchableOpacity>
@@ -207,7 +208,7 @@ const BasicInfoItems = ({
         <View
           style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}
         >
-          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+          <Icon style={{ height: 15, aspectRatio: 1}} containerStyle={{marginRight: -14}} icon={"next"} />
         </View>
       </View>
     </TouchableOpacity>
@@ -219,7 +220,8 @@ export const ItemSeparator = () => {
     <View
       style={{
         height: 0.4,
-        marginVertical: 30,
+        marginTop: 15,
+        marginBottom: 25,
         marginHorizontal: 15,
         backgroundColor: color.seperatorColor,
       }}

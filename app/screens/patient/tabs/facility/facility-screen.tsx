@@ -26,7 +26,7 @@ const DETAIL_CONTAINER_VIEW: ViewStyle = {
 
 const TITLE: TextStyle = {
   fontSize: 12,
-  lineHeight: 18,
+  lineHeight: 25,
   width: "30%",
   textAlign: "left",
   color: color.textLightGray,
@@ -35,7 +35,7 @@ const TITLE: TextStyle = {
 
 const DETAILS: TextStyle = {
   fontSize: 14,
-  lineHeight: 22,
+  lineHeight: 25,
   textAlign: "left",
   marginStart: 12,
   color: color.textDarkGray,
@@ -51,7 +51,7 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowRadius: 10,
   backgroundColor: "white",
   padding: 10,
-  margin: 10,
+  margin: 13,
   elevation: 5,
 }
 
@@ -62,8 +62,8 @@ const HEADER: TextStyle = {
   color: color.textDarkGray,
   fontFamily: typography.CooperMdBTMedium,
   marginBottom: 18,
-  marginLeft: 16,
-  marginTop: 16,
+  marginLeft: 10,
+  marginTop: 10,
 }
 
 const MEDICAL_OFFICER_VIEW_CONTAINER: ViewStyle = {
@@ -105,7 +105,7 @@ const MEDICAL_OFFICER_DESIGNATION: TextStyle = {
 const MAPVIEW_CONTAINER: ViewStyle = {
   height: 124,
   borderRadius: 20,
-  marginBottom: 35,
+  marginBottom: 30,
   marginTop: 25,
   overflow: "hidden",
   marginHorizontal: 10,
@@ -141,11 +141,11 @@ const MadicalProfessionalsItems = ({
         <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
           <View style={{ flex: 1 }} />
         </View>
-        <View style={{ flex: 1, marginLeft: 20 }}>
+        <View style={{ flex: 1, marginLeft: 25 }}>
           <Text style={MEDICAL_OFFICER_NAME} text={info.name} />
           <Text style={MEDICAL_OFFICER_DESIGNATION} text={info.designation} />
         </View>
-        <View style={{ marginHorizontal: 5, justifyContent: "center" }}>
+        <View style={{ marginHorizontal: -2, justifyContent: "center" }}>
           <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
         </View>
       </View>
@@ -163,10 +163,10 @@ const FacilityInfoItems = ({
 }) => {
   return (
     <TouchableOpacity onPress={() => onPress(info)}>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, marginTop: 10 }}>
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: "row" }}>
-            <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
+            <View style={{...MEDICAL_OFFICER_IMAGE_CONTAINER, marginTop: 5}}>
               <View style={{ flex: 1 }} />
             </View>
             <View style={CHILD_CONTAINER}>
@@ -183,8 +183,8 @@ const FacilityInfoItems = ({
                 <Text style={[DETAILS, { color: color.activeTab }]} text={info.address} />
               </View>
             </View>
-            <View style={{ justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}>
-              <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+            <View style={{ justifyContent: "center", alignItems: "flex-end", marginTop: -30 }}>
+              <Icon style={{ height: 15, aspectRatio: 1 }} containerStyle={{marginHorizontal: -2}} icon={"next"} />
             </View>
           </View>
         </View>

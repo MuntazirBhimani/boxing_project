@@ -20,7 +20,7 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowRadius: 10,
   backgroundColor: "white",
   padding: 10,
-  margin: 10,
+  margin: 13,
   elevation: 5,
 }
 
@@ -28,17 +28,17 @@ const INNERCONTAINER: ViewStyle = {
   flexDirection: "row",
   justifyContent: "space-between",
   marginBottom: 10,
-  marginTop: 20,
-  marginHorizontal: 18,
+  marginTop: 13,
+  marginHorizontal: 10,
 }
 
 const DESC: TextStyle = {
   fontSize: 12,
   lineHeight: 20,
   color: color.textLightGray,
-  marginLeft: 18,
+  marginLeft: 10,
   marginRight: 41,
-  marginBottom: 38,
+  marginBottom: 28,
   fontFamily: typography.latoMedium,
 }
 
@@ -49,7 +49,7 @@ const TITLE: TextStyle = {
   fontFamily: typography.latoSemiBold,
   color: color.textDarkGray,
   marginBottom: 10,
-  marginHorizontal: 18,
+  marginHorizontal: 10,
 }
 
 const DATE: TextStyle = {
@@ -68,7 +68,7 @@ export const DiagnosisItems = ({ info, onPress }: { info: any; onPress: (info: a
           <Text style={DATE} text={info.time} />
         </View>
         <Icon
-          style={{ height: 15, marginRight: -10 }}
+          style={{ height: 15, marginRight: -17}}
           containerStyle={{ position: "absolute", alignSelf: "flex-end" }}
           icon={"next"}
         />
