@@ -1,19 +1,9 @@
 import React from "react"
-import {
-  Image,
-  ImageStyle,
-  Platform,
-  TextStyle,
-  View,
-  ViewStyle,
-  FlatList,
-  TouchableOpacity,
-} from "react-native"
-import { useNavigation } from "@react-navigation/native"
+import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
 import { observer } from "mobx-react-lite"
-import { BulletItem, Button, Header, Text, Screen, Wallpaper, Icon } from "../../../../components"
-import { color, spacing, typography } from "../../../../theme"
-import { screenWidth, screenHeight } from "../../../../theme/size"
+import { Text, Screen, Icon } from "../../../../components"
+import { color, typography } from "../../../../theme"
+import { screenHeight } from "../../../../theme/size"
 import MapView from "react-native-maps"
 
 const FULL: ViewStyle = { flex: 1 }
@@ -148,7 +138,7 @@ const MadicalProfessionalsItems = ({
     <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginVertical: 20 }}>
       <View style={MEDICAL_OFFICER_VIEW_CONTAINER}>
         <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
-          <Image style={{ flex: 1 }} />
+          <View style={{ flex: 1 }} />
         </View>
         <View style={{ flex: 1, marginLeft: 20 }}>
           <Text style={MEDICAL_OFFICER_NAME} text={info.name} />
@@ -179,7 +169,7 @@ const FacilityInfoItems = ({
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: "row" }}>
             <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
-              <Image style={{ flex: 1 }} />
+              <View style={{ flex: 1 }} />
             </View>
             <View style={CHILD_CONTAINER}>
               <View style={DETAIL_CONTAINER_VIEW}>
@@ -244,7 +234,9 @@ export const FacilityScreen = observer(function FacilityScreen() {
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Facility Information" style={HEADER} />
           {facilityInfo.map((item, index) => {
-            return <FacilityInfoItems info={item} onPress={() => {}} isBasicInfo={true} />
+            return (
+              <FacilityInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
+            )
           })}
         </View>
         <View style={OUTER_SHADOW_VIEW}>
@@ -252,7 +244,7 @@ export const FacilityScreen = observer(function FacilityScreen() {
             <Text text="Medical Professionals" style={HEADER} />
           </View>
           {medicalProfessionals.map((item, index) => {
-            return <MadicalProfessionalsItems info={item} onPress={() => {}} />
+            return <MadicalProfessionalsItems key={index} info={item} onPress={() => {}} />
           })}
         </View>
       </Screen>

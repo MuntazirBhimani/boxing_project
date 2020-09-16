@@ -10,11 +10,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { Icon, Text } from "../components"
 import { color } from "../theme"
-import { HomeScreen } from "../screens/home-screen/home-screen"
-import { DemoScreen, PatientMedications } from "../screens"
+import { PatientMedications } from "../screens"
 import { screenHeight } from "../theme"
 import PatientScreen from "../screens/patient/patient-screen"
 import DeviceInfo from "react-native-device-info"
+import { HomeScreen } from "../screens/home-screen/home-screen"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -28,8 +28,7 @@ import DeviceInfo from "react-native-device-info"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type PrimaryParamList = {
-  welcome: undefined
-  demo: undefined
+  home: undefined
   patient_profile: undefined
   patient_diagnosis: undefined
   patient_medications: undefined
@@ -117,8 +116,7 @@ export function PrimaryNavigator() {
         gestureEnabled: true,
       }}
     >
-      <Stack.Screen name="welcome" component={HomeTabs} />
-      <Stack.Screen name="demo" component={DemoScreen} />
+      <Stack.Screen name="home" component={HomeTabs} />
       {/* <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
       {/* <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
@@ -138,5 +136,5 @@ export function PrimaryNavigator() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["welcome"]
+const exitRoutes = ["home"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)

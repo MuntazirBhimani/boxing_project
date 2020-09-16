@@ -1,4 +1,4 @@
-package com.myapp;
+package com.unio;
 
 import com.facebook.react.ReactActivity;
 

@@ -1,6 +1,5 @@
 import React from "react"
 import {
-  Image,
   ImageStyle,
   TextStyle,
   SafeAreaView,
@@ -8,10 +7,9 @@ import {
   ViewStyle,
   TouchableOpacity,
 } from "react-native"
-import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
-import { BulletItem, Button, Header, Text, Screen, Wallpaper, Icon } from "../../../../components"
-import { color, spacing, typography } from "../../../../theme"
+import { BulletItem, Text, Screen, Icon } from "../../../../components"
+import { color, typography } from "../../../../theme"
 
 const FULL: ViewStyle = { flex: 1 }
 
@@ -65,6 +63,7 @@ const DETAILS: TextStyle = {
   fontSize: 14,
   lineHeight: 22,
   textAlign: "left",
+  marginStart: 10,
   color: color.textDarkGray,
   fontFamily: typography.latoMedium,
 }
@@ -134,12 +133,12 @@ export const LatestVitalsItems = ({
       <View style={ItemMainView}>
         <View style={imageView}>
           <View style={IMAGE_CONTAINER}>
-            <Image style={IMAGE} />
+            <View style={IMAGE} />
           </View>
         </View>
         <View style={ContainerView}>
           <View style={insiderView}>
-            <BulletItem style={{ width: "40%" }} text="BP" />
+            <BulletItem text="BP" />
             <Text style={DETAILS} text={info.BP} />
           </View>
           <View style={insiderView}>
@@ -179,7 +178,7 @@ const BasicInfoItems = ({
       <View style={ItemMainView}>
         <View style={imageView}>
           <View style={IMAGE_CONTAINER}>
-            <Image style={IMAGE} />
+            <View style={IMAGE} />
           </View>
         </View>
         <View style={ContainerView}>
@@ -240,7 +239,7 @@ export const EmergencyContactsItems = ({
       <View style={ItemMainView}>
         <View style={imageView}>
           <View style={IMAGE_CONTAINER}>
-            <Image style={IMAGE} />
+            <View style={IMAGE} />
           </View>
         </View>
         <View style={ContainerView}>
@@ -271,8 +270,6 @@ export const EmergencyContactsItems = ({
 }
 
 export const PatientProfile = observer(function PatientProfile() {
-  const navigation = useNavigation()
-  const goBack = () => navigation.goBack()
   const basicInfo = [
     {
       title: "Basic Info",
@@ -281,8 +278,7 @@ export const PatientProfile = observer(function PatientProfile() {
       DOB: "02/1/1957 (63)",
       MD: "Katherine Jo-Yang",
       location: "PPCU 115-1",
-      allergies:
-        "No Known AllergiesNo Known Allergies No Known Allergies No Known Allergies No Known Allergies",
+      allergies: "No Known Allergies",
     },
   ]
   const latestVitals = [
@@ -323,7 +319,7 @@ export const PatientProfile = observer(function PatientProfile() {
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Basic Info" style={HEADER} />
           {basicInfo.map((item, index) => {
-            return <BasicInfoItems info={item} onPress={() => {}} isBasicInfo={true} />
+            return <BasicInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
           })}
         </View>
         <View style={OUTER_SHADOW_VIEW}>
@@ -332,14 +328,14 @@ export const PatientProfile = observer(function PatientProfile() {
             <Text text="6/28/2020 8:57am" style={DATE} />
           </View>
           {latestVitals.map((item, index) => {
-            return <LatestVitalsItems info={item} onPress={() => {}} />
+            return <LatestVitalsItems key={index} info={item} onPress={() => {}} />
           })}
         </View>
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Emergency Contacts" style={HEADER} />
           {eContacts.map((item, index) => {
             return (
-              <View>
+              <View key={index}>
                 <EmergencyContactsItems info={item} onPress={() => {}} />
                 {eContacts.length != index + 1 && ItemSeparator()}
               </View>
