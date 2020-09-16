@@ -37,6 +37,7 @@ const DETAILS: TextStyle = {
   fontSize: 14,
   lineHeight: 22,
   textAlign: "left",
+  marginStart: 12,
   color: color.textDarkGray,
   fontFamily: typography.latoMedium,
 }
