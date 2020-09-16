@@ -25,7 +25,7 @@ const CONTAINER: ViewStyle = {
 const CHILD_CONTAINER: ViewStyle = {
   flex: 1,
   marginLeft: 20,
-  marginRight: 10,
+  marginRight: 30,
 }
 
 const DETAIL_CONTAINER_VIEW: ViewStyle = {
