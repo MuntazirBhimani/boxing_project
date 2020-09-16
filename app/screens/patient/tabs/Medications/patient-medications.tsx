@@ -42,7 +42,6 @@ const DESC: TextStyle = {
   lineHeight: 20,
   color: color.textLightGray,
   marginLeft: 18,
-  marginRight: 20,
   marginBottom: 38,
   marginTop: 7,
   fontFamily: typography.latoMedium
@@ -79,8 +78,8 @@ export const MedicationsItems = ({ info, onPress,}: { info: any, onPress: (info:
                             <Text style={TITLE} text={info.title}/>
                             <Text style={DESC} text={info.desc}/>
                             </View> 
-                            <View style={{flex: 0.1,justifyContent:'center'}}>
-                                <Icon style={{height: 15, alignItems: 'flex-end'}} icon={"next"}/>
+                            <View style={{flex: 0.1,marginRight: 10,justifyContent:'center'}}>
+                                <Icon style={{height: 15}} icon={"next"}/>
                             </View>
                         </View>
                       
@@ -96,11 +95,11 @@ export const PatientMedications = observer(function PatientMedications() {
     const medicationsData =[{
                 'time': 'Take 1 table by mouth once weekly',
                 'title': 'Protonix',
-                'desc': "A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage."
+                'desc': "A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage. A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage. A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage."
                 },{
                 'time': 'Take 2 by mouth twice daily',
                 'title': 'Lasix',
-                'desc': "To treat gastroesophageal reflux disease (GERD) and a damaged esophagus. It can also treat high..."
+                'desc': "To treat gastroesophageal reflux disease (GERD) and a damaged esophagus. It can also treat high... A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage."
                 }]
 
   return (

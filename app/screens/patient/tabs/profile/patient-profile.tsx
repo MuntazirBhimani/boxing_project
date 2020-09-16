@@ -102,13 +102,15 @@ const IMAGE: ImageStyle = {
 }
 
 const ContainerView: ViewStyle = {
-  flex: 0.6,
+  flex: 0.57,
+  marginHorizontal: 10,
   flexDirection: "column",
 }
 
 const insiderView: ViewStyle = {
   flexDirection: "row",
-  width: "100%",
+  // marginHorizontal: 10,
+  // width: "100%",
   paddingVertical: 3,
 }
 
@@ -289,7 +291,7 @@ export const PatientProfile = observer(function PatientProfile() {
       DOB: "02/1/1957 (63)",
       MD: "Katherine Jo-Yang",
       location: "PPCU 115-1",
-      allergies: "No Known Allergies",
+      allergies: "No Known AllergiesNo Known Allergies No Known Allergies No Known Allergies No Known Allergies",
     },
   ]
   const latestVitals = [

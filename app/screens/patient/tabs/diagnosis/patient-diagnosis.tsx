@@ -86,7 +86,7 @@ export const PatientDiagnosis = observer(function PatientDiagnosis() {
                 'no': 'I67.4',
                 'time': 'Wed, Jun 24',
                 'title': 'Hyperextensive Encephalopathy',
-                'desc': "Cray iceland before they sold out palo santo, tattooed hell of gastropub aesthetic. Wolf biodiesel you probably haven't heard of them...'"
+                'desc': "Cray iceland before they sold out palo santo, tattooed hell of gastropub aesthetic. Wolf biodiesel you probably haven't heard of them...'A dosage of 25 mg or 50 mg per day is the initial therapeutic dosage."
                 },{
                 'no': 'I67.4',
                 'time': 'Wed, Jun 24',
