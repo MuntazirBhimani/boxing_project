@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { BulletItem, Button, Header, Text, Screen, Wallpaper, Icon } from "../../../../components"
 import { color, spacing, typography } from "../../../../theme"
+import {screenWidth, screenHeight} from '../../../../theme/size';
 
 const FULL: ViewStyle = { flex: 1 }
 
@@ -138,27 +139,19 @@ const MadicalProfessionalsItems = ({
   onPress: (info: any) => void
 }) => {
   return (
-    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginTop: 20 }}>
-      <View style={ItemMainView}>
-        <View style={imageView}>
-          <View style={IMAGE_CONTAINER}>
-            <Image style={IMAGE} />
-          </View>
+    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+            <View style={{marginLeft: 20, height: screenHeight*0.09, aspectRatio: 1, backgroundColor: 'red'}}>
+               <Image style={{flex: 1}}/>
+            </View>
+            <View style={{ flex: 1, marginLeft: 10}}>
+              <Text text={info.name}/>
+              <Text text={info.designation}/>
+            </View>
+            <View style={{marginHorizontal: 5,justifyContent: 'center', alignSelf: 'flex-end'}}>
+              <Icon style={{height: 15, aspectRatio: 1}} icon={"next"}/>
+            </View>
         </View>
-        <View style={ContainerView}>
-          <View style={insiderView}>
-            <Text style={DETAILS} text={info.name} />
-          </View>
-          <View style={insiderView}>
-            <Text style={DETAILS} text={info.designation} />
-          </View>
-        </View>
-        <View
-          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}
-        >
-          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
-        </View>
-      </View>
     </TouchableOpacity>
   )
 }

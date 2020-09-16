@@ -5,10 +5,9 @@
  * You'll likely spend most of your time in this file.
  */
 import React from "react"
-import { ImageStyle, View, ViewStyle } from "react-native"
+import { ImageStyle, View, ViewStyle, Platform} from "react-native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
-
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { Icon, Text } from "../components"
 import { color, typography } from "../theme"
@@ -16,6 +15,7 @@ import { HomeScreen } from "../screens/home-screen/home-screen"
 import { FacilityScreen } from "../screens/patient/tabs/facility/facility-screen"
 import { DemoScreen, PatientProfile, PatientDiagnosis, PatientMedications } from "../screens"
 import {screenHeight} from '../theme'
+import DeviceInfo from 'react-native-device-info';
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -38,7 +38,7 @@ export type PrimaryParamList = {
 
 // Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
 const Stack = createNativeStackNavigator<PrimaryParamList>()
-
+const isIphoneX = DeviceInfo.hasNotch();
 const Tab = createBottomTabNavigator()
 const TOP_TAB = createMaterialTopTabNavigator()
 
@@ -118,6 +118,7 @@ function HomeTabs() {
       tabBarOptions={{
         style: {
           height: screenHeight*0.10,
+          marginBottom: Platform.select({ ios: isIphoneX ? -34 : 0, android: 0 })
         },
         showLabel: false,
       }}

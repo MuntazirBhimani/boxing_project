@@ -6,7 +6,7 @@
  */
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
-
+import {SafeAreaView} from 'react-native'
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { PrimaryNavigator } from "./primary-navigator"
 
@@ -52,9 +52,11 @@ export const RootNavigator = React.forwardRef<
   Partial<React.ComponentProps<typeof NavigationContainer>>
 >((props, ref) => {
   return (
-    <NavigationContainer {...props} ref={ref}>
-      <RootStack />
-    </NavigationContainer>
+    <SafeAreaView style={{flex:1}}>
+      <NavigationContainer {...props} ref={ref}>
+        <RootStack />
+      </NavigationContainer>
+   </SafeAreaView>
   )
 })
 
