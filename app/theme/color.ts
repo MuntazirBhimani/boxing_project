@@ -56,7 +56,7 @@ export const color = {
   textDarkGray: palette.textDarkGray,
 
   seperatorColor: palette.seperatorColor,
-
+  borderGray: palette.borderGray,
   /**
    * Storybook background for Text stories, or any stories where
    * the text color is color.text, which is white by default, and does not show
