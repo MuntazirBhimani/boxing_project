@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, StyleSheet, Dimensions, Image } from "react-native"
+import { View, StyleSheet, Dimensions, Image, Platform } from "react-native"
 import { TabView, SceneMap, TabBar } from "react-native-tab-view"
 import { Icon, Screen, Text } from "../../components"
 import { color, typography } from "../../theme"
@@ -7,8 +7,10 @@ import { PatientDiagnosis } from "./tabs/diagnosis/patient-diagnosis"
 import { FacilityScreen } from "./tabs/facility/facility-screen"
 import { PatientMedications } from "./tabs/Medications/patient-medications"
 import { PatientProfile } from "./tabs/profile/patient-profile"
+import DeviceInfo from "react-native-device-info"
 
 const initialLayout = { width: Dimensions.get("window").width }
+const isIphoneX = DeviceInfo.hasNotch()
 
 export default function PatientScreen() {
   const [index, setIndex] = React.useState(0)
@@ -44,7 +46,6 @@ export default function PatientScreen() {
   )
   return (
     <View style={styles.scene}>
-      <Screen>
         <View style={styles.headerView}>
           <Icon style={styles.headerIcon} icon={"temp"} />
           <Text text={"Patient"} style={styles.headerText} />
@@ -56,7 +57,6 @@ export default function PatientScreen() {
           onIndexChange={setIndex}
           initialLayout={initialLayout}
         />
-      </Screen>
     </View>
   )
 }
@@ -84,5 +84,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center",
   },
-  tabBar: { backgroundColor: color.white, elevation: 0, height: 50 },
+  tabBar: { backgroundColor: color.white, elevation: 0, borderBottomWidth: 0.5 ,borderColor: color.seperatorColor, height: 50, marginBottom: Platform.select({ ios: isIphoneX ? -45 : -20, android: 10 })},
 })
