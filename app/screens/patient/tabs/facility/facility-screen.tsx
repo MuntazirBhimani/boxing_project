@@ -163,7 +163,7 @@ const FacilityInfoItems = ({
 }) => {
   return (
     <TouchableOpacity onPress={() => onPress(info)}>
-      <View style={{ flex: 1, marginTop: 10 }}>
+      <View style={{ flex: 1, marginTop: 3 }}>
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: "row" }}>
             <View style={{...MEDICAL_OFFICER_IMAGE_CONTAINER, marginTop: 5}}>
