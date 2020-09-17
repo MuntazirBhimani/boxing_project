@@ -93,11 +93,6 @@ const IMAGE_CONTAINER: ViewStyle = {
 
 const IMAGE: ImageStyle = {
   flex: 1,
-  // width: '65%',
-  // aspectRatio: 1,
-  // backgroundColor: 'red',
-  // borderRadius: 15,
-  // marginTop: 10
 }
 
 const ContainerView: ViewStyle = {
@@ -109,8 +104,6 @@ const ContainerView: ViewStyle = {
 
 const insiderView: ViewStyle = {
   flexDirection: "row",
-  // marginHorizontal: 10,
-  // width: "100%",
   paddingVertical: 3,
 }
 
@@ -174,7 +167,7 @@ const BasicInfoItems = ({
   )
 }
 
-export const ItemSeparator = () => {
+const ItemSeparator = () => {
   return (
     <View
       style={{
@@ -188,7 +181,7 @@ export const ItemSeparator = () => {
   )
 }
 
-export const EmergencyContactsItems = ({
+const EmergencyContactsItems = ({
   info,
   onPress,
 }: {
