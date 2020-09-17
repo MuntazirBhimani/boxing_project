@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { observer } from "mobx-react-lite"
-import { BulletItem, Text, Screen, Icon } from "../../../../components"
+import { BulletItem, Text, Screen, Icon, LatestVitals } from "../../../../components"
 import { color, typography } from "../../../../theme"
 
 const FULL: ViewStyle = { flex: 1 }
@@ -64,7 +64,7 @@ const DETAILS: TextStyle = {
   fontSize: 14,
   lineHeight: 22,
   textAlign: "left",
-  marginStart: 10,
+  marginStart: 15,
   color: color.textDarkGray,
   fontFamily: typography.latoMedium,
 }
@@ -78,8 +78,9 @@ const NAME: TextStyle = {
 }
 
 const IMAGE_CONTAINER: ViewStyle = {
-  width: "65%",
+  width: 70,
   aspectRatio: 1,
+  marginLeft: 10,
   backgroundColor: "red",
   borderRadius: 15,
   marginTop: 10,
@@ -101,7 +102,7 @@ const IMAGE: ImageStyle = {
 
 const ContainerView: ViewStyle = {
   flex: 0.57,
-  marginHorizontal: 5,
+  marginLeft: 15,
   marginBottom : 10,
   flexDirection: "column",
 }
@@ -121,48 +122,6 @@ const DATE: TextStyle = {
   marginRight: 16,
   marginTop: 16,
   color: color.textLightGray,
-}
-
-export const LatestVitalsItems = ({
-  info,
-  onPress,
-}: {
-  info: any
-  onPress: (info: any) => void
-}) => {
-  return (
-    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1 }}>
-      <View style={ItemMainView}>
-        <View style={imageView}>
-          <View style={IMAGE_CONTAINER}>
-            <View style={IMAGE} />
-          </View>
-        </View>
-        <View style={ContainerView}>
-          <View style={insiderView}>
-            <BulletItem text="BP" icon="bp"/>
-            <Text style={DETAILS} text={info.BP} />
-          </View>
-          <View style={insiderView}>
-            <BulletItem text="Resp" icon="resp" />
-            <Text style={DETAILS} text={info.Resp} />
-          </View>
-          <View style={insiderView}>
-            <BulletItem text="Pulse" icon="pulse" />
-            <Text style={DETAILS} text={info.pulse} />
-          </View>
-          <View style={insiderView}>
-            <BulletItem text="Temp" icon="tempe"/>
-            <Text style={DETAILS} text={info.temp} />
-          </View>
-        </View>
-        <View
-          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}>
-          <Icon style={{ height: 15, aspectRatio: 1 }} containerStyle={{marginRight: -14}} icon={"next"} />
-        </View>
-      </View>
-    </TouchableOpacity>
-  )
 }
 
 const BasicInfoItems = ({
@@ -324,15 +283,7 @@ export const PatientProfile = observer(function PatientProfile() {
             return <BasicInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
           })}
         </View>
-        <View style={OUTER_SHADOW_VIEW}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text text="Latest Vitals" style={HEADER} />
-            <Text text="6/28/2020 8:57am" style={DATE} />
-          </View>
-          {latestVitals.map((item, index) => {
-            return <LatestVitalsItems key={index} info={item} onPress={() => {}} />
-          })}
-        </View>
+        <LatestVitals arrayItems={latestVitals}/>
         <View style={OUTER_SHADOW_VIEW}>
           <Text text="Emergency Contacts" style={HEADER} />
           {eContacts.map((item, index) => {

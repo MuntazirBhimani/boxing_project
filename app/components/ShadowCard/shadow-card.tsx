@@ -1,33 +1,117 @@
-import * as React from "react"
-import { View, ViewStyle } from "react-native"
-import { spacing } from "../../theme"
+import React from "react"
+import { View, StyleSheet,TouchableOpacity } from "react-native"
+import { Icon, Screen, Text, BulletItem } from "../../components"
+import { color, typography } from "../../theme"
+import { screenHeight } from "../../theme/size"
 
-const ShadowCardStyle: ViewStyle = {
-  flexDirection: "row",
-  marginTop: spacing[4],
-  paddingBottom: spacing[4],
-  height: 300,
-  width: '85%',
-  backgroundColor: 'black',
-  borderRadius: 10,
-  shadowColor: 'black',
-  shadowOpacity: 0.26,
-  shadowOffset: {width: 0, height: 2},
-  shadowRadius: 10,
-  elevation: 3,
+export interface LatestVitalsProps {
+  arrayItems: Any[],
 }
 
-export interface ShadowCardProps {
-  style: ViewStyle,
-  data: Array[]
-}
-
-export function ShadowCard(props: ShadowCardProps) {
-  const { style: styleOverride } = props
-  const style: ViewStyle = { ...ShadowCardStyle, ...styleOverride }
+export function LatestVitals(props: BulletItemProps) {
   return (
-    <View style={ShadowCardStyle}>
-
-    </View>
+    <View style={styles.card_shadow}>
+          <View style={{...styles.ItemHeader,marginBottom: 10 }}>
+            <Text text="Latest Vitals" style={styles.header_text} />
+            <Text text="6/28/2020 8:57am" style={styles.date_text} />
+          </View>
+          {props.arrayItems.map((item, index) => {
+            return (
+              <TouchableOpacity onPress={() => {
+                console.log("item clicked");
+              }} style={{ flex: 1 }}>
+                <View style={{flex: 1}}>
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={styles.imageContainer}>
+                          <View style={{ flex: 1 }} />
+                        </View>
+                        <View style={{ flex: 1, marginLeft: 20, marginBottom: 15}}>
+                            <View style={{flexDirection: 'row'}}>
+                              <BulletItem text="BP" icon="bp"/>
+                              <Text style={styles.text_detail} text={item.BP} />
+                            </View>
+                            <View style={{flexDirection: 'row'}}>
+                              <BulletItem text="Resp" icon="resp"/>
+                              <Text style={styles.text_detail} text={item.Resp} />
+                            </View>
+                            <View style={{flexDirection: 'row'}}>
+                              <BulletItem text="Pulse" icon="pulse"/>
+                              <Text style={styles.text_detail} text={item.pulse} />
+                            </View>
+                            <View style={{flexDirection: 'row'}}>
+                              <BulletItem text="Temp" icon="tempe"/>
+                              <Text style={styles.text_detail} text={item.temp} />
+                            </View>
+                        </View>
+                        <View style={{ marginHorizontal: -2,marginTop: 25}}>
+                          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+                        </View>
+                    </View>
+                </View>
+              </TouchableOpacity>
+            )
+          })}
+      </View>
   )
 }
+
+const styles = StyleSheet.create({
+  card_shadow: {
+    marginHorizontal: 20,
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    backgroundColor: "white",
+    padding: 10,
+    margin: 13,
+    elevation: 5,
+  },
+  text_detail: {
+    fontSize: 14,
+    lineHeight: 22,
+    textAlign: "left",
+    marginStart: 10,
+    color: color.textDarkGray,
+    fontFamily: typography.latoMedium,
+  },
+  imageContainer:{
+    marginLeft: 10,
+    height: 70,
+    aspectRatio: 1,
+    backgroundColor: "red",
+    borderRadius: 15,
+    alignSelf: 'flex-start',
+    marginTop: 7,
+    elevation: 5,
+    shadowColor: "black",
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 10,
+  },
+  header_text : {
+    fontSize: 16,
+    lineHeight: 22,
+    textAlign: "left",
+    color: color.textDarkGray,
+    fontFamily: typography.CooperMdBTMedium,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginTop: 10,
+  },
+  date_text: {
+    fontFamily: typography.latoMedium,
+    fontSize: 12,
+    lineHeight: 20,
+    textAlign: "right",
+    marginRight: 16,
+    color: color.textLightGray,
+  },
+  ItemHeader: {
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    alignItems: 'center', 
+    marginBottom: 5
+  }
+})

@@ -1,7 +1,7 @@
 import React from "react"
 import { View, ViewStyle, StyleSheet,TouchableOpacity,ScrollView } from "react-native"
 import { observer } from "mobx-react-lite"
-import { Icon, Screen, Text, BulletItem } from "../../components"
+import { Icon, Screen, Text, BulletItem, LatestVitals } from "../../components"
 import { color, typography } from "../../theme"
 import { screenHeight } from "../../theme/size"
 
@@ -53,47 +53,6 @@ const UpComingAppointmentItems = ({
         <View style={{ marginHorizontal: -2, marginTop: -40}}>
           <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
         </View>
-      </View>
-    </TouchableOpacity>
-  )
-}
-
-const LatestVitalsItems = ({
-  info,
-  onPress,
-}: {
-  info: any
-  onPress: (info: any) => void
-}) => {
-  return (
-    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1 }}>
-      <View style={{flex: 1}}>
-          <View style={{flexDirection: 'row'}}>
-              <View style={styles.imageContainer}>
-                <View style={{ flex: 1 }} />
-              </View>
-              <View style={{ flex: 1, marginLeft: 20, marginBottom: 15}}>
-                  <View style={{flexDirection: 'row'}}>
-                    <BulletItem text="BP" icon="bp"/>
-                    <Text style={styles.DETAILS} text={info.BP} />
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <BulletItem text="Resp" icon="resp"/>
-                    <Text style={styles.DETAILS} text={info.Resp} />
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <BulletItem text="Pulse" icon="pulse"/>
-                    <Text style={styles.DETAILS} text={info.pulse} />
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <BulletItem text="Temp" icon="tempe"/>
-                    <Text style={styles.DETAILS} text={info.temp} />
-                  </View>
-              </View>
-              <View style={{ marginHorizontal: -2,marginTop: 25}}>
-                <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
-              </View>
-          </View>
       </View>
     </TouchableOpacity>
   )
@@ -163,15 +122,7 @@ export const HomeScreen = observer(function HomeScreen() {
             return <UpComingAppointmentItems key={index} info={item} onPress={() => {}} />
           })}
       </View>
-      <View style={styles.OUTER_SHADOW_VIEW}>
-          <View style={{...styles.ItemHeader,marginBottom: 10 }}>
-            <Text text="Latest Vitals" style={styles.HEADER} />
-            <Text text="6/28/2020 8:57am" style={styles.DATE} />
-          </View>
-          {latestVitals.map((item, index) => {
-            return <LatestVitalsItems key={index} info={item} onPress={() => {}} />
-          })}
-      </View>
+      <LatestVitals arrayItems={latestVitals}/>
       </ScrollView>
   </View>
   )

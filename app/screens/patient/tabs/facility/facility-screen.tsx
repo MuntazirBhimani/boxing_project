@@ -75,7 +75,7 @@ const MEDICAL_OFFICER_VIEW_CONTAINER: ViewStyle = {
 
 const MEDICAL_OFFICER_IMAGE_CONTAINER: ViewStyle = {
   marginLeft: 10,
-  height: screenHeight * 0.09,
+  height: 70,
   aspectRatio: 1,
   backgroundColor: "red",
   borderRadius: 15,
