@@ -8,7 +8,7 @@ export interface LatestVitalsProps {
   arrayItems: Any[],
 }
 
-export function LatestVitals(props: BulletItemProps) {
+export function LatestVitals(props: LatestVitalsProps) {
   return (
     <View style={styles.card_shadow}>
           <View style={{...styles.ItemHeader,marginBottom: 10 }}>

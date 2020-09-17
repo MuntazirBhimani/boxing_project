@@ -14,8 +14,10 @@ import { PatientMedications } from "../screens"
 import { screenHeight } from "../theme"
 import PatientScreen from "../screens/patient/patient-screen"
 import EvaluationsScreen from "../screens/evaluations/evaluations-screen"
+import SchedulingScreen from '../screens/scheduling/scheduling-screen'
 import DeviceInfo from "react-native-device-info"
 import { HomeScreen } from "../screens/home-screen/home-screen"
+import {AppointmentFor} from "../screens/scheduling/tabs/completed/appointment-for"
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -103,9 +105,23 @@ function HomeTabs() {
       {tabItem("Home", 'homeTab', HomeScreen)}
       {tabItem("Evaluations",'evaluations', EvaluationsScreen)}
       {tabItem("Patient",'home', PatientScreen)}
-      {tabItem("Scheduling",'home', HomeScreen)}
+      {tabItem("Scheduling",'home', SchedulingScreenStack)}
       {tabItem("Lab Results",'labresult', HomeScreen)}
     </Tab.Navigator>
+  )
+}
+
+function SchedulingScreenStack(){
+  return(
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+      }}
+    >
+      <Stack.Screen name="scheduling" component={SchedulingScreen} />
+      <Stack.Screen name="appointment" component={AppointmentFor} />
+    </Stack.Navigator>
   )
 }
 

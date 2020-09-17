@@ -13,7 +13,8 @@ export const icons = {
   caduceus: require("./caduceus/caduceus.png"),
   homeTab: require("./TabIcons/home/home.png"),
   evaluations: require("./TabIcons/evaluations/evaluations.png"),
-  labresult: require("./TabIcons/labresults/labresult.png")
+  labresult: require("./TabIcons/labresults/labresult.png"),
+  noAppointment: require("./Scheduling/Upcoming/NoAppointment/noAppointment.png")
 }
 
 export type IconTypes = keyof typeof icons
