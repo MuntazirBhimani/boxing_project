@@ -13,6 +13,7 @@ import { color } from "../theme"
 import { PatientMedications } from "../screens"
 import { screenHeight } from "../theme"
 import PatientScreen from "../screens/patient/patient-screen"
+import EvaluationsScreen from "../screens/evaluations/evaluations-screen"
 import DeviceInfo from "react-native-device-info"
 import { HomeScreen } from "../screens/home-screen/home-screen"
 /**
@@ -100,7 +101,7 @@ function HomeTabs() {
       }}
     >
       {tabItem("Home", HomeScreen)}
-      {tabItem("Evaluations", HomeScreen)}
+      {tabItem("Evaluations", EvaluationsScreen)}
       {tabItem("Patient", PatientScreen)}
       {tabItem("Scheduling", HomeScreen)}
       {tabItem("Lab Results", HomeScreen)}
