@@ -81,7 +81,7 @@ const IMAGE_CONTAINER: ViewStyle = {
   width: 70,
   aspectRatio: 1,
   marginLeft: 10,
-  backgroundColor: "red",
+  backgroundColor: color.white,
   borderRadius: 15,
   marginTop: 10,
   elevation: 5,
@@ -200,7 +200,7 @@ export const EmergencyContactsItems = ({
       <View style={ItemMainView}>
         <View style={imageView}>
           <View style={IMAGE_CONTAINER}>
-            <View style={IMAGE} />
+            <Icon icon='profile' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
           </View>
         </View>
         <View style={ContainerView}>

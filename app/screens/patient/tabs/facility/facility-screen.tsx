@@ -77,12 +77,12 @@ const MEDICAL_OFFICER_IMAGE_CONTAINER: ViewStyle = {
   marginLeft: 10,
   height: 70,
   aspectRatio: 1,
-  backgroundColor: "red",
+  backgroundColor: color.white,
   borderRadius: 15,
   elevation: 5,
   shadowColor: "black",
-  shadowOpacity: 0.4,
-  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5 },
   shadowRadius: 10,
 }
 
@@ -168,7 +168,7 @@ const FacilityInfoItems = ({
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: "row" }}>
             <View style={{...MEDICAL_OFFICER_IMAGE_CONTAINER, marginTop: 5}}>
-              <View style={{ flex: 1 }} />
+              <Icon icon='caduceus' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
             </View>
             <View style={CHILD_CONTAINER}>
               <View style={DETAIL_CONTAINER_VIEW}>

@@ -88,12 +88,12 @@ export const HomeScreen = observer(function HomeScreen() {
 
   return (
   <View style={styles.FULL}>
-    <ScrollView>
     <View style={styles.headerView}>
           <Icon style={styles.headerIcon} icon={"temp"} />
           <Text text={"Good morning, Michael"} style={styles.headerText} />
     </View>
     <View style={styles.seperatorView}/>
+    <ScrollView>
     <Text style={styles.TOP_TEXT_STYLE}>
       {'You have '}
       <Text style={{...styles.TOP_TEXT_STYLE,color: color.activeTab}}>

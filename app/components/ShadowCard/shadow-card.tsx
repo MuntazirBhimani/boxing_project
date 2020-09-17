@@ -23,7 +23,7 @@ export function LatestVitals(props: BulletItemProps) {
                 <View style={{flex: 1}}>
                     <View style={{flexDirection: 'row'}}>
                         <View style={styles.imageContainer}>
-                          <View style={{ flex: 1 }} />
+                          <Icon icon='heart' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
                         </View>
                         <View style={{ flex: 1, marginLeft: 20, marginBottom: 15}}>
                             <View style={{flexDirection: 'row'}}>
@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     height: 70,
     aspectRatio: 1,
-    backgroundColor: "red",
+    backgroundColor: color.white,
     borderRadius: 15,
     alignSelf: 'flex-start',
     marginTop: 7,
     elevation: 5,
     shadowColor: "black",
-    shadowOpacity: 0.4,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 5 },
     shadowRadius: 10,
   },
   header_text : {
