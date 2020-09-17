@@ -13,6 +13,6 @@ export const palette = {
   borderGray: "rgba(224, 224, 224, 1)",
   textLightGray: "rgba(130, 130, 130, 1)",
   textDarkGray: "rgba(79, 79, 79, 1)",
-  lightBlue: "rgba(232, 245, 255, 1)"
-
+  lightBlue: "rgba(232, 245, 255, 1)",
+  textRedColor: "rgba(225,70,66,1)",
 }
