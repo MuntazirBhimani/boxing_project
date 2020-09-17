@@ -6,7 +6,7 @@ import { Icon, Text } from "../../components"
 import { appoinment_details_Screen } from "./styles"
 import { Image, View } from "react-native"
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler"
-import { screenHeight } from "../../theme"
+import { screenHeight, screenWidth } from "../../theme"
 import MapView from "react-native-maps"
 
 export const ApoinmentDetailsScreen = observer(function ApoinmentDetailsScreen() {
@@ -67,7 +67,7 @@ export const ApoinmentDetailsScreen = observer(function ApoinmentDetailsScreen()
           <Image style={[appoinment_details_Screen.IMG_GENRALQUESTION, appoinment_details_Screen.IMG_PROFILEPICTURE]} source={{ uri: imageUrl }} />
           <View >
             <Text text={"Dr. Katherine Jo-Yang"} style={appoinment_details_Screen.TXT_GENRAL_QUESTION} />
-            <Text text={"Pulmonologist"} style={[appoinment_details_Screen.TXT_GENRAL_QUESTION,appoinment_details_Screen.TXT_DESIGNATION]} />
+            <Text text={"Pulmonologist"} style={[appoinment_details_Screen.TXT_GENRAL_QUESTION, appoinment_details_Screen.TXT_DESIGNATION]} />
           </View>
         </View>
 
@@ -87,11 +87,12 @@ export const ApoinmentDetailsScreen = observer(function ApoinmentDetailsScreen()
           text={"This confirms your appointment. Please arrive \n early to check-in."}
           style={appoinment_details_Screen.TXT_CONFIRM_DES} />
 
-        <View style={{ alignSelf: 'center', marginTop: (screenHeight * 0.06) }}>
+        <View style={appoinment_details_Screen.TXT_CANCELVIEW_STYLE}>
           <TouchableOpacity onPress={() => btnCancelPressed()} style={appoinment_details_Screen.BTN_CANCEL_STYLE}>
             <Text tx="appointmentDetailScreen.cancelAppointment" style={appoinment_details_Screen.TXT_CANCEL_APPOINMENT} />
           </TouchableOpacity>
         </View>
+
       </ScrollView>
     </View>
   )

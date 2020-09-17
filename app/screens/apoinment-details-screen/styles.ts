@@ -96,7 +96,13 @@ export const appoinment_details_Screen = {
         letterSpacing: 1,
     } as TextStyle,
     BTN_CANCEL_STYLE: {
+        alignSelf: 'center',
         padding: 5,
-        marginBottom: (screenWidth * 0.1),
+    } as ViewStyle,
+    TXT_CANCELVIEW_STYLE: {
+        alignSelf: 'center',
+        height: (screenWidth * 0.10),
+        marginTop : (screenWidth * 0.08),
+        justifyContent: 'center',
     } as ViewStyle,
 }
