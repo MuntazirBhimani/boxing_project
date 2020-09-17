@@ -115,7 +115,7 @@ const MAP_VIEW: ViewStyle = {
   flex: 1,
 }
 
-export const ItemSeperator = () => {
+const ItemSeperator = () => {
   return (
     <View
       style={{
@@ -144,6 +144,7 @@ const MadicalProfessionalsItems = ({
         <View style={{ flex: 1, marginLeft: 25 }}>
           <Text style={MEDICAL_OFFICER_NAME} text={info.name} />
           <Text style={MEDICAL_OFFICER_DESIGNATION} text={info.designation} />
+          <Text/>
         </View>
         <View style={{ marginHorizontal: -2, justifyContent: "center" }}>
           <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
@@ -242,7 +243,12 @@ export const FacilityScreen = observer(function FacilityScreen() {
             <Text text="Medical Professionals" style={HEADER} />
           </View>
           {medicalProfessionals.map((item, index) => {
-            return <MadicalProfessionalsItems key={index} info={item} onPress={() => {}} />
+            return (
+              <View key={index}>
+                <MadicalProfessionalsItems key={index} info={item} onPress={() => {}} />
+                {medicalProfessionals.length != index + 1 && ItemSeperator()}
+              </View>
+            )
           })}
         </View>
       </Screen>

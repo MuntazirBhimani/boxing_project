@@ -140,19 +140,19 @@ export const LatestVitalsItems = ({
         </View>
         <View style={ContainerView}>
           <View style={insiderView}>
-            <BulletItem text="BP" />
+            <BulletItem text="BP" icon="bp"/>
             <Text style={DETAILS} text={info.BP} />
           </View>
           <View style={insiderView}>
-            <BulletItem text="Resp" />
+            <BulletItem text="Resp" icon="resp" />
             <Text style={DETAILS} text={info.Resp} />
           </View>
           <View style={insiderView}>
-            <BulletItem text="Pulse" />
+            <BulletItem text="Pulse" icon="pulse" />
             <Text style={DETAILS} text={info.pulse} />
           </View>
           <View style={insiderView}>
-            <BulletItem text="Temp" />
+            <BulletItem text="Temp" icon="tempe"/>
             <Text style={DETAILS} text={info.temp} />
           </View>
         </View>

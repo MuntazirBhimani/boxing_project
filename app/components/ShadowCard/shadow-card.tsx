@@ -19,13 +19,15 @@ const ShadowCardStyle: ViewStyle = {
 
 export interface ShadowCardProps {
   style: ViewStyle,
+  data: Array[]
 }
 
 export function ShadowCard(props: ShadowCardProps) {
   const { style: styleOverride } = props
   const style: ViewStyle = { ...ShadowCardStyle, ...styleOverride }
   return (
-    
-    <View style={ShadowCardStyle}/>
+    <View style={ShadowCardStyle}>
+
+    </View>
   )
 }
