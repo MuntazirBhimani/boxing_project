@@ -3,17 +3,19 @@ import { TextStyle, View, ViewStyle, FlatList, TouchableOpacity, StyleSheet,Imag
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon, Button, UpcomingItems } from "../../../../components"
-import { color, typography } from "../../../../theme"
+import { color, typography} from "../../../../theme"
 import {screenHeight} from '../../../../theme/size'
-import {font_16} from '../../../../theme/fontsizes'
+import scale from '../../../../theme/scale'
+
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
 }
 export const SchedulingUpcoming = observer(function SchedulingUpcoming() {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
+
   const appointmentData = [
-    {
+    { 
       drName: "Dr. Katherine Jo-Yang",
       designation: "Pulmonologist",
       hospitalName: "MedStarHospital",
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor: color.activeTab
     },
     button_textStyle: {
-        fontSize: font_16,
+        fontSize: scale(16),
         fontFamily: typography.CooperMdBTMedium,
         color: color.white,
         textAlign: "center",

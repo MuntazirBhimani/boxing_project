@@ -17,7 +17,10 @@ import EvaluationsScreen from "../screens/evaluations/evaluations-screen"
 import SchedulingScreen from '../screens/scheduling/scheduling-screen'
 import DeviceInfo from "react-native-device-info"
 import { HomeScreen } from "../screens/home-screen/home-screen"
-import {AppointmentFor} from "../screens/scheduling/tabs/completed/appointment-for"
+import {AppointmentFor} from "../screens/scheduling/tabs/completed/appointment-book1"
+import {AppointmentBook2} from "../screens/scheduling/tabs/completed/appointment-book2"
+import {AppointmentBook3} from "../screens/scheduling/tabs/completed/appointment-book3"
+
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -105,7 +108,7 @@ function HomeTabs() {
       {tabItem("Home", 'homeTab', HomeScreen)}
       {tabItem("Evaluations",'evaluations', EvaluationsScreen)}
       {tabItem("Patient",'home', PatientScreen)}
-      {tabItem("Scheduling",'home', SchedulingScreenStack)}
+      {tabItem("Scheduling",'scheduling', SchedulingScreenStack)}
       {tabItem("Lab Results",'labresult', HomeScreen)}
     </Tab.Navigator>
   )
@@ -121,6 +124,8 @@ function SchedulingScreenStack(){
     >
       <Stack.Screen name="scheduling" component={SchedulingScreen} />
       <Stack.Screen name="appointment" component={AppointmentFor} />
+      <Stack.Screen name="appointment2" component={AppointmentBook2}/>
+      <Stack.Screen name="appointment3" component={AppointmentBook3}/>
     </Stack.Navigator>
   )
 }

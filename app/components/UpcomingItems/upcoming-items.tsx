@@ -11,7 +11,7 @@ export interface UpcomingItemsProps {
 export function UpcomingItems(props: UpcomingItemsProps) {
   return (
     <View style={styles.card_shadow}>
-        <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1 }}>
+        <TouchableOpacity onPress={() => {}} style={{ flex: 1 }}>
             <View style={styles.progressNoteContainer}>
                 <View style={styles.imageContainer}>
                     <View style={{ flex: 1 }} />

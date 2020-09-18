@@ -11,7 +11,7 @@ const CONTAINER: ViewStyle = {
   backgroundColor: color.transparent,
 }
 export const SchedulingCompleted = observer(function SchedulingCompleted() {
-  
+  const navigation = useNavigation()
   const appointmentData = [
     
   ]
@@ -35,7 +35,9 @@ export const SchedulingCompleted = observer(function SchedulingCompleted() {
               </View>
           </View>)
         }
-        <Button style={styles.button_scheduling} text="Schedule Appointment" textStyle={styles.button_textStyle}/>
+        <Button style={styles.button_scheduling} text="Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
+          navigation.navigate('appointment')
+        }}/>
       </Screen>
     </View>
   )

@@ -8,50 +8,70 @@ import {screenHeight} from '../../../../theme/size'
 
 const FULL: ViewStyle = { flex: 1 }
 const CONTAINER: ViewStyle = {
-  backgroundColor: color.transparent,
-}
-
-const AppointmentItem = ({
-  info
-}: {
-  info: any
-}) => {
-    return(
-        <View style={styles.card_shadow}>
-            <TouchableOpacity onPress={() => {}} style={{ flex: 1 }}>
-                <View style={styles.progressNoteContainer}>
-                    <View style={styles.imageContainer}>
-                        <View style={{ flex: 1 }} />
-                    </View>
-                    <View style={{ flex: 1, marginLeft: 20 }}>
-                    <Text style={styles.progressNoteText1} text={info.drName} />
-                    <Text style={{...styles.progressNoteText2,marginTop: -3}} text={info.age} />
-                    <Text style={styles.progressNoteText3} text={info.desc} />
-                    </View>
-                    <View style={{ marginHorizontal: -2, marginTop: -20}}>
-                    <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
-                    </View>
-                </View>
-            </TouchableOpacity>
-        </View>
-    )
+  backgroundColor: color.white,
 }
 
 export const AppointmentFor = observer(function AppointmentFor() {
+  const [selectedId, setSelectedId] = useState(null)
+  const navigation = useNavigation()
   const appointmentData = [
     {
+      id: 1,
       drName: "Dr. Katherine Jo-Yang",
       age: "37 years old",
       desc: "Authorized patient family member of Nicholas Torres",
     },
   ]
+
+  const AppointmentItem = ({
+      info
+    }: {
+      info: any
+    }) => {
+        return(
+            <View style={{...styles.card_shadow, borderColor: info.id === selectedId ? 'white' : color.activeTab, borderWidth: info.id === selectedId ? 0 : 3}}>
+                <TouchableOpacity onPress={() => {
+                  if (selectedId === info.id){
+                       setSelectedId(null)
+                  } else {
+                     setSelectedId(info.id)
+                    
+                  }
+                  if (selectedId !== null){
+                       navigation.navigate('appointment2')
+                  }
+
+                }} style={{ flex: 1 }}>
+                    <View style={styles.progressNoteContainer}>
+                        <View style={styles.imageContainer}>
+                            <View style={{ flex: 1 }} />
+                        </View>
+                        <View style={{ flex: 1, marginLeft: 20 }}>
+                        <Text style={styles.progressNoteText1} text={info.drName} />
+                        <Text style={{...styles.progressNoteText2,marginTop: -3}} text={info.age} />
+                        <Text style={styles.progressNoteText3} text={info.desc} />
+                        </View>
+                        <View style={{ marginHorizontal: -2, marginTop: -20}}>
+                        <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
   return (
     <View style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
-          <Text style={{marginHorizontal: 100, textAlign: 'center'}} text="Just to confirm,who is this appointment for?"/>
+          <Button text="×" onPress={() => {
+            navigation.goBack()
+          }} style={styles.button_close} textStyle={{color: color.textDarkGray, fontSize: 40}}/>
+          <Text style={{...styles.header_text, marginTop: 60}} text="Just to confirm,"/>
+          <Text style={styles.header_text} text="who is this appointment for?"/>
           <FlatList
               style={{ marginTop: 10}}
               data={appointmentData}
+              extraData={selectedId}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => <AppointmentItem info={item}/>}
           />
@@ -66,7 +86,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     shadowColor: "black",
     shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
     backgroundColor: "white",
     padding: 10,
@@ -125,5 +145,22 @@ const styles = StyleSheet.create({
   textAlign: "left",
   color: color.textDarkGray,
   fontFamily: typography.latoMedium,
+  },
+  header_text: {
+    fontSize: 18,
+    lineHeight: 30,
+    fontFamily: typography.CooperMdBTMedium,
+    color: color.textDarkGray,
+    textAlign: "center",
+    alignItems: 'center'
+  },
+  button_close: {
+    backgroundColor: color.white,
+    height: 60,
+    aspectRatio: 1,
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    marginTop: 0,
+    right: 10
   }
 })
