@@ -6,12 +6,13 @@ import { screenHeight } from "../../theme/size"
 
 export interface UpcomingItemsProps {
   items: Any,
+  onPress: (any: any) => void
 }
 
 export function UpcomingItems(props: UpcomingItemsProps) {
   return (
     <View style={styles.card_shadow}>
-        <TouchableOpacity onPress={() => {}} style={{ flex: 1 }}>
+        <TouchableOpacity onPress={() => props.onPress()} style={{ flex: 1 }}>
             <View style={styles.progressNoteContainer}>
                 <View style={styles.imageContainer}>
                     <View style={{ flex: 1 }} />

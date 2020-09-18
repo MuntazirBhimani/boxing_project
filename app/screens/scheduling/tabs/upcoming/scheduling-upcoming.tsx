@@ -33,7 +33,9 @@ export const SchedulingUpcoming = observer(function SchedulingUpcoming() {
               style={{marginBottom: 20}}
               data={appointmentData}
               keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => <UpcomingItems items={item}/>}
+              renderItem={({ item }) => <UpcomingItems items={item} onPress={() => {
+                navigation.navigate('appointment_detail')
+              }}/>}
           />) : 
           (<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
               <View style={{justifyContent: 'center'}}>

@@ -9,7 +9,7 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler"
 import { screenHeight, screenWidth } from "../../theme"
 import MapView from "react-native-maps"
 
-export const ApoinmentDetailsScreen = observer(function ApoinmentDetailsScreen() {
+export const AppointmentBookDetails = observer(function AppointmentBookDetails() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
   // OR

@@ -20,6 +20,8 @@ import { HomeScreen } from "../screens/home-screen/home-screen"
 import {AppointmentFor} from "../screens/scheduling/tabs/completed/appointment-book1"
 import {AppointmentBook2} from "../screens/scheduling/tabs/completed/appointment-book2"
 import {AppointmentBook3} from "../screens/scheduling/tabs/completed/appointment-book3"
+import {AppointmentBookDetails} from "../screens/apoinment-details-screen/apoinment-details-screen"
+
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -126,6 +128,7 @@ function SchedulingScreenStack(){
       <Stack.Screen name="appointment" component={AppointmentFor} />
       <Stack.Screen name="appointment2" component={AppointmentBook2}/>
       <Stack.Screen name="appointment3" component={AppointmentBook3}/>
+      <Stack.Screen name="appointment_detail" component={AppointmentBookDetails}/>
     </Stack.Navigator>
   )
 }
