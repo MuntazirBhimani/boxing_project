@@ -1,16 +1,12 @@
 import React, {useState} from "react"
-import { TextStyle, View, ViewStyle, FlatList, TouchableOpacity, StyleSheet,Image} from "react-native"
+import { TextStyle, View, ScrollView, FlatList, TouchableOpacity, StyleSheet,Image} from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon, Button, UpcomingItems } from "../../../../components"
 import { color, typography } from "../../../../theme"
 import {screenHeight} from '../../../../theme/size'
 
-const FULL: ViewStyle = { flex: 1 }
-const CONTAINER: ViewStyle = {
-  backgroundColor: color.white,
-}
-
+const FULL: ViewStyle = { flex: 1, backgroundColor: color.white }
 export const AppointmentFor = observer(function AppointmentFor() {
   const [selectedId, setSelectedId] = useState(null)
   const navigation = useNavigation()
@@ -22,6 +18,10 @@ export const AppointmentFor = observer(function AppointmentFor() {
       desc: "Authorized patient family member of Nicholas Torres",
     },
   ]
+
+  const btnBackPressed = () => {
+    navigation.goBack()
+  }
 
   const AppointmentItem = ({
       info
@@ -62,20 +62,20 @@ export const AppointmentFor = observer(function AppointmentFor() {
 
   return (
     <View style={FULL}>
-      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
-          <Button text="×" onPress={() => {
-            navigation.goBack()
-          }} style={styles.button_close} textStyle={{color: color.textDarkGray, fontSize: 40}}/>
-          <Text style={{...styles.header_text, marginTop: 60}} text="Just to confirm,"/>
-          <Text style={styles.header_text} text="who is this appointment for?"/>
-          <FlatList
-              style={{ marginTop: 10}}
-              data={appointmentData}
-              extraData={selectedId}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => <AppointmentItem info={item}/>}
-          />
-      </Screen>
+     <View style={styles.navigationBar}>
+        <TouchableOpacity onPress={() => btnBackPressed()} >
+          <Icon style={styles.navigationRightButton} icon="heart" />
+        </TouchableOpacity>
+      </View>
+      <Text style={{...styles.header_text, marginTop: 42}} text="Just to confirm,"/>
+      <Text style={styles.header_text} text="who is this appointment for?"/>
+      <FlatList
+          style={{ marginTop: 10}}
+          data={appointmentData}
+          extraData={selectedId}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <AppointmentItem info={item}/>}
+      />
     </View>
   )
 })
@@ -162,5 +162,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginTop: 0,
     right: 10
+  },
+  navigationBar: {
+    flexDirection: 'row',
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+    },
+  navigationRightButton: {
+    right: 10,
   }
 })

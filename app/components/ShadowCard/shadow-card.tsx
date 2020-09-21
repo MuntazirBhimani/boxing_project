@@ -17,7 +17,7 @@ export function LatestVitals(props: LatestVitalsProps) {
           </View>
           {props.arrayItems.map((item, index) => {
             return (
-              <TouchableOpacity onPress={() => {
+              <TouchableOpacity key={index} onPress={() => {
                 console.log("item clicked");
               }} style={{ flex: 1 }}>
                 <View style={{flex: 1}}>

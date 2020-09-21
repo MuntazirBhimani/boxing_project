@@ -1,7 +1,7 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
 import { Icon, Text } from "../../components"
-// import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../../models"
 import { appoinment_details_Screen } from "./styles"
 import { Image, View } from "react-native"
@@ -16,7 +16,7 @@ export const AppointmentBookDetails = observer(function AppointmentBookDetails()
   // const rootStore = useStores()
 
   // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
   let imageUrl = "https://homepages.cae.wisc.edu/~ece533/images/pool.png"
   let mapRegion: {
     latitude: 37.78825,
@@ -26,7 +26,7 @@ export const AppointmentBookDetails = observer(function AppointmentBookDetails()
   }
 
   const btnBackPressed = () => {
-    console.log("====== Back Button Pressed =======")
+   navigation.goBack()
   }
 
   const btnCancelPressed = () => {

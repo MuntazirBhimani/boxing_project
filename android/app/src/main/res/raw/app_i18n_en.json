@@ -23,5 +23,10 @@
   "storybook": {
     "placeholder": "Placeholder",
     "field": "Field"
+  },
+  "appointmentDetailScreen" : {
+    "appointmentTitle" : "Appointment Details",
+    "generalQuestions" : "General Questions",
+    "cancelAppointment"  : "Cancel Appointment"
   }
 }

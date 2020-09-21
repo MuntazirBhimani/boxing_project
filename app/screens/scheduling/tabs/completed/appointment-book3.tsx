@@ -4,18 +4,18 @@ import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon, Button, TextField } from "../../../../components"
 import { color, typography } from "../../../../theme"
-import {screenHeight} from '../../../../theme/size'
-
-const FULL: ViewStyle = { flex: 1 }
-const CONTAINER: ViewStyle = {
-  backgroundColor: color.white,
-}
+import {screenHeight,screenWidth} from '../../../../theme/size'
+import {CalendarList} from 'react-native-calendars';
+import scale from '../../../../theme/scale'
+const FULL: ViewStyle = { flex: 1 ,backgroundColor: color.white,}
 
 export const AppointmentBook3 = observer(function AppointmentBook3() {
   const [option1Selected, setOption1Selected] = useState(false)
   const [option2Selected, setOption2Selected] = useState(false)
   const navigation = useNavigation()
-  
+  const btnBackPressed = () => {
+    navigation.goBack()
+  }
   const arrOfData = [
         { 
             title: "Monday July 6, 2020", 
@@ -53,9 +53,13 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => {
                             return(
-                                <View style={styles.timeView}>
+                               <TouchableOpacity style={styles.timeView} onPress={() => {
+                                   console.log(item);     
+                               }}>
+                                <View style={{flex:1,justifyContent: 'center'}}>
                                     <Text text={item}/>
                                 </View>
+                              </TouchableOpacity> 
                             )
                         }}
                     />
@@ -66,21 +70,31 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
 
   return (
     <View style={FULL}>
-      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
-        <View style={styles.navigationHeader}>
-            <TouchableOpacity onPress={() => {
-                }}>
-                <Icon icon='clock' containerStyle={{...styles.headerButton, left: 10}}/>
+        <View style={styles.navigationBar}>
+            <TouchableOpacity onPress={() => btnBackPressed()} >
+              <Icon style={styles.navigationLeftButton} icon="heart" />
             </TouchableOpacity>
-            <Text text="Pick an appointment time"/>
-            <TouchableOpacity onPress={() => {
-                }}>
-                <Icon icon='clock' containerStyle={{...styles.headerButton, right: -10}}/>
+            <Text style={styles.navigationHeaderTitle} text="Pick an appointment time"/>
+            <TouchableOpacity onPress={() => btnBackPressed()} >
+              <Icon style={styles.navigationRightButton} icon="heart" />
             </TouchableOpacity>
         </View>
-        <View style={{height: 0.5, backgroundColor: color.seperatorColor}}/>
         <View style={styles.calendarContainer}>
-            <Text text="CalendarView"/>
+            <CalendarList
+              horizontal={true}
+              pagingEnabled={true}
+              pastScrollRange={0}
+              futureScrollRange={50}
+              calendarWidth={screenWidth}
+              theme={{
+                'stylesheet.day.basic':{
+                  'base':{
+                    width:30,
+                    height: scale(17)
+                  }
+                }
+            }}
+            />
         </View>
         <SectionList
                 sections={arrOfData}
@@ -92,27 +106,13 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
                     </View>
                 )}
                 />
-      </Screen>
     </View>
   )
 })
 
 const styles = StyleSheet.create({
-  navigationHeader: {
-      flexDirection: 'row', 
-      justifyContent: 'space-between',  
-      alignItems: 'center', 
-      height: 44, 
-      marginTop: -44
-  },
-  headerButton: {
-      justifyContent: 'center',
-      flex: 1, 
-      height: 44, 
-      aspectRatio: 1
-  },
   calendarContainer: {
-      height: screenHeight*0.20,
+      height: screenHeight*0.35,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'yellow'
@@ -141,6 +141,27 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  navigationBar: {
+    flexDirection: 'row',
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottomColor: color.seperatorColor,
+    borderBottomWidth: 0.5,
+  },
+  navigationRightButton: {
+    right: 10,
+  },
+  navigationLeftButton: {
+    left: 10
+  },
+  navigationHeaderTitle: {
+    textAlign: 'center',
+    fontSize: 17,
+    lineHeight: 22,
+    fontFamily: typography.CooperMdBTMedium,
+    color: color.textDarkGray,
   }
 
 })

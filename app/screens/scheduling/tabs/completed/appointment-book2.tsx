@@ -6,28 +6,28 @@ import { Text, Screen, Icon, Button, TextField } from "../../../../components"
 import { color, typography } from "../../../../theme"
 import {screenHeight} from '../../../../theme/size'
 
-const FULL: ViewStyle = { flex: 1 }
-const CONTAINER: ViewStyle = {
-  backgroundColor: color.white,
-}
-
+const FULL: ViewStyle = { flex: 1,backgroundColor: color.white }
 export const AppointmentBook2 = observer(function AppointmentBook2() {
   const [option1Selected, setOption1Selected] = useState(false)
   const [option2Selected, setOption2Selected] = useState(false)
   const navigation = useNavigation()
+  const btnBackPressed = () => {
+    navigation.goBack()
+  }
   
   return (
     <View style={FULL}>
-      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Button text="❮" onPress={() => {
-            navigation.goBack()
-          }} style={{...styles.button_close, left: 10}} textStyle={{color: color.textDarkGray, fontSize: 30}}/>
-          <Button text="×" onPress={() => {
-            navigation.goBack()
-          }} style={{...styles.button_close, right: 10}} textStyle={{color: color.textDarkGray, fontSize: 40}}/>
-      </View>
-        <Text style={{...styles.header_text, marginTop: 40}} text="What brings you in?"/>
+
+        <View style={styles.navigationBar}>
+            <TouchableOpacity onPress={() => btnBackPressed()} >
+              <Icon style={styles.navigationLeftButton} icon="heart" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => btnBackPressed()} >
+              <Icon style={styles.navigationRightButton} icon="heart" />
+            </TouchableOpacity>
+        </View>
+
+        <Text style={{...styles.header_text, marginTop: 50}} text="What brings you in?"/>
         <View style={styles.button_container}>
             <View style={{justifyContent: 'center', alignSelf: 'center',marginRight: 18}}>
                 <TouchableOpacity style={{alignSelf: 'center'}} onPress={() => {
@@ -59,7 +59,6 @@ export const AppointmentBook2 = observer(function AppointmentBook2() {
         <Button style={styles.button_scheduling} text="Continue" textStyle={styles.button_textStyle} onPress={() => {
           navigation.navigate('appointment3')
         }}/>
-      </Screen>
     </View>
   )
 })
@@ -125,10 +124,22 @@ const styles = StyleSheet.create({
         borderRadius: 26,
         backgroundColor: color.activeTab
     },
-    button_textStyle: {
-        fontSize: 16,
-        fontFamily: typography.CooperMdBTMedium,
-        color: color.white,
-        textAlign: "center",
-    }
+  button_textStyle: {
+      fontSize: 16,
+      fontFamily: typography.CooperMdBTMedium,
+      color: color.white,
+      textAlign: "center",
+  },
+  navigationBar: {
+        flexDirection: 'row',
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+  navigationRightButton: {
+    right: 10,
+  },
+  navigationLeftButton: {
+    left: 10
+  }
 })

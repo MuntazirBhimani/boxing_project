@@ -16,7 +16,7 @@ export const appoinment_details_Screen = {
         justifyContent: 'flex-start',
     } as ViewStyle,
     TXT_TITLE_STYLE: {
-        fontSize: fonts.font_16,
+        fontSize: 16,
         fontFamily: typography.CooperMdBTMedium,
         alignSelf: 'center',
         marginLeft: '13%',
@@ -28,7 +28,7 @@ export const appoinment_details_Screen = {
     } as ViewStyle,
     IMG_BACKBUTTON: {
         height: (screenWidth * 0.06),
-        widht: (screenWidth * 0.05),
+        width: (screenWidth * 0.05),
     } as ImageStyle,
     CONTAINERVIEW_STYLE: {
         flexDirection: 'row',
@@ -56,7 +56,7 @@ export const appoinment_details_Screen = {
         color: color.palette.textDarkGray,
     } as TextStyle,
     TXT_DESIGNATION: {
-        fontSize: fonts.font_11,
+        fontSize: 11,
     } as TextStyle,
     TXT_HOSPITAL_NAME: {
         color: color.palette.activeTab,
@@ -85,13 +85,13 @@ export const appoinment_details_Screen = {
     TXT_CONFIRM_DES: {
         color: color.palette.textLightGray,
         textAlign: 'center',
-        fontSize: fonts.font_13,
+        fontSize: 13,
         marginTop: (screenWidth * 0.08),
         fontFamily: typography.latoSemiBold,
     } as TextStyle,
     TXT_CANCEL_APPOINMENT: {
         color: color.palette.textRedColor,
-        fontSize : fonts.font_18,
+        fontSize : 18,
         fontFamily: typography.CooperMdBTMedium,
         letterSpacing: 1,
     } as TextStyle,
