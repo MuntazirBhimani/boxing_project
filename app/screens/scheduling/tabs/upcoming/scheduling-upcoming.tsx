@@ -34,7 +34,7 @@ export const SchedulingUpcoming = observer(function SchedulingUpcoming() {
               data={appointmentData}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({ item }) => <UpcomingItems items={item} onPress={() => {
-                navigation.navigate('appointment_detail')
+                navigation.navigate('schedulingDetailStack')
               }}/>}
           />) : 
           (<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
@@ -45,7 +45,7 @@ export const SchedulingUpcoming = observer(function SchedulingUpcoming() {
           </View>)
         }
         <Button style={styles.button_scheduling} text="Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
-          navigation.navigate('appointment')
+          navigation.navigate('schedulingStack')
         }}/>
       </Screen>
     </View>

@@ -110,24 +110,34 @@ function HomeTabs() {
       {tabItem("Home", 'homeTab', HomeScreen)}
       {tabItem("Evaluations",'evaluations', EvaluationsScreen)}
       {tabItem("Patient",'home', PatientScreen)}
-      {tabItem("Scheduling",'scheduling', SchedulingScreenStack)}
+      {tabItem("Scheduling",'scheduling', SchedulingScreen)}
       {tabItem("Lab Results",'labresult', HomeScreen)}
     </Tab.Navigator>
   )
 }
 
-function SchedulingScreenStack(){
+export function SchedulingScreenStack(){
   return(
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        gestureEnabled: true,
-      }}
-    >
-      <Stack.Screen name="scheduling" component={SchedulingScreen} />
+        gestureEnabled: false,
+      }}>
+      
       <Stack.Screen name="appointment" component={AppointmentFor} />
       <Stack.Screen name="appointment2" component={AppointmentBook2}/>
       <Stack.Screen name="appointment3" component={AppointmentBook3}/>
+    </Stack.Navigator>
+  )
+}
+
+export function SchedulingScreenDetailStack(){
+  return(
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: false,
+      }}>
       <Stack.Screen name="appointment_detail" component={AppointmentBookDetails}/>
     </Stack.Navigator>
   )
@@ -138,15 +148,16 @@ export function PrimaryNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        gestureEnabled: true,
+        gestureEnabled: false,
       }}
     >
       <Stack.Screen name="home" component={HomeTabs} />
-      {/* <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
-      {/* <Stack.Screen name="welcome" component={WelcomeScreen} />
-      <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
-      {/* <Stack.Screen name="patient_diagnosis" component={PatientDiagnosis} /> */}
+      <Stack.Screen name="schedulingStack" component={SchedulingScreenStack} options={{
+          headerShown: false,
+        }}/>
+      <Stack.Screen name="schedulingDetailStack" component={SchedulingScreenDetailStack} options={{
+          headerShown: false,
+        }}/>
       <Stack.Screen name="patient_medications" component={PatientMedications} />
     </Stack.Navigator>
   )

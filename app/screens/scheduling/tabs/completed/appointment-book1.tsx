@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState,useEffect} from "react"
 import { TextStyle, View, ScrollView, FlatList, TouchableOpacity, StyleSheet,Image} from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
@@ -10,6 +10,7 @@ const FULL: ViewStyle = { flex: 1, backgroundColor: color.white }
 export const AppointmentFor = observer(function AppointmentFor() {
   const [selectedId, setSelectedId] = useState(null)
   const navigation = useNavigation()
+
   const appointmentData = [
     {
       id: 1,
@@ -29,18 +30,14 @@ export const AppointmentFor = observer(function AppointmentFor() {
       info: any
     }) => {
         return(
-            <View style={{...styles.card_shadow, borderColor: info.id === selectedId ? 'white' : color.activeTab, borderWidth: info.id === selectedId ? 0 : 3}}>
+            <View style={{...styles.card_shadow, borderColor: info.id === selectedId ? color.activeTab : color.white , borderWidth: info.id === selectedId ? 3 : 0}}>
                 <TouchableOpacity onPress={() => {
                   if (selectedId === info.id){
                        setSelectedId(null)
                   } else {
-                     setSelectedId(info.id)
-                    
+                     setSelectedId(info.id);
+                     navigation.navigate('appointment2')
                   }
-                  if (selectedId !== null){
-                       navigation.navigate('appointment2')
-                  }
-
                 }} style={{ flex: 1 }}>
                     <View style={styles.progressNoteContainer}>
                         <View style={styles.imageContainer}>

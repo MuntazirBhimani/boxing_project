@@ -13,7 +13,8 @@ export const appoinment_details_Screen = {
         borderBottomWidth: 0.5,
         flexDirection: 'row',
         paddingBottom: 5,
-        justifyContent: 'flex-start',
+        height: 44,
+        alignItems: 'center',
     } as ViewStyle,
     TXT_TITLE_STYLE: {
         fontSize: 16,
@@ -21,10 +22,13 @@ export const appoinment_details_Screen = {
         alignSelf: 'center',
         marginLeft: '13%',
         color: color.palette.textDarkGray,
+        justifyContent: 'center'
     } as TextStyle,
     BTN_BACKBUTTON_STYLE: {
-        padding: 5,
-        marginLeft: 5,
+        // padding: 5,
+        marginLeft: 20,
+        left: 10,
+        // alignSelf: 'flex-start'
     } as ViewStyle,
     IMG_BACKBUTTON: {
         height: (screenWidth * 0.06),
@@ -79,6 +83,8 @@ export const appoinment_details_Screen = {
         height: (screenWidth * 0.4),
         marginLeft: 10,
         borderRadius: 10,
+        borderWidth: 0.5,
+        borderColor: color.borderGray,
         width: (screenWidth * 0.85),
         backgroundColor: 'green',
     } as ViewStyle,

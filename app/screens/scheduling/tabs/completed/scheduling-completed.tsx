@@ -36,7 +36,7 @@ export const SchedulingCompleted = observer(function SchedulingCompleted() {
           </View>)
         }
         <Button style={styles.button_scheduling} text="Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
-          navigation.navigate('appointment')
+          navigation.navigate('schedulingStack')
         }}/>
       </Screen>
     </View>
