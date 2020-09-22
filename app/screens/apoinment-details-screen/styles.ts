@@ -8,32 +8,27 @@ export const appoinment_details_Screen = {
         flex: 1,
         backgroundColor: color.palette.white,
     } as ViewStyle,
-    TOP_NAVIGATION_STYLE: {
-        borderBottomColor: color.palette.lighterGrey,
-        borderBottomWidth: 0.5,
+    navigationBar: {
         flexDirection: 'row',
-        paddingBottom: 5,
         height: 44,
         alignItems: 'center',
-    } as ViewStyle,
-    TXT_TITLE_STYLE: {
-        fontSize: 16,
+        justifyContent: 'space-between',
+        borderBottomColor: color.seperatorColor,
+        borderBottomWidth: 0.5,
+    },
+    navigationRightButton: {
+        right: 10,
+    },
+    navigationLeftButton: {
+        left: 10
+    },
+    navigationHeaderTitle: {
+        textAlign: 'center',
+        fontSize: 17,
+        lineHeight: 22,
         fontFamily: typography.CooperMdBTMedium,
-        alignSelf: 'center',
-        marginLeft: '13%',
-        color: color.palette.textDarkGray,
-        justifyContent: 'center'
-    } as TextStyle,
-    BTN_BACKBUTTON_STYLE: {
-        // padding: 5,
-        marginLeft: 20,
-        left: 10,
-        // alignSelf: 'flex-start'
-    } as ViewStyle,
-    IMG_BACKBUTTON: {
-        height: (screenWidth * 0.06),
-        width: (screenWidth * 0.05),
-    } as ImageStyle,
+        color: color.textDarkGray,
+    },
     CONTAINERVIEW_STYLE: {
         flexDirection: 'row',
         marginLeft: (screenWidth * 0.07),

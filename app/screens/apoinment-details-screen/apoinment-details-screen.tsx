@@ -31,18 +31,21 @@ export const AppointmentBookDetails = observer(function AppointmentBookDetails()
 
   const btnCancelPressed = () => {
     console.log("====== Cancel Button Pressed =======")
+    console.log(navigation.params);
+    
   }
 
   return (
     <View style={appoinment_details_Screen.FULL}>
 
-      <View style={appoinment_details_Screen.TOP_NAVIGATION_STYLE}>
-        <TouchableOpacity onPress={() => btnBackPressed()} style={appoinment_details_Screen.BTN_BACKBUTTON_STYLE} >
-          <Icon style={appoinment_details_Screen.IMG_BACKBUTTON} icon="heart" />
-        </TouchableOpacity>
-        <Text
-          tx="appointmentDetailScreen.appointmentTitle"
-          style={appoinment_details_Screen.TXT_TITLE_STYLE} />
+       <View style={appoinment_details_Screen.navigationBar}>
+            <TouchableOpacity onPress={() => btnBackPressed()} >
+              <Icon style={appoinment_details_Screen.navigationLeftButton} icon="heart" />
+            </TouchableOpacity>
+            <Text style={appoinment_details_Screen.navigationHeaderTitle} text="Appointment Details"/>
+            <TouchableOpacity onPress={() => btnBackPressed()} >
+              <Icon style={appoinment_details_Screen.navigationRightButton} icon="" />
+            </TouchableOpacity>
       </View>
       <ScrollView>
         <View style={appoinment_details_Screen.CONTAINERVIEW_STYLE}>

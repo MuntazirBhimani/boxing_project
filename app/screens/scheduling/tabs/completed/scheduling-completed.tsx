@@ -13,7 +13,12 @@ const CONTAINER: ViewStyle = {
 export const SchedulingCompleted = observer(function SchedulingCompleted() {
   const navigation = useNavigation()
   const appointmentData = [
-    
+    { 
+      drName: "Dr. Katherine Jo-Yang",
+      designation: "Pulmonologist",
+      hospitalName: "MedStarHospital",
+      appointmentTime: "Wed, Jul 26, 2020 @ 2:00 pm"
+    },
   ]
 
   return (
@@ -26,7 +31,12 @@ export const SchedulingCompleted = observer(function SchedulingCompleted() {
               style={{marginBottom: 20}}
               data={appointmentData}
               keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => <UpcomingItems items={item}/>}
+              renderItem={({ item }) => <UpcomingItems items={item} onPress={() => {
+                navigation.navigate('schedulingDetailStack', {
+                  isFrom: 'completed',
+                });
+                // navigation.navigate('schedulingDetailStack')
+              }}/>}
           />) : 
           (<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
               <View style={{justifyContent: 'center'}}>
