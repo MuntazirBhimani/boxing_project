@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon } from "../../../../components"
 import { color, typography } from "../../../../theme"
 import { screenHeight } from "../../../../theme/size"
+import {common_styles} from "../../../CommonStyle/style"
 import MapView from "react-native-maps"
 
 const FULL: ViewStyle = { flex: 1 }
@@ -40,59 +41,6 @@ const DETAILS: TextStyle = {
   marginStart: 12,
   color: color.textDarkGray,
   fontFamily: typography.latoMedium,
-}
-
-const OUTER_SHADOW_VIEW: ViewStyle = {
-  marginHorizontal: 20,
-  borderRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 5,
-  backgroundColor: "white",
-  padding: 10,
-  margin: 13,
-  elevation: 5,
-}
-
-const FIRST_ROW_SHADOW: ViewStyle = {
-  marginHorizontal: 20,
-  borderTopLeftRadius: 10,
-  borderTopRightRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 5,
-  backgroundColor: "white",
-  padding: 10,
-  marginTop: 10,
-  elevation: 5,
-}
-
-const MIDDLE_ROW_SHADOW: ViewStyle = {
-  marginHorizontal: 20,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 14 },
-  shadowRadius: 5,
-  backgroundColor: "white",
-  padding: 10,
-  // margin: 13,
-  elevation: 5,
-}
-
-const LAST_ROW_SHADOW: ViewStyle = {
-  marginHorizontal: 20,
-  borderBottomLeftRadius: 10,
-  borderBottomRightRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5},
-  shadowRadius: 5,
-  backgroundColor: "white",
-  padding: 10,
-  marginBottom: 15,
-  elevation: 5,
 }
 
 const HEADER: TextStyle = {
@@ -243,20 +191,20 @@ const renderItem = (item, index, section) => {
   // console.log("section",section);
   // console.log("item",item);
   // console.log("index",index);
-    let tempStyle = OUTER_SHADOW_VIEW
+    let tempStyle = common_styles.OUTER_SHADOW_VIEW
     let viewStyle = {}
     if (index === 0 && (index === (section.data.length - 1))) {
-        tempStyle = OUTER_SHADOW_VIEW
+        tempStyle = common_styles.OUTER_SHADOW_VIEW
         viewStyle = {}
       }
       else if (index === 0) {
-        tempStyle = FIRST_ROW_SHADOW
+        tempStyle = common_styles.FIRST_ROW_SHADOW
         viewStyle = {}
       } else if (index === (section.data.length - 1)){
-        tempStyle = LAST_ROW_SHADOW
+        tempStyle = common_styles.LAST_ROW_SHADOW
         viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
       } else {
-        tempStyle = MIDDLE_ROW_SHADOW
+        tempStyle = common_styles.MIDDLE_ROW_SHADOW
         viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
       }
     if (section.title == "Facility Information") {
