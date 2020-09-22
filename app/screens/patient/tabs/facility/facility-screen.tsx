@@ -1,5 +1,5 @@
 import React from "react"
-import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
+import { TextStyle, View, SectionList, TouchableOpacity } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon } from "../../../../components"
 import { color, typography } from "../../../../theme"
@@ -20,7 +20,7 @@ const CHILD_CONTAINER: ViewStyle = {
 
 const DETAIL_CONTAINER_VIEW: ViewStyle = {
   flex: 1,
-  marginRight: 10,
+  marginRight: 20,
   flexDirection: "row",
 }
 
@@ -48,10 +48,50 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowColor: "black",
   shadowOpacity: 0.2,
   shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
+  shadowRadius: 5,
   backgroundColor: "white",
   padding: 10,
   margin: 13,
+  elevation: 5,
+}
+
+const FIRST_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  borderTopLeftRadius: 10,
+  borderTopRightRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5 },
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  marginTop: 10,
+  elevation: 5,
+}
+
+const MIDDLE_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 14 },
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  // margin: 13,
+  elevation: 5,
+}
+
+const LAST_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  borderBottomLeftRadius: 10,
+  borderBottomRightRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5},
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  marginBottom: 15,
   elevation: 5,
 }
 
@@ -120,7 +160,7 @@ const ItemSeperator = () => {
     <View
       style={{
         height: 0.4,
-        marginVertical: 10,
+        marginTop: 25,
         marginHorizontal: 15,
         backgroundColor: color.seperatorColor,
       }}
@@ -131,12 +171,14 @@ const ItemSeperator = () => {
 const MadicalProfessionalsItems = ({
   info,
   onPress,
+  isLastIndex
 }: {
   info: any
+  isLastIndex: boolean
   onPress: (info: any) => void
 }) => {
   return (
-    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginVertical: 20 }}>
+    <TouchableOpacity onPress={() => onPress(info)} style={{ flex: 1, marginBottom: isLastIndex ? 20 : 0}}>
       <View style={MEDICAL_OFFICER_VIEW_CONTAINER}>
         <View style={MEDICAL_OFFICER_IMAGE_CONTAINER}>
           <View style={{ flex: 1 }} />
@@ -197,40 +239,103 @@ const FacilityInfoItems = ({
   )
 }
 
+const renderItem = (item, index, section) => {  
+  // console.log("section",section);
+  // console.log("item",item);
+  // console.log("index",index);
+    let tempStyle = OUTER_SHADOW_VIEW
+    let viewStyle = {}
+    if (index === 0 && (index === (section.data.length - 1))) {
+        tempStyle = OUTER_SHADOW_VIEW
+        viewStyle = {}
+      }
+      else if (index === 0) {
+        tempStyle = FIRST_ROW_SHADOW
+        viewStyle = {}
+      } else if (index === (section.data.length - 1)){
+        tempStyle = LAST_ROW_SHADOW
+        viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
+      } else {
+        tempStyle = MIDDLE_ROW_SHADOW
+        viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
+      }
+    if (section.title == "Facility Information") {
+      return(
+        <View style={viewStyle}>
+          <View style={tempStyle}>
+            {
+              (index === 0) ?  <Text text="Facility Information" style={HEADER} /> : <Text/>
+            }
+            <FacilityInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
+          </View>
+        </View>
+        
+      )
+    } else if (section.title == "Medical Professionals") {
+        return(
+          <View style={viewStyle}>
+          <View style={tempStyle}>
+            {
+              (index === 0) ?  <Text text="Medical Professionals" style={HEADER} /> : <Text/>
+            }
+            <MadicalProfessionalsItems key={index} info={item} isLastIndex={(section.data.length - 1) === index ? true : false} onPress={() => {}} />
+            {section.data.length != index + 1 && ItemSeperator()}
+          </View>
+        </View>
+        )
+    } 
+  }
+
 export const FacilityScreen = observer(function FacilityScreen() {
-  const facilityInfo = [
+
+  const data = [
     {
       title: "Facility Information",
-      name: "Nicholas Torres",
-      phone: "Son",
-      address: "110 Irving St NW, Washington, DC 20010",
-      mapRegion: {
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
-    },
-  ]
-  const medicalProfessionals = [
-    {
-      name: "Dr. Katherine Jo-Yang",
-      designation: "Pulmonologist",
+      data: [
+          {
+          name: "Nicholas Torres",
+          phone: "Son",
+          address: "110 Irving St NW, Washington, DC 20010",
+          mapRegion: {
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+        }
+      ]
     },
     {
-      name: "Dr. Jamal Shillingford",
-      designation: "Orthopedic Spine Surgery",
-    },
-    {
-      name: "Patricia Grimes",
-      designation: "Nurse Practitioner",
-    },
+      title: "Medical Professionals",
+      data: [
+        {
+          name: "Dr. Katherine Jo-Yang",
+          designation: "Pulmonologist",
+        },
+        {
+          name: "Dr. Jamal Shillingford",
+          designation: "Orthopedic Spine Surgery",
+        },
+        {
+          name: "Patricia Grimes",
+          designation: "Nurse Practitioner",
+        }
+      ]
+    }
   ]
 
   return (
     <View style={FULL}>
       <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
-        <View style={OUTER_SHADOW_VIEW}>
+       <SectionList
+          // ItemSeparatorComponent={this.FlatListItemSeparator}
+          sections={data}
+          renderItem={({ item,index, section }) => (
+            renderItem(item,index,section)
+          )}
+          keyExtractor={(item, index) => item + index}
+        />
+        {/* <View style={OUTER_SHADOW_VIEW}>
           <Text text="Facility Information" style={HEADER} />
           {facilityInfo.map((item, index) => {
             return (
@@ -250,7 +355,7 @@ export const FacilityScreen = observer(function FacilityScreen() {
               </View>
             )
           })}
-        </View>
+        </View> */}
       </Screen>
     </View>
   )
