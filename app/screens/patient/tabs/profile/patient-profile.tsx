@@ -12,7 +12,7 @@ import {
 import { observer } from "mobx-react-lite"
 import { BulletItem, Text, Screen, Icon, LatestVitals } from "../../../../components"
 import { color, typography } from "../../../../theme"
-import common_styles from "../../../CommonStyle/style.ts"
+import common_styles from "../../../CommonStyle/styles.ts"
 
 const FULL: ViewStyle = { flex: 1 }
 

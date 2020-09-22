@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite"
 import { Icon, Screen, Text, BulletItem, LatestVitals } from "../../components"
 import { color, typography } from "../../theme"
 import { screenHeight } from "../../theme/size"
-import {common_styles} from "../CommonStyle/style"
+import {common_styles} from "../CommonStyle/styles.ts"
 
 const ProgressNoteItems = ({
   info,

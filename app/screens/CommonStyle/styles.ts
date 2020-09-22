@@ -15,7 +15,7 @@ export const common_style = {
         padding: 10,
         margin: 13,
         elevation: 5,
-    }, 
+    } as ViewStyle, 
     FIRST_ROW_SHADOW:{
         marginHorizontal: 20,
         borderTopLeftRadius: 10,
@@ -28,7 +28,7 @@ export const common_style = {
         padding: 10,
         marginTop: 10,
         elevation: 5,
-        }, 
+        } as ViewStyle, 
     MIDDLE_ROW_SHADOW: {
         marginHorizontal: 20,
         shadowColor: "black",
@@ -39,7 +39,7 @@ export const common_style = {
         padding: 10,
         // margin: 13,
         elevation: 5,
-        },
+        } as ViewStyle,
     LAST_ROW_SHADOW:{
         marginHorizontal: 20,
         borderBottomLeftRadius: 10,
@@ -52,7 +52,7 @@ export const common_style = {
         padding: 10,
         marginBottom: 15,
         elevation: 5,
-        },
+        } as ViewStyle,
     navigationBar: {
         flexDirection: 'row',
         height: 44,

@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon } from "../../../../components"
 import { color, typography } from "../../../../theme"
 import { screenHeight } from "../../../../theme/size"
-import {common_styles} from "../../../CommonStyle/style"
+import {common_styles} from "../../../CommonStyle/styles.ts"
 import MapView from "react-native-maps"
 
 const FULL: ViewStyle = { flex: 1 }
