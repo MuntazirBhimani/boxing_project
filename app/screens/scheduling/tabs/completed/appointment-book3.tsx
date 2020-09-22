@@ -13,6 +13,8 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
   const [option1Selected, setOption1Selected] = useState(false)
   const [option2Selected, setOption2Selected] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
+  const [selectedDate, setSelectedDate] = useState(null)
+
   const navigation = useNavigation()
   const btnBackPressed = () => {
     navigation.goBack()
@@ -89,14 +91,36 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
               pastScrollRange={0}
               futureScrollRange={50}
               calendarWidth={screenWidth}
+              onDayPress={(day) => {
+                setSelectedDate({[day.dateString]:{selected: true, selectedColor: color.activeTab}})
+              }}
+              markedDates={selectedDate}
               theme={{
-                'stylesheet.day.basic':{
-                  'base':{
-                    width:30,
-                    height: scale(20)
-                  }
-                }
-            }}
+                  backgroundColor: '#ffffff',
+                  calendarBackground: '#ffffff',
+                  textSectionTitleColor: color.textLightGray,
+                  selectedDayBackgroundColor: color.activeTab,
+                  selectedDayTextColor: '#ffffff',
+                  todayTextColor: color.activeTab,
+                  dayTextColor: color.textDarkGray,
+                  // textDisabledColor: '#d9e1e8',
+                  monthTextColor: color.activeTab,
+                  indicatorColor: 'blue',
+                  textDayFontSize: 13,
+                  textMonthFontSize: 13,
+                  textDayHeaderFontSize: 13,
+                  textDayFontFamily: typography.latoMedium,
+                  textMonthFontFamily: typography.latoRegular,
+                  textDayHeaderFontFamily: typography.latoRegular,
+                  // 'stylesheet.day.basic':{
+                  //   'base':{
+                  //     width:scale(30),
+                  //     height: scale(30),
+                  //     marginLeft: scale(25),
+                  //     borderRadius: scale(30)/2
+                  //   }
+                  // }
+                }}
             />
         </View>
         <SectionList
@@ -115,7 +139,7 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
 
 const styles = StyleSheet.create({
   calendarContainer: {
-      height: screenWidth*0.70,
+      height: screenWidth*0.75,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'yellow'
