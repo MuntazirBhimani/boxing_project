@@ -1,9 +1,8 @@
-import { screenWidth } from './../../theme/size';
-import { fonts } from './../../theme/fontsizes';
+import { screenWidth } from '../../theme/size';
 import { ViewStyle, TextStyle, ImageStyle } from "react-native"
 import { color, typography } from "../../theme"
 
-export const common_style = {
+export const common_Style = {
     OUTER_SHADOW_VIEW: {
         marginHorizontal: 20,
         borderRadius: 10,

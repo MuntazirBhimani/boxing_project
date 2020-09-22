@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite"
 import { Icon, Screen, Text, BulletItem, LatestVitals } from "../../components"
 import { color, typography } from "../../theme"
 import { screenHeight } from "../../theme/size"
-import {common_styles} from "../CommonStyle/styles.ts"
+import {common_Style} from "../CommonStyle/styles.ts"
 
 const ProgressNoteItems = ({
   info,
@@ -63,20 +63,20 @@ const renderItem = (item, index, section) => {
   // console.log("section",section);
   // console.log("item",item);
   // console.log("index",index);
-    let tempStyle = common_styles.OUTER_SHADOW_VIEW
+    let tempStyle = common_Style.OUTER_SHADOW_VIEW
     let viewStyle = {}
     if (index === 0 && (index === (section.data.length - 1))) {
-        tempStyle = common_styles.OUTER_SHADOW_VIEW
+        tempStyle = common_Style.OUTER_SHADOW_VIEW
         viewStyle = {}
       }
       else if (index === 0) {
-        tempStyle = common_styles.FIRST_ROW_SHADOW
+        tempStyle = common_Style.FIRST_ROW_SHADOW
         viewStyle = {}
       } else if (index === (section.data.length - 1)){
-        tempStyle = common_styles.LAST_ROW_SHADOW
+        tempStyle = common_Style.LAST_ROW_SHADOW
         viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
       } else {
-        tempStyle = common_styles.MIDDLE_ROW_SHADOW
+        tempStyle = common_Style.MIDDLE_ROW_SHADOW
         viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
       }
     if (section.title == "Basic info") {

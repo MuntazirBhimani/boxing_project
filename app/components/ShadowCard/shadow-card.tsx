@@ -3,59 +3,7 @@ import { View, StyleSheet,TouchableOpacity } from "react-native"
 import { Icon, Screen, Text, BulletItem } from "../../components"
 import { color, typography } from "../../theme"
 import { screenHeight } from "../../theme/size"
-
-const OUTER_SHADOW_VIEW: ViewStyle = {
-  marginHorizontal: 20,
-  borderRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
-  backgroundColor: "white",
-  padding: 10,
-  margin: 13,
-  elevation: 5,
-}
-
-const FIRST_ROW_SHADOW: ViewStyle = {
-  marginHorizontal: 20,
-  borderTopLeftRadius: 10,
-  borderTopRightRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
-  backgroundColor: "white",
-  padding: 10,
-  marginTop: 25,
-  elevation: 5,
-}
-
-const MIDDLE_ROW_SHADOW: ViewStyle = {
-  marginHorizontal: 20,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 14 },
-  shadowRadius: 10,
-  backgroundColor: "white",
-  padding: 10,
-  elevation: 5,
-}
-
-const LAST_ROW_SHADOW: ViewStyle = {
-  marginHorizontal: 20,
-  borderBottomLeftRadius: 10,
-  borderBottomRightRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 14},
-  shadowRadius: 10,
-  backgroundColor: "white",
-  padding: 10,
-  marginBottom: 13,
-  elevation: 5,
-}
-
+import { common_Style } from "../../screens/CommonStyle/styles.ts";
 
 export interface LatestVitalsProps {
   item: Any,
@@ -64,20 +12,20 @@ export interface LatestVitalsProps {
 }
 
 export function LatestVitals(props: BulletItemProps) {
-    let tempStyle = OUTER_SHADOW_VIEW
+    let tempStyle = common_Style.OUTER_SHADOW_VIEW
     let viewStyle = {}
     if (props.index === 0 && (props.index === (props.length - 1))) {
-        tempStyle = OUTER_SHADOW_VIEW
+        tempStyle = common_Style.OUTER_SHADOW_VIEW
         viewStyle = {flex: 1}
       }
       else if (props.index === 0) {
-        tempStyle = FIRST_ROW_SHADOW
+        tempStyle = common_Style.FIRST_ROW_SHADOW
         viewStyle = {}
       } else if (props.index === (props.length - 1)){
-        tempStyle = LAST_ROW_SHADOW
+        tempStyle = common_Style.LAST_ROW_SHADOW
         viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
       } else {
-        tempStyle = MIDDLE_ROW_SHADOW
+        tempStyle = common_Style.MIDDLE_ROW_SHADOW
         viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
       }
   return (
