@@ -64,18 +64,24 @@ export interface LatestVitalsProps {
 }
 
 export function LatestVitals(props: BulletItemProps) {
-  let tempStyle = OUTER_SHADOW_VIEW
+    let tempStyle = OUTER_SHADOW_VIEW
+    let viewStyle = {}
     if (props.index === 0 && (props.index === (props.length - 1))) {
-      tempStyle = OUTER_SHADOW_VIEW
-    }
-    else if (props.index === 0) {
-      tempStyle = FIRST_ROW_SHADOW
-    } else if (props.index === (props.length - 1)){
-      tempStyle = LAST_ROW_SHADOW
-    } else {
-      tempStyle = MIDDLE_ROW_SHADOW
-    }
+        tempStyle = OUTER_SHADOW_VIEW
+        viewStyle = {flex: 1}
+      }
+      else if (props.index === 0) {
+        tempStyle = FIRST_ROW_SHADOW
+        viewStyle = {}
+      } else if (props.index === (props.length - 1)){
+        tempStyle = LAST_ROW_SHADOW
+        viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
+      } else {
+        tempStyle = MIDDLE_ROW_SHADOW
+        viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
+      }
   return (
+    <View style={viewStyle}>
     <View style={tempStyle}>
 
           {
@@ -112,13 +118,14 @@ export function LatestVitals(props: BulletItemProps) {
                           <Text style={styles.text_detail} text={props.item.temp} />
                         </View>
                     </View>
-                    <View style={{ marginHorizontal: -2,marginTop: 25}}>
+                    <View style={{ marginHorizontal: -2,marginTop: 40}}>
                       <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
                     </View>
                 </View>
             </View>
           </TouchableOpacity>
       </View>
+    </View>
   )
 }
 

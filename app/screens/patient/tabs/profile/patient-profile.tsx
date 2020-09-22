@@ -25,7 +25,7 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowColor: "black",
   shadowOpacity: 0.2,
   shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
+  shadowRadius: 5,
   backgroundColor: "white",
   padding: 10,
   margin: 13,
@@ -39,10 +39,10 @@ const FIRST_ROW_SHADOW: ViewStyle = {
   shadowColor: "black",
   shadowOpacity: 0.2,
   shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
+  shadowRadius: 5,
   backgroundColor: "white",
   padding: 10,
-  marginTop: 25,
+  marginTop: 10,
   elevation: 5,
 }
 
@@ -51,7 +51,7 @@ const MIDDLE_ROW_SHADOW: ViewStyle = {
   shadowColor: "black",
   shadowOpacity: 0.2,
   shadowOffset: { width: 0, height: 14 },
-  shadowRadius: 10,
+  shadowRadius: 5,
   backgroundColor: "white",
   padding: 10,
   // margin: 13,
@@ -64,17 +64,18 @@ const LAST_ROW_SHADOW: ViewStyle = {
   borderBottomRightRadius: 10,
   shadowColor: "black",
   shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 14},
-  shadowRadius: 10,
+  shadowOffset: { width: 0, height: 5},
+  shadowRadius: 5,
   backgroundColor: "white",
   padding: 10,
-  marginBottom: 13,
+  marginBottom: 15,
   elevation: 5,
 }
 
 const ItemMainView: ViewStyle = {
   flex: 1,
   flexDirection: "row",
+  // backgroundColor: 'green'
 }
 
 const imageView: ViewStyle = {
@@ -142,6 +143,7 @@ const ContainerView: ViewStyle = {
   marginLeft: 15,
   // marginBottom : 10,
   flexDirection: "column",
+  // backgroundColor: 'yellow'
 }
 
 const insiderView: ViewStyle = {
@@ -200,7 +202,7 @@ const BasicInfoItems = ({
           </View>
         </View>
         <View
-          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: -40 }}
+          style={{ flex: 0.1, justifyContent: "center", alignItems: "flex-end", marginTop: 0 }}
         >
           <Icon style={{ height: 15, aspectRatio: 1}} containerStyle={{marginRight: -14}} icon={"next"} />
         </View>
@@ -214,8 +216,7 @@ const ItemSeparator = () => {
     <View
       style={{
         height: 0.4,
-        marginTop: 15,
-        marginBottom: 25,
+        marginTop: 25,
         marginHorizontal: 15,
         backgroundColor: color.seperatorColor,
       }}
@@ -240,7 +241,7 @@ const EmergencyContactsItems = ({
             <Icon icon='profile' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
           </View>
         </View>
-        <View style={{...ContainerView, marginBottom: isLastIndex ? 10 : 0}}>
+        <View style={{...ContainerView ,marginBottom: isLastIndex ? 10 : 0}}>
           <View style={insiderView}>
             <Text style={TITLE} text="Name" />
             <Text style={DETAILS} text={info.name} />
@@ -272,24 +273,32 @@ const renderItem = (item, index, section) => {
   // console.log("item",item);
   // console.log("index",index);
     let tempStyle = OUTER_SHADOW_VIEW
+    let viewStyle = {}
     if (index === 0 && (index === (section.data.length - 1))) {
         tempStyle = OUTER_SHADOW_VIEW
+        viewStyle = {}
       }
       else if (index === 0) {
         tempStyle = FIRST_ROW_SHADOW
+        viewStyle = {}
       } else if (index === (section.data.length - 1)){
         tempStyle = LAST_ROW_SHADOW
+        viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
       } else {
         tempStyle = MIDDLE_ROW_SHADOW
+        viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
       }
     if (section.title == "Basic info") {
     return(
-      <View style={tempStyle}>
-        {
-          (index === 0) ?  <Text text="Basic Info" style={HEADER} /> : <Text/>
-        }
-        <BasicInfoItems key={index} info={item} index={index} onPress={() => {}} isBasicInfo={(section.data.length - 1) === index ? true : false} />
+      <View style={viewStyle}>
+        <View style={tempStyle}>
+          {
+            (index === 0) ?  <Text text="Basic Info" style={HEADER} /> : <Text/>
+          }
+          <BasicInfoItems key={index} info={item} index={index} onPress={() => {}} isLastIndex={(section.data.length - 1) === index ? true : false} />
+        </View>
       </View>
+      
     )
     } else if (section.title == "Latest Vitals") {
         return(
@@ -297,12 +306,16 @@ const renderItem = (item, index, section) => {
         )
     } else if (section.title == "Emergency Contacts") {
       return(
-        <View style={tempStyle}>
-          {
-            (index === 0) ?  <Text text="Emergency Contacts" style={HEADER} /> : <Text/>
-          }
-          <EmergencyContactsItems info={item} isLastIndex={(section.data.length - 1) === index ? true : false} onPress={() => {}} />
-        </View> 
+        <View style={viewStyle}>
+           <View style={tempStyle}>
+            {
+              (index === 0) ?  <Text text="Emergency Contacts" style={HEADER} /> : <Text/>
+            }
+            <EmergencyContactsItems info={item} isLastIndex={(section.data.length - 1) === index ? true : false} onPress={() => {}} />
+            {section.data.length != index + 1 && ItemSeparator()}
+          </View> 
+        </View>
+       
       )
     }
   }
@@ -318,13 +331,6 @@ export const PatientProfile = observer(function PatientProfile() {
             "DOB": "02/1/1957 (63)",
             "MD": "Katherine Jo-Yang",
             "location": "PPCU 115-1",
-            "allergies": "No Known Allergies"},
-            {
-            "name": "Nicholas Torres",
-            "gender": "Male",
-            "DOB": "02/1/1957 (63)",
-            "MD": "Katherine Jo-Yang",
-            "location": "PPCU 115-1",
             "allergies": "No Known Allergies"}
             ]
         },
@@ -332,22 +338,6 @@ export const PatientProfile = observer(function PatientProfile() {
           "title": "Latest Vitals",
           "data": [{
                   "BP": "133/77 mmHg",
-              "Resp": "20 Breaths/min",
-              "pulse": "63 bpm",
-              "temp": "97.6 °F"
-          },{
-              "BP": "133/77 mmHg",
-              "Resp": "20 Breaths/min",
-              "pulse": "63 bpm",
-              "temp": "97.6 °F"
-          },
-          {
-              "BP": "133/77 mmHg",
-              "Resp": "20 Breaths/min",
-              "pulse": "63 bpm",
-              "temp": "97.6 °F"
-          },{
-              "BP": "133/77 mmHg",
               "Resp": "20 Breaths/min",
               "pulse": "63 bpm",
               "temp": "97.6 °F"

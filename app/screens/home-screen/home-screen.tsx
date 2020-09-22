@@ -1,9 +1,62 @@
 import React from "react"
-import { View, ViewStyle, StyleSheet,TouchableOpacity,ScrollView } from "react-native"
+import { View, ViewStyle, StyleSheet,TouchableOpacity,SectionList } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Icon, Screen, Text, BulletItem, LatestVitals } from "../../components"
 import { color, typography } from "../../theme"
 import { screenHeight } from "../../theme/size"
+
+const OUTER_SHADOW_VIEW: ViewStyle = {
+  marginHorizontal: 20,
+  borderRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5 },
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  margin: 13,
+  elevation: 5,
+}
+
+const FIRST_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  borderTopLeftRadius: 10,
+  borderTopRightRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5 },
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  marginTop: 10,
+  elevation: 5,
+}
+
+const MIDDLE_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 14 },
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  // margin: 13,
+  elevation: 5,
+}
+
+const LAST_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  borderBottomLeftRadius: 10,
+  borderBottomRightRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5},
+  shadowRadius: 5,
+  backgroundColor: "white",
+  padding: 10,
+  marginBottom: 15,
+  elevation: 5,
+}
 
 const ProgressNoteItems = ({
   info,
@@ -58,33 +111,100 @@ const UpComingAppointmentItems = ({
   )
 }
 
+const renderItem = (item, index, section) => {  
+  // console.log("section",section);
+  // console.log("item",item);
+  // console.log("index",index);
+    let tempStyle = OUTER_SHADOW_VIEW
+    let viewStyle = {}
+    if (index === 0 && (index === (section.data.length - 1))) {
+        tempStyle = OUTER_SHADOW_VIEW
+        viewStyle = {}
+      }
+      else if (index === 0) {
+        tempStyle = FIRST_ROW_SHADOW
+        viewStyle = {}
+      } else if (index === (section.data.length - 1)){
+        tempStyle = LAST_ROW_SHADOW
+        viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
+      } else {
+        tempStyle = MIDDLE_ROW_SHADOW
+        viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
+      }
+    if (section.title == "Basic info") {
+    return(
+      <View style={viewStyle}>
+        <View style={{...tempStyle, backgroundColor: color.lightBlue}}>
+          {
+            (index === 0) ?  (
+              <View style={{...styles.ItemHeader, marginBottom: 10}}>
+                <Text text="Progress Note" style={styles.HEADER} />
+                <Text text="Today 10:12am" style={styles.DATE} />
+              </View>
+            ) : <Text/>
+          }
+          <ProgressNoteItems key={index} info={item} onPress={() => {}} />
+        </View>
+      </View>
+    )
+    } else if (section.title == "Latest Vitals") {
+        return(
+          <LatestVitals item={item} index={index} length={section.data.length}/>
+        )
+    } else if (section.title == "Upcoming Appointment") {
+      return(
+        <View style={viewStyle}>
+           <View style={tempStyle}>
+            {
+              (index === 0) ?  (
+                <View style={{...styles.ItemHeader,marginBottom: 10 }}>
+                  <Text text="Upcoming Appointment" style={styles.HEADER} />
+                </View>
+              ) : <Text/>
+            }
+            <UpComingAppointmentItems key={index} info={item} onPress={() => {}} />
+          </View> 
+        </View>
+       
+      )
+    }
+  }
+
 export const HomeScreen = observer(function HomeScreen() {
-
-  const progressNote = [
-    {
-      name: "Patricia Grimes",
-      designation: "Nurse Practitioner",
-      desc: "Patient was seen today as nursing request. F/u LGT. Patient afebrile today T 98.4, no distress or SOB...",
-    },
-  ]
-
-  const appointmentData = [
-    {
-      drName: "Dr. Katherine Jo-Yang",
-      designation: "Pulmonologist",
-      hospitalName: "MedStarHospital",
-      appointmentTime: "Wed, Jul 26, 2020 @ 2:00 pm"
-    },
-  ]
-
-  const latestVitals = [
-    {
-      BP: "133/77 mmHg",
-      Resp: "20 Breaths/min",
-      pulse: "63 bpm",
-      temp: "97.6 °F",
-    },
-  ]
+  let data = [
+        {
+          "title": "Basic info",
+          "data": [
+              {
+                name: "Patricia Grimes",
+                designation: "Nurse Practitioner",
+                desc: "Patient was seen today as nursing request. F/u LGT. Patient afebrile today T 98.4, no distress or SOB...",
+              }
+            ]
+        },{
+          "title": "Upcoming Appointment",
+          "data": [
+            {
+              drName: "Dr. Katherine Jo-Yang",
+              designation: "Pulmonologist",
+              hospitalName: "MedStarHospital",
+              appointmentTime: "Wed, Jul 26, 2020 @ 2:00 pm"
+            }
+          ]
+        },
+        {
+          "title": "Latest Vitals",
+          "data": [
+            {
+              BP: "133/77 mmHg",
+              Resp: "20 Breaths/min",
+              pulse: "63 bpm",
+              temp: "97.6 °F"
+              
+            }
+          ]
+        }
+      ]
 
   return (
   <View style={styles.FULL}>
@@ -93,7 +213,7 @@ export const HomeScreen = observer(function HomeScreen() {
           <Text text={"Good morning, Michael"} style={styles.headerText} />
     </View>
     <View style={styles.seperatorView}/>
-    <ScrollView>
+    
     <Text style={styles.TOP_TEXT_STYLE}>
       {'You have '}
       <Text style={{...styles.TOP_TEXT_STYLE,color: color.activeTab}}>
@@ -104,8 +224,15 @@ export const HomeScreen = observer(function HomeScreen() {
           upcoming appointment
       </Text>
     </Text>
-
-      <View style={{...styles.OUTER_SHADOW_VIEW, backgroundColor: color.lightBlue}}>
+       <SectionList
+          // ItemSeparatorComponent={this.FlatListItemSeparator}
+          sections={data}
+          renderItem={({ item,index, section }) => (
+            renderItem(item,index,section)
+          )}
+          keyExtractor={(item, index) => item + index}
+        />
+      {/* <View style={{...styles.OUTER_SHADOW_VIEW, backgroundColor: color.lightBlue}}>
           <View style={{...styles.ItemHeader, marginBottom: 10}}>
             <Text text="Progress Note" style={styles.HEADER} />
             <Text text="Today 10:12am" style={styles.DATE} />
@@ -122,8 +249,7 @@ export const HomeScreen = observer(function HomeScreen() {
             return <UpComingAppointmentItems key={index} info={item} onPress={() => {}} />
           })}
       </View>
-      <LatestVitals item={latestVitals}/>
-      </ScrollView>
+      <LatestVitals item={latestVitals}/> */}
   </View>
   )
 })
@@ -164,18 +290,6 @@ const styles = StyleSheet.create({
   marginTop: 13.6,
   color: color.textDarkGray,
   },
-  OUTER_SHADOW_VIEW: {
-  marginHorizontal: 20,
-  borderRadius: 10,
-  shadowColor: "black",
-  shadowOpacity: 0.2,
-  shadowOffset: { width: 0, height: 5 },
-  shadowRadius: 10,
-  backgroundColor: "white",
-  padding: 10,
-  margin: 13,
-  elevation: 5,
-},
  HEADER : {
   fontSize: 16,
   lineHeight: 22,
