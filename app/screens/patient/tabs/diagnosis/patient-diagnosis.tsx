@@ -1,5 +1,5 @@
 import React from "react"
-import { TextStyle, View, ViewStyle, TouchableOpacity } from "react-native"
+import { TextStyle, View, ViewStyle, TouchableOpacity,FlatList } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Text, Screen, Icon } from "../../../../components"
 import { color, typography } from "../../../../theme"
@@ -99,10 +99,14 @@ export const PatientDiagnosis = observer(function PatientDiagnosis() {
 
   return (
     <View style={FULL}>
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
-        {diagnosisData.map((item, index) => {
-          return <DiagnosisItems key={index} info={item} onPress={() => {}} />
-        })}
+      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
+       <FlatList
+          data={diagnosisData}
+          renderItem={({ item, index }) => (
+            <DiagnosisItems key={index} info={item} onPress={() => {}} />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
       </Screen>
     </View>
   )
