@@ -122,7 +122,7 @@ export const HomeScreen = observer(function HomeScreen() {
             return <UpComingAppointmentItems key={index} info={item} onPress={() => {}} />
           })}
       </View>
-      <LatestVitals arrayItems={latestVitals}/>
+      <LatestVitals item={latestVitals}/>
       </ScrollView>
   </View>
   )

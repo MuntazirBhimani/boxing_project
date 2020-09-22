@@ -4,6 +4,8 @@ import {
   TextStyle,
   SafeAreaView,
   View,
+  SectionList,
+  FlatList,
   ViewStyle,
   TouchableOpacity,
 } from "react-native"
@@ -27,6 +29,46 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   backgroundColor: "white",
   padding: 10,
   margin: 13,
+  elevation: 5,
+}
+
+const FIRST_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  borderTopLeftRadius: 10,
+  borderTopRightRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 5 },
+  shadowRadius: 10,
+  backgroundColor: "white",
+  padding: 10,
+  marginTop: 25,
+  elevation: 5,
+}
+
+const MIDDLE_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 14 },
+  shadowRadius: 10,
+  backgroundColor: "white",
+  padding: 10,
+  // margin: 13,
+  elevation: 5,
+}
+
+const LAST_ROW_SHADOW: ViewStyle = {
+  marginHorizontal: 20,
+  borderBottomLeftRadius: 10,
+  borderBottomRightRadius: 10,
+  shadowColor: "black",
+  shadowOpacity: 0.2,
+  shadowOffset: { width: 0, height: 14},
+  shadowRadius: 10,
+  backgroundColor: "white",
+  padding: 10,
+  marginBottom: 13,
   elevation: 5,
 }
 
@@ -98,7 +140,7 @@ const IMAGE: ImageStyle = {
 const ContainerView: ViewStyle = {
   flex: 0.57,
   marginLeft: 15,
-  marginBottom : 10,
+  // marginBottom : 10,
   flexDirection: "column",
 }
 
@@ -120,10 +162,10 @@ const DATE: TextStyle = {
 const BasicInfoItems = ({
   info,
   onPress,
-  isBasicInfo,
+  isLastIndex,
 }: {
-  info: any
-  isBasicInfo: boolean
+  info: any[]
+  isLastIndex: boolean
   onPress: (info: any) => void
 }) => {
   return (
@@ -134,7 +176,7 @@ const BasicInfoItems = ({
             <View style={IMAGE} />
           </View>
         </View>
-        <View style={ContainerView}>
+        <View style={{...ContainerView, marginBottom: isLastIndex ? 10 : 0}}>
           <Text text={info.name} style={NAME} />
           <View style={insiderView}>
             <Text style={TITLE} text="Gender" />
@@ -184,8 +226,10 @@ const ItemSeparator = () => {
 const EmergencyContactsItems = ({
   info,
   onPress,
+  isLastIndex
 }: {
   info: any
+  isLastIndex: boolean
   onPress: (info: any) => void
 }) => {
   return (
@@ -196,7 +240,7 @@ const EmergencyContactsItems = ({
             <Icon icon='profile' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
           </View>
         </View>
-        <View style={ContainerView}>
+        <View style={{...ContainerView, marginBottom: isLastIndex ? 10 : 0}}>
           <View style={insiderView}>
             <Text style={TITLE} text="Name" />
             <Text style={DETAILS} text={info.name} />
@@ -223,54 +267,141 @@ const EmergencyContactsItems = ({
   )
 }
 
-export const PatientProfile = observer(function PatientProfile() {
-  const basicInfo = [
-    {
-      title: "Basic Info",
-      name: "Nicholas Torres",
-      gender: "Male",
-      DOB: "02/1/1957 (63)",
-      MD: "Katherine Jo-Yang",
-      location: "PPCU 115-1",
-      allergies: "No Known Allergies",
-    },
-  ]
-  const latestVitals = [
-    {
-      BP: "133/77 mmHg",
-      Resp: "20 Breaths/min",
-      pulse: "63 bpm",
-      temp: "97.6 °F",
-    },
-  ]
-  const eContacts = [
-    {
-      name: "Michael Torres",
-      type: "Responsible Party",
-      relation: "Son",
-      phone: "252-513-8881",
-      email: "mtorres@gmail.com",
-    },
-    {
-      name: "Carisma Torres",
-      type: "Emergency Contact #1",
-      relation: "Sister",
-      phone: "626-340-8881",
-      email: "ctorres@gmail.com",
-    },
-    {
-      name: "Pedro Torres",
-      type: "Emergency Contact #1",
-      relation: "Brother",
-      phone: "626-340-8881",
-      email: "pedrot4@gmail.com",
-    },
-  ]
+const renderItem = (item, index, section) => {  
+  // console.log("section",section);
+  // console.log("item",item);
+  // console.log("index",index);
+    let tempStyle = OUTER_SHADOW_VIEW
+    if (index === 0 && (index === (section.data.length - 1))) {
+        tempStyle = OUTER_SHADOW_VIEW
+      }
+      else if (index === 0) {
+        tempStyle = FIRST_ROW_SHADOW
+      } else if (index === (section.data.length - 1)){
+        tempStyle = LAST_ROW_SHADOW
+      } else {
+        tempStyle = MIDDLE_ROW_SHADOW
+      }
+    if (section.title == "Basic info") {
+    return(
+      <View style={tempStyle}>
+        {
+          (index === 0) ?  <Text text="Basic Info" style={HEADER} /> : <Text/>
+        }
+        <BasicInfoItems key={index} info={item} index={index} onPress={() => {}} isBasicInfo={(section.data.length - 1) === index ? true : false} />
+      </View>
+    )
+    } else if (section.title == "Latest Vitals") {
+        return(
+          <LatestVitals item={item} index={index} length={section.data.length}/>
+        )
+    } else if (section.title == "Emergency Contacts") {
+      return(
+        <View style={tempStyle}>
+          {
+            (index === 0) ?  <Text text="Emergency Contacts" style={HEADER} /> : <Text/>
+          }
+          <EmergencyContactsItems info={item} isLastIndex={(section.data.length - 1) === index ? true : false} onPress={() => {}} />
+        </View> 
+      )
+    }
+  }
 
+export const PatientProfile = observer(function PatientProfile() {
+
+      let data = [
+        {
+          "title": "Basic info",
+          "data": [{
+            "name": "Nicholas Torres",
+            "gender": "Male",
+            "DOB": "02/1/1957 (63)",
+            "MD": "Katherine Jo-Yang",
+            "location": "PPCU 115-1",
+            "allergies": "No Known Allergies"},
+            {
+            "name": "Nicholas Torres",
+            "gender": "Male",
+            "DOB": "02/1/1957 (63)",
+            "MD": "Katherine Jo-Yang",
+            "location": "PPCU 115-1",
+            "allergies": "No Known Allergies"}
+            ]
+        },
+        {
+          "title": "Latest Vitals",
+          "data": [{
+                  "BP": "133/77 mmHg",
+              "Resp": "20 Breaths/min",
+              "pulse": "63 bpm",
+              "temp": "97.6 °F"
+          },{
+              "BP": "133/77 mmHg",
+              "Resp": "20 Breaths/min",
+              "pulse": "63 bpm",
+              "temp": "97.6 °F"
+          },
+          {
+              "BP": "133/77 mmHg",
+              "Resp": "20 Breaths/min",
+              "pulse": "63 bpm",
+              "temp": "97.6 °F"
+          },{
+              "BP": "133/77 mmHg",
+              "Resp": "20 Breaths/min",
+              "pulse": "63 bpm",
+              "temp": "97.6 °F"
+          }]
+        },
+        {
+          "title": "Emergency Contacts",
+          "data": [
+              {
+                "name": "Michael Torres",
+                "type": "Responsible Party",
+                "relation": "Son",
+                "phone": "252-513-8881",
+                "email": "mtorres@gmail.com",
+              },
+              {
+                "name": "Carisma Torres",
+                "type": "Emergency Contact #1",
+                "relation": "Sister",
+                "phone": "626-340-8881",
+                "email": "ctorres@gmail.com",
+              },
+              {
+                "name": "Pedro Torres",
+                "type": "Emergency Contact #1",
+                "relation": "Brother",
+                "phone": "626-340-8881",
+                "email": "pedrot4@gmail.com",
+              }
+          ]
+        }
+      ]
+  
   return (
     <SafeAreaView style={FULL}>
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
-        <View style={OUTER_SHADOW_VIEW}>
+      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
+        <SectionList
+          // ItemSeparatorComponent={this.FlatListItemSeparator}
+          sections={data}
+          renderItem={({ item,index, section }) => (
+            renderItem(item,index,section)
+          )}
+          keyExtractor={(item, index) => item + index}
+        />
+
+        {/* <FlatList
+          data={data}
+          renderItem={({ item, index }) => (
+            renderItem(item,index)
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        /> */}
+
+        {/* <View style={OUTER_SHADOW_VIEW}>
           <Text text="Basic Info" style={HEADER} />
           {basicInfo.map((item, index) => {
             return <BasicInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
@@ -287,7 +418,7 @@ export const PatientProfile = observer(function PatientProfile() {
               </View>
             )
           })}
-        </View>
+        </View> */}
       </Screen>
     </SafeAreaView>
   )
