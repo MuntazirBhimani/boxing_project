@@ -46,17 +46,17 @@ export default function PatientScreen() {
   )
   return (
     <View style={styles.scene}>
-        <View style={styles.headerView}>
-          <Icon style={styles.headerIcon} icon={"temp"} />
-          <Text text={"Patient"} style={styles.headerText} />
-        </View>
-        <TabView
-          renderTabBar={renderTabBar}
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={initialLayout}
-        />
+      <View style={styles.headerView}>
+        <Icon style={styles.headerIcon} icon={"temp"} />
+        <Text text={"Patient"} style={styles.headerText} />
+      </View>
+      <TabView
+        renderTabBar={renderTabBar}
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={initialLayout}
+      />
     </View>
   )
 }
@@ -84,5 +84,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center",
   },
-  tabBar: { backgroundColor: color.white, elevation: 0, borderBottomWidth: 0.5 ,borderColor: color.seperatorColor, height: 50, marginBottom: Platform.select({ ios: isIphoneX ? -45 : -20, android: 10 })},
+  tabBar: {
+    backgroundColor: color.white,
+    elevation: 0,
+    borderBottomWidth: 0.5,
+    borderColor: color.seperatorColor,
+    height: 50,
+    marginBottom: Platform.select({ ios: isIphoneX ? -45 : -20, android: 10 }),
+  },
 })
