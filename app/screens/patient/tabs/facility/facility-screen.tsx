@@ -134,7 +134,6 @@ const MadicalProfessionalsItems = ({
         <View style={{ flex: 1, marginLeft: 25 }}>
           <Text style={MEDICAL_OFFICER_NAME} text={info.name} />
           <Text style={MEDICAL_OFFICER_DESIGNATION} text={info.designation} />
-          <Text/>
         </View>
         <View style={{ marginHorizontal: -2, justifyContent: "center" }}>
           <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
@@ -274,36 +273,14 @@ export const FacilityScreen = observer(function FacilityScreen() {
 
   return (
     <View style={FULL}>
-      <Screen style={CONTAINER} preset="scroll" backgroundColor={color.transparent}>
+      <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
        <SectionList
-          // ItemSeparatorComponent={this.FlatListItemSeparator}
           sections={data}
           renderItem={({ item,index, section }) => (
             renderItem(item,index,section)
           )}
           keyExtractor={(item, index) => item + index}
         />
-        {/* <View style={OUTER_SHADOW_VIEW}>
-          <Text text="Facility Information" style={HEADER} />
-          {facilityInfo.map((item, index) => {
-            return (
-              <FacilityInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
-            )
-          })}
-        </View>
-        <View style={OUTER_SHADOW_VIEW}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text text="Medical Professionals" style={HEADER} />
-          </View>
-          {medicalProfessionals.map((item, index) => {
-            return (
-              <View key={index}>
-                <MadicalProfessionalsItems key={index} info={item} onPress={() => {}} />
-                {medicalProfessionals.length != index + 1 && ItemSeperator()}
-              </View>
-            )
-          })}
-        </View> */}
       </Screen>
     </View>
   )

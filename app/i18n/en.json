@@ -24,10 +24,40 @@
     "placeholder": "Placeholder",
     "field": "Field"
   },
-  "tabBarItems": {
+  "appointmentDetailScreen" : {
+    "appointmentTitle" : "Appointment Details",
+    "generalQuestions" : "General Questions",
+    "cancelAppointment"  : "Cancel Appointment"
+  },
+  "topTabBarItems": {
     "patient": "Profile",
     "facility": "Facility",
     "diagnosis": "Diagnosis",
     "medications": "Medications"
+  },
+  "bottomTabBarItems": {
+    "home" : "Home",
+    "evaluations" : "Evaluations",
+    "patient" : "Patient",
+    "scheduling" : "Scheduling",
+    "labResults" : "Lab Results"
+  },
+  "schedulingText": {
+    "No upcoming appointments yet": "No upcoming appointments yet",
+    "Schedule Appointment": "Schedule Appointment",
+    "Just to confirm," : "Just to confirm," ,
+    "who is this appointment for?" : "who is this appointment for?",
+    "What brings you in?" : "What brings you in?",
+    "General Questions": "General Questions",
+    "Lab Results Review" : "Lab Results Review",
+    "Appointment Details" : "Appointment Details",
+    "This confirms your appointment. Please arrive early to check-in.": "This confirms your appointment. Please arrive early to check-in.",
+    "Cancel Appointment": "Cancel Appointment",
+    "Continue": "Continue",
+    "Pick an appointment time": "Pick an appointment time",
+    "Confirm Appointment": "Confirm Appointment",
+    "Appointment confirmed!": "Appointment confirmed!",
+    "Got it": "Got it"
+    
   }
 }

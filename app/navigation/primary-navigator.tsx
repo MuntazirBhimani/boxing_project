@@ -14,8 +14,15 @@ import { PatientMedications } from "../screens"
 import { screenHeight } from "../theme"
 import PatientScreen from "../screens/patient/patient-screen"
 import EvaluationsScreen from "../screens/evaluations/evaluations-screen"
+import SchedulingScreen from '../screens/scheduling/scheduling-screen'
 import DeviceInfo from "react-native-device-info"
 import { HomeScreen } from "../screens/home-screen/home-screen"
+import {AppointmentFor} from "../screens/scheduling/tabs/completed/appointment-book1"
+import {AppointmentBook2} from "../screens/scheduling/tabs/completed/appointment-book2"
+import {AppointmentBook3} from "../screens/scheduling/tabs/completed/appointment-book3"
+import {AppointmentBookDetails} from "../screens/apoinment-details-screen/apoinment-details-screen"
+
+
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -103,9 +110,36 @@ function HomeTabs() {
       {tabItem("Home", 'homeTab', HomeScreen)}
       {tabItem("Evaluations",'evaluations', EvaluationsScreen)}
       {tabItem("Patient",'home', PatientScreen)}
-      {tabItem("Scheduling",'home', HomeScreen)}
+      {tabItem("Scheduling",'scheduling', SchedulingScreen)}
       {tabItem("Lab Results",'labresult', HomeScreen)}
     </Tab.Navigator>
+  )
+}
+
+export function SchedulingScreenStack(){
+  return(
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: false,
+      }}>
+      
+      <Stack.Screen name="appointment" component={AppointmentFor} />
+      <Stack.Screen name="appointment2" component={AppointmentBook2}/>
+      <Stack.Screen name="appointment3" component={AppointmentBook3}/>
+    </Stack.Navigator>
+  )
+}
+
+export function SchedulingScreenDetailStack(){
+  return(
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: false,
+      }}>
+      <Stack.Screen name="appointment_detail" component={AppointmentBookDetails}/>
+    </Stack.Navigator>
   )
 }
 
@@ -114,15 +148,16 @@ export function PrimaryNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        gestureEnabled: true,
+        gestureEnabled: false,
       }}
     >
       <Stack.Screen name="home" component={HomeTabs} />
-      {/* <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
-      {/* <Stack.Screen name="welcome" component={WelcomeScreen} />
-      <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="patient_profile" component={PatientProfile} /> */}
-      {/* <Stack.Screen name="patient_diagnosis" component={PatientDiagnosis} /> */}
+      <Stack.Screen name="schedulingStack" component={SchedulingScreenStack} options={{
+          headerShown: false,
+        }}/>
+      <Stack.Screen name="schedulingDetailStack" component={SchedulingScreenDetailStack} options={{
+          headerShown: false,
+        }}/>
       <Stack.Screen name="patient_medications" component={PatientMedications} />
     </Stack.Navigator>
   )
