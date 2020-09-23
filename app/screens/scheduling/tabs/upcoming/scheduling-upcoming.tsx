@@ -15,12 +15,7 @@ export const SchedulingUpcoming = observer(function SchedulingUpcoming() {
   const navigation = useNavigation()
 
   const appointmentData = [
-    { 
-      drName: "Dr. Katherine Jo-Yang",
-      designation: "Pulmonologist",
-      hospitalName: "MedStarHospital",
-      appointmentTime: "Wed, Jul 26, 2020 @ 2:00 pm"
-    },
+    
   ]
 
   return (
@@ -39,12 +34,12 @@ export const SchedulingUpcoming = observer(function SchedulingUpcoming() {
           />) : 
           (<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
               <View style={{justifyContent: 'center'}}>
-                  <Text style={styles.textNoAppintment} text="No upcoming appointments yet"/>
+                  <Text style={styles.textNoAppintment} tx="schedulingText.No upcoming appointments yet"/>
                   <Image source={require('../../../../components/icon/icons/Scheduling/Upcoming/NoAppointment/noAppointment.png')}/>
               </View>
           </View>)
         }
-        <Button style={styles.button_scheduling} text="Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
+        <Button style={styles.button_scheduling} tx="schedulingText.Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
           navigation.navigate('schedulingStack')
         }}/>
       </Screen>

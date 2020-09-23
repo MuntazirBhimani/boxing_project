@@ -40,12 +40,12 @@ export const SchedulingCompleted = observer(function SchedulingCompleted() {
           />) : 
           (<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
               <View style={{justifyContent: 'center'}}>
-                  <Text style={styles.textNoAppintment} text="No completed appointments yet"/>
+                  <Text style={styles.textNoAppintment} tx="schedulingText.No completed appointments yet"/>
                   <Image source={require('../../../../components/icon/icons/Scheduling/Upcoming/NoAppointment/noAppointment.png')}/>
               </View>
           </View>)
         }
-        <Button style={styles.button_scheduling} text="Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
+        <Button style={styles.button_scheduling} tx="schedulingText.Schedule Appointment" textStyle={styles.button_textStyle} onPress={() => {
           navigation.navigate('schedulingStack')
         }}/>
       </Screen>

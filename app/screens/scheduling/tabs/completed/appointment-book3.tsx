@@ -78,7 +78,7 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
             <TouchableOpacity onPress={() => btnBackPressed()} >
               <Icon style={styles.navigationLeftButton} icon="heart" />
             </TouchableOpacity>
-            <Text style={styles.navigationHeaderTitle} text="Pick an appointment time"/>
+            <Text style={styles.navigationHeaderTitle} tx="schedulingText.Pick an appointment time"/>
             <TouchableOpacity onPress={() => btnBackPressed()} >
               <Icon style={styles.navigationRightButton} icon="heart" />
             </TouchableOpacity>

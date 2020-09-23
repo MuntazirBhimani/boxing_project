@@ -217,9 +217,6 @@ const EmergencyContactsItems = ({
 }
 
 const renderItem = (item, index, section) => {  
-  // console.log("section",section);
-  // console.log("item",item);
-  // console.log("index",index);
     let tempStyle = common_Style.OUTER_SHADOW_VIEW
     let viewStyle = {}
     if (index === 0 && (index === (section.data.length - 1))) {
@@ -323,40 +320,12 @@ export const PatientProfile = observer(function PatientProfile() {
     <SafeAreaView style={FULL}>
       <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
         <SectionList
-          // ItemSeparatorComponent={this.FlatListItemSeparator}
           sections={data}
           renderItem={({ item,index, section }) => (
             renderItem(item,index,section)
           )}
           keyExtractor={(item, index) => item + index}
         />
-
-        {/* <FlatList
-          data={data}
-          renderItem={({ item, index }) => (
-            renderItem(item,index)
-          )}
-          keyExtractor={(item, index) => index.toString()}
-        /> */}
-
-        {/* <View style={OUTER_SHADOW_VIEW}>
-          <Text text="Basic Info" style={HEADER} />
-          {basicInfo.map((item, index) => {
-            return <BasicInfoItems key={index} info={item} onPress={() => {}} isBasicInfo={true} />
-          })}
-        </View>
-        <LatestVitals arrayItems={latestVitals}/>
-        <View style={OUTER_SHADOW_VIEW}>
-          <Text text="Emergency Contacts" style={HEADER} />
-          {eContacts.map((item, index) => {
-            return (
-              <View key={index}>
-                <EmergencyContactsItems info={item} onPress={() => {}} />
-                {eContacts.length != index + 1 && ItemSeparator()}
-              </View>
-            )
-          })}
-        </View> */}
       </Screen>
     </SafeAreaView>
   )

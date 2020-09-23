@@ -27,7 +27,7 @@ export const AppointmentBook2 = observer(function AppointmentBook2() {
             </TouchableOpacity>
         </View>
 
-        <Text style={{...styles.header_text, marginTop: 50}} text="What brings you in?"/>
+        <Text style={{...styles.header_text, marginTop: 50}} tx="schedulingText.What brings you in?"/>
         <View style={styles.button_container}>
             <View style={{justifyContent: 'center', alignSelf: 'center',marginRight: 18}}>
                 <TouchableOpacity style={{alignSelf: 'center'}} onPress={() => {
@@ -38,7 +38,7 @@ export const AppointmentBook2 = observer(function AppointmentBook2() {
                         <Icon icon='general_question' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
                     </View>
                 </TouchableOpacity>
-                <Text text="General Questions" style={styles.text_style}/>
+                <Text tx="schedulingText.General Questions" style={styles.text_style}/>
             </View>
             <View style={{justifyContent: 'center', alignSelf: 'center', marginLeft: 18}}>
                 <TouchableOpacity style={{alignSelf: 'center'}} onPress={() => {
@@ -49,14 +49,14 @@ export const AppointmentBook2 = observer(function AppointmentBook2() {
                         <Icon icon='general_question' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
                     </View>
                 </TouchableOpacity>
-                <Text text="Lab Results Review" style={styles.text_style}/>
+                <Text tx="schedulingText.Lab Results Review" style={styles.text_style}/>
             </View>
         </View>
         {
           option1Selected ? (<TextField style={styles.textFiled_ContainerStyle} inputStyle={styles.textField_style} placeholder="Ask any questions here..."/>) : (<Text/>)
         
         }
-        <Button style={styles.button_scheduling} text="Continue" textStyle={styles.button_textStyle} onPress={() => {
+        <Button style={styles.button_scheduling} tx="schedulingText.Continue" textStyle={styles.button_textStyle} onPress={() => {
           navigation.navigate('appointment3')
         }}/>
     </View>

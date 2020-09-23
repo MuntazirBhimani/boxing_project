@@ -64,8 +64,8 @@ export const AppointmentFor = observer(function AppointmentFor() {
           <Icon style={styles.navigationRightButton} icon="heart" />
         </TouchableOpacity>
       </View>
-      <Text style={{...styles.header_text, marginTop: 42}} text="Just to confirm,"/>
-      <Text style={styles.header_text} text="who is this appointment for?"/>
+      <Text style={{...styles.header_text, marginTop: 42}} tx="schedulingText.Just to confirm,"/>
+      <Text style={styles.header_text} tx="schedulingText.who is this appointment for?"/>
       <FlatList
           style={{ marginTop: 10}}
           data={appointmentData}
