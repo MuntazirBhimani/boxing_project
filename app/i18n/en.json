@@ -28,5 +28,11 @@
     "appointmentTitle" : "Appointment Details",
     "generalQuestions" : "General Questions",
     "cancelAppointment"  : "Cancel Appointment"
+  },
+  "tabBarItems": {
+    "patient": "Profile",
+    "facility": "Facility",
+    "diagnosis": "Diagnosis",
+    "medications": "Medications"
   }
 }

@@ -3,55 +3,77 @@ import { View, StyleSheet,TouchableOpacity } from "react-native"
 import { Icon, Screen, Text, BulletItem } from "../../components"
 import { color, typography } from "../../theme"
 import { screenHeight } from "../../theme/size"
+import { common_Style } from "../../screens/CommonStyle/styles.ts";
 
 export interface LatestVitalsProps {
-  arrayItems: Any[],
+  item: Any,
+  index: int,
+  length: int
 }
 
-export function LatestVitals(props: LatestVitalsProps) {
+export function LatestVitals(props: BulletItemProps) {
+    let tempStyle = common_Style.OUTER_SHADOW_VIEW
+    let viewStyle = {}
+    if (props.index === 0 && (props.index === (props.length - 1))) {
+        tempStyle = common_Style.OUTER_SHADOW_VIEW
+        viewStyle = {flex: 1}
+      }
+      else if (props.index === 0) {
+        tempStyle = common_Style.FIRST_ROW_SHADOW
+        viewStyle = {}
+      } else if (props.index === (props.length - 1)){
+        tempStyle = common_Style.LAST_ROW_SHADOW
+        viewStyle = {overflow: 'hidden', marginTop: -10, paddingVertical: -10}
+      } else {
+        tempStyle = common_Style.MIDDLE_ROW_SHADOW
+        viewStyle = {overflow: 'hidden',marginTop: -10, paddingVertical: -10}
+      }
   return (
-    <View style={styles.card_shadow}>
-          <View style={{...styles.ItemHeader,marginBottom: 10 }}>
-            <Text text="Latest Vitals" style={styles.header_text} />
-            <Text text="6/28/2020 8:57am" style={styles.date_text} />
-          </View>
-          {props.arrayItems.map((item, index) => {
-            return (
-              <TouchableOpacity key={index} onPress={() => {
-                console.log("item clicked");
-              }} style={{ flex: 1 }}>
-                <View style={{flex: 1}}>
-                    <View style={{flexDirection: 'row'}}>
-                        <View style={styles.imageContainer}>
-                          <Icon icon='heart' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
+    <View style={viewStyle}>
+    <View style={tempStyle}>
+
+          {
+            props.index === 0 ? (
+              <View style={{...styles.ItemHeader,marginBottom: 10 }}>
+                <Text text="Latest Vitals" style={styles.header_text} />
+                <Text text="6/28/2020 8:57am" style={styles.date_text} />
+              </View>
+            ) : (<View/>)
+          }
+          <TouchableOpacity onPress={() => {
+            console.log("item clicked");
+          }} style={{ flex: 1, marginTop: props.index !== 0 ?  10 : 0 }}>
+            <View style={{flex: 1}}>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={styles.imageContainer}>
+                      <Icon icon='heart' containerStyle={{justifyContent: 'center',flex: 1}} style={{alignSelf: 'center', alignItems: 'center'}} />
+                    </View>
+                    <View style={{ flex: 1, marginLeft: 20, marginBottom: 15}}>
+                        <View style={{flexDirection: 'row'}}>
+                          <BulletItem text="BP" icon="bp"/>
+                          <Text style={styles.text_detail} text={props.item.BP} />
                         </View>
-                        <View style={{ flex: 1, marginLeft: 20, marginBottom: 15}}>
-                            <View style={{flexDirection: 'row'}}>
-                              <BulletItem text="BP" icon="bp"/>
-                              <Text style={styles.text_detail} text={item.BP} />
-                            </View>
-                            <View style={{flexDirection: 'row'}}>
-                              <BulletItem text="Resp" icon="resp"/>
-                              <Text style={styles.text_detail} text={item.Resp} />
-                            </View>
-                            <View style={{flexDirection: 'row'}}>
-                              <BulletItem text="Pulse" icon="pulse"/>
-                              <Text style={styles.text_detail} text={item.pulse} />
-                            </View>
-                            <View style={{flexDirection: 'row'}}>
-                              <BulletItem text="Temp" icon="tempe"/>
-                              <Text style={styles.text_detail} text={item.temp} />
-                            </View>
+                        <View style={{flexDirection: 'row'}}>
+                          <BulletItem text="Resp" icon="resp"/>
+                          <Text style={styles.text_detail} text={props.item.Resp} />
                         </View>
-                        <View style={{ marginHorizontal: -2,marginTop: 25}}>
-                          <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+                        <View style={{flexDirection: 'row'}}>
+                          <BulletItem text="Pulse" icon="pulse"/>
+                          <Text style={styles.text_detail} text={props.item.pulse} />
+                        </View>
+                        <View style={{flexDirection: 'row'}}>
+                          <BulletItem text="Temp" icon="tempe"/>
+                          <Text style={styles.text_detail} text={props.item.temp} />
                         </View>
                     </View>
+                    <View style={{ marginHorizontal: -2,marginTop: 40}}>
+                      <Icon style={{ height: 15, aspectRatio: 1 }} icon={"next"} />
+                    </View>
                 </View>
-              </TouchableOpacity>
-            )
-          })}
+            </View>
+          </TouchableOpacity>
       </View>
+    </View>
   )
 }
 
