@@ -10,12 +10,12 @@ const BULLET_ITEM: ViewStyle = {
   width: '30%'
 }
 const BULLET_CONTAINER: ViewStyle = {
-  marginRight: 5,
-  marginTop: 5,
+  marginRight: 7,
+  marginTop: 2,
 }
 const BULLET: ImageStyle = {
-  width: 8,
-  height: 8,
+  width: 15,
+  height: 15,
 }
 const BULLET_TEXT: TextStyle = {
   fontFamily: typography.latoMedium,
@@ -25,14 +25,17 @@ const BULLET_TEXT: TextStyle = {
 }
 
 export interface BulletItemProps {
-  text: string
+  text: string,
+  icon: string,
+  textStyle: TextStyle, 
+  viewStyle: ViewStyle
 }
 
 export function BulletItem(props: BulletItemProps) {
   return (
-    <View style={BULLET_ITEM}>
-      <Icon icon="bullet" containerStyle={BULLET_CONTAINER} style={BULLET} />
-      <Text style={BULLET_TEXT} text={props.text} />
+    <View style={[BULLET_ITEM, props.viewStyle]}>
+      <Icon icon={props.icon} containerStyle={BULLET_CONTAINER} style={BULLET} />
+      <Text style={[BULLET_TEXT,props.textStyle]} text={props.text} />
     </View>
   )
 }

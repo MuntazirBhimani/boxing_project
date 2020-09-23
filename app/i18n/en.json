@@ -23,5 +23,11 @@
   "storybook": {
     "placeholder": "Placeholder",
     "field": "Field"
+  },
+  "tabBarItems": {
+    "patient": "Profile",
+    "facility": "Facility",
+    "diagnosis": "Diagnosis",
+    "medications": "Medications"
   }
 }

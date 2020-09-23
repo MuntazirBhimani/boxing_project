@@ -20,7 +20,7 @@ const OUTER_SHADOW_VIEW: ViewStyle = {
   shadowRadius: 10,
   backgroundColor: "white",
   padding: 10,
-  margin: 10,
+  margin: 13,
   elevation: 5,
 }
 
@@ -40,8 +40,8 @@ const DESC: TextStyle = {
   fontSize: 12,
   lineHeight: 20,
   color: color.textLightGray,
-  marginLeft: 18,
-  marginBottom: 38,
+  marginLeft: 10,
+  marginBottom: 28,
   marginTop: 7,
   fontFamily: typography.latoMedium,
 }
@@ -53,7 +53,7 @@ const TITLE: TextStyle = {
   fontFamily: typography.latoSemiBold,
   color: color.textDarkGray,
   marginVertical: 10,
-  marginHorizontal: 18,
+  marginHorizontal: 10,
 }
 
 const DATE: TextStyle = {
@@ -61,8 +61,8 @@ const DATE: TextStyle = {
   fontSize: 12,
   lineHeight: 20,
   color: color.textLightGray,
-  marginHorizontal: 18,
-  marginTop: 20,
+  marginHorizontal: 10,
+  marginTop: 15,
 }
 
 export const MedicationsItems = ({
@@ -81,7 +81,7 @@ export const MedicationsItems = ({
             <Text style={TITLE} text={info.title} />
             <Text style={DESC} text={info.desc} />
           </View>
-          <View style={{ flex: 0.1, marginRight: 10, justifyContent: "center" }}>
+          <View style={{ flex: 0.1, marginRight: 2, justifyContent: "center" }}>
             <Icon style={{ height: 15 }} icon={"next"} />
           </View>
         </View>

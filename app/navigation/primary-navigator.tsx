@@ -13,6 +13,7 @@ import { color } from "../theme"
 import { PatientMedications } from "../screens"
 import { screenHeight } from "../theme"
 import PatientScreen from "../screens/patient/patient-screen"
+import EvaluationsScreen from "../screens/evaluations/evaluations-screen"
 import DeviceInfo from "react-native-device-info"
 import { HomeScreen } from "../screens/home-screen/home-screen"
 /**
@@ -61,10 +62,10 @@ const TAB_VIEW: ViewStyle = {
   justifyContent: "center",
 }
 
-function tabIcon(focused, name) {
+function tabIcon(focused, name, icon) {
   return (
     <View style={[TAB_VIEW, focused && { borderTopWidth: 3 }]}>
-      <Icon style={focused ? ACTIVE_TAB_ICON : INACTIVE_TAB_ICON} icon={"home"} />
+      <Icon style={focused ? ACTIVE_TAB_ICON : INACTIVE_TAB_ICON} icon={icon} />
       <Text
         style={[
           { color: focused ? color.activeTab : color.inactiveTab },
@@ -76,11 +77,11 @@ function tabIcon(focused, name) {
   )
 }
 
-const tabItem = (screen, stack): any => {
+const tabItem = (screen,icon, stack): any => {
   return (
     <Tab.Screen
       options={{
-        tabBarIcon: ({ focused }) => tabIcon(focused, screen),
+        tabBarIcon: ({ focused }) => tabIcon(focused, screen,icon),
       }}
       name={screen}
       component={stack}
@@ -99,11 +100,11 @@ function HomeTabs() {
         showLabel: false,
       }}
     >
-      {tabItem("Home", HomeScreen)}
-      {tabItem("Evaluations", HomeScreen)}
-      {tabItem("Patient", PatientScreen)}
-      {tabItem("Scheduling", HomeScreen)}
-      {tabItem("Lab Results", HomeScreen)}
+      {tabItem("Home", 'homeTab', HomeScreen)}
+      {tabItem("Evaluations",'evaluations', EvaluationsScreen)}
+      {tabItem("Patient",'home', PatientScreen)}
+      {tabItem("Scheduling",'home', HomeScreen)}
+      {tabItem("Lab Results",'labresult', HomeScreen)}
     </Tab.Navigator>
   )
 }
