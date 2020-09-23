@@ -139,7 +139,7 @@ export const AppointmentBook3 = observer(function AppointmentBook3() {
 
 const styles = StyleSheet.create({
   calendarContainer: {
-      height: screenWidth*0.75,
+      height: screenWidth*0.80,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'yellow'
