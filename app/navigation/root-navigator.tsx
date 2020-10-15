@@ -6,9 +6,13 @@
  */
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
-import {SafeAreaView} from 'react-native'
+import {SafeAreaView,View} from 'react-native'
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
 import { PrimaryNavigator } from "./primary-navigator"
+import { DrawerNavigator } from './drawer-navigator';
+import { LoginScreen } from '../screens/login-screen/login-screen';
+import { observer } from "mobx-react-lite"
+import { useStores } from "../models"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -26,7 +30,10 @@ export type RootParamList = {
 
 const Stack = createNativeStackNavigator<RootParamList>()
 
-const RootStack = () => {
+const RootStack = observer(()=>{
+
+  const { auth } = useStores();
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -35,27 +42,46 @@ const RootStack = () => {
         stackPresentation: "push",
       }}
     >
-      <Stack.Screen
-        name="primaryStack"
-        component={PrimaryNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
+      {
+        auth.isTokenAvailabel ?
+        (
+          <Stack.Screen
+            name="primaryStack"
+            component={DrawerNavigator}
+            options={{
+              headerShown: false,
+          }}
+          />
+        )
+        :
+        (
+          <Stack.Screen
+            name="primaryStack"
+            component={LoginScreen}
+            options={{
+              headerShown: false,
+          }}
+          />
+        )
+      }
+      
     </Stack.Navigator>
   )
-}
+
+}) 
+  
+
 
 export const RootNavigator = React.forwardRef<
   NavigationContainerRef,
   Partial<React.ComponentProps<typeof NavigationContainer>>
 >((props, ref) => {
   return (
-    <SafeAreaView style={{flex:1}}>
+    <View style={{flex:1}}>
       <NavigationContainer {...props} ref={ref}>
         <RootStack />
       </NavigationContainer>
-   </SafeAreaView>
+   </View>
   )
 })
 

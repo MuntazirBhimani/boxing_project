@@ -23,11 +23,14 @@ import {
   useNavigationPersistence,
 } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
+import SplashScreen from 'react-native-splash-screen'
+import { StatusBar } from 'react-native';
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
+import { color } from "react-native-reanimated"
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
@@ -35,6 +38,7 @@ export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 /**
  * This is the root component of our app.
  */
+
 function App() {
   const navigationRef = useRef<NavigationContainerRef>()
   const [rootStore, setRootStore] = useState<RootStore | undefined>(undefined)
@@ -49,13 +53,14 @@ function App() {
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
     ;(async () => {
-      setupRootStore().then(setRootStore)
+      setupRootStore().then(setRootStore);
+      SplashScreen.hide();
     })()
   }, [])
 
+  
   // Before we show the app, we have to wait for our state to be ready.
   // In the meantime, don't render anything. This will be the background
-  // color set in native by rootView's background color. You can replace
   // with your own loading component if you wish.
   if (!rootStore) return null
 

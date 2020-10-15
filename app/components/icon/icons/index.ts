@@ -16,7 +16,12 @@ export const icons = {
   scheduling: require("./TabIcons/scheduling/scheduling.png"),
   labresult: require("./TabIcons/labresults/labresult.png"),
   noAppointment: require("./Scheduling/Upcoming/NoAppointment/noAppointment.png"),
-  general_question: require("./Scheduling/Upcoming/BookAppointment2/gen1/general_question.png")
+  general_question: require("./Scheduling/Upcoming/BookAppointment2/gen1/general_question.png"),
+  shape1: require("./shape1/shape1.png"),
+  shape11: require("./shape11/shape11.png"),
+  back:require("./back/back.png"),
+  menu:require("./menu/menu.png"),
+  logo:require("./menuLogo/menuLogo.png")
 }
 
 export type IconTypes = keyof typeof icons

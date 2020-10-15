@@ -5,161 +5,28 @@
  * You'll likely spend most of your time in this file.
  */
 import React from "react"
-import { ImageStyle, View, ViewStyle, Platform } from "react-native"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { ImageStyle, View, ViewStyle, Platform, TouchableOpacity, ImageBackground, Image } from "react-native"
 import { createNativeStackNavigator } from "react-native-screens/native-stack"
-import { Icon, Text } from "../components"
+import { Icon, Text, Button } from "../components"
 import { color } from "../theme"
-import { PatientMedications } from "../screens"
 import { screenHeight } from "../theme"
-import PatientScreen from "../screens/patient/patient-screen"
-import EvaluationsScreen from "../screens/evaluations/evaluations-screen"
-import SchedulingScreen from '../screens/scheduling/scheduling-screen'
 import DeviceInfo from "react-native-device-info"
-import { HomeScreen } from "../screens/home-screen/home-screen"
-import {AppointmentFor} from "../screens/scheduling/tabs/completed/appointment-book1"
-import {AppointmentBook2} from "../screens/scheduling/tabs/completed/appointment-book2"
-import {AppointmentBook3} from "../screens/scheduling/tabs/completed/appointment-book3"
-import {AppointmentBookDetails} from "../screens/apoinment-details-screen/apoinment-details-screen"
+import { SafeAreaView } from "react-native-safe-area-context"
+import { LoginScreen } from '../screens/login-screen/login-screen';
+import { isSigned } from '../screens/login-screen/login-screen';
+import { TabDashboard } from './bottom-tab-navigator';
 
+const Stack = createNativeStackNavigator()
 
-/**
- * This type allows TypeScript to know what routes are defined in this navigator
- * as well as what properties (if any) they might take when navigating to them.
- *
- * If no params are allowed, pass through `undefined`. Generally speaking, we
- * recommend using your MobX-State-Tree store(s) to keep application state
- * rather than passing state through navigation params.
- *
- * For more information, see this documentation:
- *   https://reactnavigation.org/docs/params/
- *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
- */
-export type PrimaryParamList = {
-  home: undefined
-  patient_profile: undefined
-  patient_diagnosis: undefined
-  patient_medications: undefined
-}
-
-// Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
-const Stack = createNativeStackNavigator<PrimaryParamList>()
-const isIphoneX = DeviceInfo.hasNotch()
-const Tab = createBottomTabNavigator()
-
-const TAB_ICON: ImageStyle = {
-  height: 22,
-  width: 22,
-  alignSelf: "center",
-}
-
-const ACTIVE_TAB_ICON: ImageStyle = {
-  ...TAB_ICON,
-  tintColor: color.palette.activeTab,
-}
-const INACTIVE_TAB_ICON: ImageStyle = {
-  ...TAB_ICON,
-  tintColor: color.palette.inactiveTab,
-}
-const TAB_VIEW: ViewStyle = {
-  borderTopColor: color.palette.activeTab,
-  borderTopWidth: 0,
-  minWidth: "100%",
-  flex: 1,
-  justifyContent: "center",
-}
-
-function tabIcon(focused, name, icon) {
-  return (
-    <View style={[TAB_VIEW, focused && { borderTopWidth: 3 }]}>
-      <Icon style={focused ? ACTIVE_TAB_ICON : INACTIVE_TAB_ICON} icon={icon} />
-      <Text
-        style={[
-          { color: focused ? color.activeTab : color.inactiveTab },
-          { fontSize: 10, textAlign: "center", marginTop: 5 },
-        ]}
-        text={name}
-      />
-    </View>
-  )
-}
-
-const tabItem = (screen,icon, stack): any => {
-  return (
-    <Tab.Screen
-      options={{
-        tabBarIcon: ({ focused }) => tabIcon(focused, screen,icon),
-      }}
-      name={screen}
-      component={stack}
-    />
-  )
-}
-
-function HomeTabs() {
-  return (
-    <Tab.Navigator
-      tabBarOptions={{
-        style: {
-          height: screenHeight * 0.1,
-          marginBottom: Platform.select({ ios: isIphoneX ? -34 : 0, android: 0 }),
-        },
-        showLabel: false,
-      }}
-    >
-      {tabItem("Home", 'homeTab', HomeScreen)}
-      {tabItem("Evaluations",'evaluations', EvaluationsScreen)}
-      {tabItem("Patient",'home', PatientScreen)}
-      {tabItem("Scheduling",'scheduling', SchedulingScreen)}
-      {tabItem("Lab Results",'labresult', HomeScreen)}
-    </Tab.Navigator>
-  )
-}
-
-export function SchedulingScreenStack(){
+export function PrimaryNavigator(){
   return(
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        gestureEnabled: false,
-      }}>
-      
-      <Stack.Screen name="appointment" component={AppointmentFor} />
-      <Stack.Screen name="appointment2" component={AppointmentBook2}/>
-      <Stack.Screen name="appointment3" component={AppointmentBook3}/>
-    </Stack.Navigator>
-  )
-}
-
-export function SchedulingScreenDetailStack(){
-  return(
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        gestureEnabled: false,
-      }}>
-      <Stack.Screen name="appointment_detail" component={AppointmentBookDetails}/>
-    </Stack.Navigator>
-  )
-}
-
-export function PrimaryNavigator() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        gestureEnabled: false,
-      }}
-    >
-      <Stack.Screen name="home" component={HomeTabs} />
-      <Stack.Screen name="schedulingStack" component={SchedulingScreenStack} options={{
-          headerShown: false,
-        }}/>
-      <Stack.Screen name="schedulingDetailStack" component={SchedulingScreenDetailStack} options={{
-          headerShown: false,
-        }}/>
-      <Stack.Screen name="patient_medications" component={PatientMedications} />
-    </Stack.Navigator>
+    isSigned ? (
+      <TabDashboard />
+    ):(
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen}/>
+      </Stack.Navigator>
+    )
   )
 }
 

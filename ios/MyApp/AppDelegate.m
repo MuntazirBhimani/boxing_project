@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNSplashScreen.h"
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -52,10 +53,12 @@ static void InitializeFlipper(UIApplication *application) {
           NSLog(@"Family name:  %@", name);
       }
   }
+
+  [RNSplashScreen show];
   return YES;
 }
 
-- (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
+- (NSURL *)sourceURLForBridge:(RCTBridge *)bridgeS
 {
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

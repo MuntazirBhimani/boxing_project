@@ -74,6 +74,45 @@ export class Api {
     }
   }
 
+//Get data of parent category
+async getCategories(): Promise<Types.GetCategories> {
+  // make the api call
+  const response: ApiResponse<any> = await this.apisauce.get(`/category/0`)
+
+  // the typical ways to die when calling an api
+  if (!response.ok) {
+    const problem = getGeneralApiProblem(response)
+    if (problem) return problem
+  }
+
+ 
+  // transform the data into the format we are expecting
+  try {
+    return { kind: "ok", data: response }
+  } catch {
+    return { kind: "bad-data" }
+  }
+}
+
+async getSubCategories(parentId:number): Promise<Types.GetSubCategories> {
+  // make the api call
+  const response: ApiResponse<any> = await this.apisauce.get(`/category/${parentId}`)
+
+  // the typical ways to die when calling an api
+  if (!response.ok) {
+    const problem = getGeneralApiProblem(response)
+    if (problem) return problem
+  }
+
+ 
+  // transform the data into the format we are expecting
+  try {
+    return { kind: "ok", data: response }
+  } catch {
+    return { kind: "bad-data" }
+  }
+}
+
   /**
    * Gets a single user by ID
    */
