@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { Alert, ImageBackground, StyleSheet, View, ViewStyle } from "react-native"
-import { Header, Screen, Text } from "../../components"
+import { Alert, Button, ImageBackground, StyleSheet, View, ViewStyle } from "react-native"
+import {  Header, Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../../models"
 import { color, spacing } from "../../theme"
@@ -10,6 +10,7 @@ import { useStores } from "../../models"
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler"
 
 import YoutubePlayer,{ InitialPlayerParams } from 'react-native-youtube-iframe';
+import HTML from 'react-native-render-html';
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
@@ -29,30 +30,16 @@ export const VideoDetailsScreen = observer(function VideoDetailsScreen({route}) 
   const { subcategoryData } = useStores();
   const player = useRef()
 
-  const [playing, setPlaying] = useState(false);
-  const onStateChange = useCallback((state) => {
-    if (state === "ended") {
-      setPlaying(false);
-      Alert.alert("video has finished playing!");
-    }
-
-
-  }, []);
-
-  const togglePlaying = useCallback(() => {
-    setPlaying((prev) => !prev);
-  }, []);
-
   useEffect(() => {
     if (isFocused) {
-      console.tron.log('In useEffect Video');
+      console.log('In useEffect Video');
       getSubCategoryData(route.params.categoryId, route.params.subCategoryId);
     }
 
-    return function cleanup() {
-      subcategoryData.clearSubCategoryMedia();
-      console.tron.log('Clean Data');
-    };
+    // return function cleanup() {
+    //   subcategoryData.clearSubCategoryMedia();
+    //   console.log('Clean Data');
+    // };
   }, [isFocused]);
 
   const getSubCategoryData = async (parentId: number, subCategoryId: number) => {
@@ -62,6 +49,19 @@ export const VideoDetailsScreen = observer(function VideoDetailsScreen({route}) 
     await subcategoryData.setSubCategoryVisited(parentId, subCategoryId);
   }
 
+  const [playing, setPlaying] = useState(false);
+
+  const onStateChange = useCallback((state) => {
+    if (state === "ended") {
+      setPlaying(false);
+      Alert.alert("video has finished playing!");
+    }
+  }, []);
+
+  const togglePlaying = useCallback(() => {
+    setPlaying((prev) => !prev);
+  }, []);
+
   const initialParams: InitialPlayerParams = {
     loop: false,
     controls: true,
@@ -69,21 +69,25 @@ export const VideoDetailsScreen = observer(function VideoDetailsScreen({route}) 
     rel: false
   }
 
-  const urlReg = /^(https?:\/\/)?((www\.)?(youtube(-nocookie)?|youtube.googleapis)\.com.*(v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
-  const renderMedia = ({ item, index }) => {
-    console.tron.log('Item', item);
-    let videoId = item.url.match(urlReg)[7];
-    console.tron.log(item, videoId);
+  const regExp = /^(https?:\/\/)?((www\.)?(youtube(-nocookie)?|youtube.googleapis)\.com.*(v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
+
+  const renderVideos = ({ item, index }) => {
+    console.log('Item:', item);
+    let videoId = item.url.match(regExp)[7];
+    console.log("Id:", videoId);
     return (
-      <View key={index}>
+      <View key={index} style={{marginTop:spacing[4]}}>
+
+        <Text style={{fontSize:17.3,color:'white',marginBottom:spacing[4]}}>{item.caption}</Text>
         <YoutubePlayer
           height={200}
           initialPlayerParams={initialParams}
           play={playing}
-          videoId={"videoId"}
+          videoId={videoId}
           onChangeState={onStateChange}
         />
-        {/* <HTML tagsStyles={{ ul: { color: 'white', fontSize: 16 }, p: { color: 'white', fontSize: 16 }, h2: { color: 'white' } }}
+        
+        <HTML tagsStyles={{ ul: { color: 'white', fontSize: 16 }, p: { color: 'white', fontSize: 16 }, h2: { color: 'white' } }}
           listsPrefixesRenderers={{
             ul: (htmlAttribs, children, convertedCSSStyles, passProps) => {
               return (
@@ -92,7 +96,8 @@ export const VideoDetailsScreen = observer(function VideoDetailsScreen({route}) 
             }
           }}
           html={item.description}
-        /> */}
+        />
+
       </View>
     )
   }
@@ -102,14 +107,12 @@ export const VideoDetailsScreen = observer(function VideoDetailsScreen({route}) 
                 <Header headerText={route.params.subCategoryName} leftIcon="back"  rightIcon="menu"/>
                 <ImageBackground source={require('../../components/icon/icons/background/layer2.png')}style={styles.backImageContainer}>
                     <View style={styles.container2}>
-                    {/* <NavButton /> */}
                     <FlatList
                       data={subcategoryData.subCategoryMedia}
                       style={{ paddingBottom: 25, marginBottom: 15, paddingHorizontal: spacing[6], }}
                       keyExtractor={(index) => index.toString()}
-                      renderItem={renderMedia}
+                      renderItem={renderVideos}
                     />
-                    <Text style={{color:'white'}}>Video</Text>
                     </View>
                 </ImageBackground>
             </Screen>
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
   },
   container2:{
       // marginLeft:36,
-      // justifyContent:'center',
+      justifyContent:'center',
       flex:1,
       // marginBottom:300
   },

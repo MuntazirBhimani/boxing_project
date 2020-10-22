@@ -61,7 +61,7 @@ export const SubCategoryScreen = observer(function SubCategoryScreen({route}){
                                 key={index}
                                 onPress={() => 
                                   item.has_child == false ?
-                                    navigation.navigate(item.type == 'Image' ? 'ImageDetails' : 'VideoDetails', {
+                                    navigation.navigate(item.type == 'Image' || item.type=='GIF' ? 'ImageDetails' : 'VideoDetails', {
                                     categoryId: item.parent_id,
                                     subCategoryId: item.id,
                                     subCategoryName: item.name

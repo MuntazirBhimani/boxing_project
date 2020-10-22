@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>868324762140-e4lt3itja5bd5sbv6g3bjfhhj38bsqtp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.868324762140-e4lt3itja5bd5sbv6g3bjfhhj38bsqtp</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBaPpPmi57Hf3zcgC57fzRPAiyph47YhmQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>868324762140</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.MyApp</string>
+	<key>PROJECT_ID</key>
+	<string>boxing-c89be</string>
+	<key>STORAGE_BUCKET</key>
+	<string>boxing-c89be.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:868324762140:ios:7e92181e872730bccdf5d9</string>
+	<key>DATABASE_URL</key>
+	<string>https://boxing-c89be.firebaseio.com</string>
+</dict>
+</plist>

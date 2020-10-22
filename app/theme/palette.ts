@@ -16,5 +16,5 @@ export const palette = {
   lightBlue: "rgba(232, 245, 255, 1)",
   headerColor: "rgba(242, 242, 242, 1)",
   textRedColor: "rgba(225,70,66,1)",
-
+  golden: "rgb(238,206,0)"
 }

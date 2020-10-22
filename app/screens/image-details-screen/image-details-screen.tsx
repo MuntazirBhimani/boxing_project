@@ -4,13 +4,14 @@ import { ViewStyle,StyleSheet,ImageBackground,Image,View } from "react-native"
 import { Screen, Text } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../../models"
-import { color } from "../../theme"
+import { color, spacing } from "../../theme"
 import Swiper from 'react-native-swiper';
 import { Header } from '../../components';
 import { useIsFocused, useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { FlatList } from "react-native-gesture-handler"
-
+import { SafeAreaView } from "react-native-safe-area-context"
+import HTML from 'react-native-render-html';
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
@@ -97,70 +98,56 @@ const renderItem = ({ item, index }) => {
     </View>
   )
 }
-
+    
   return (
-    <Screen style={{backgroundColor:'black'}}>
+    <View style={{flex:1}}>
+      <Screen style={{backgroundColor:'black',flex:1}}>
                 <Header headerText={route.params.subCategoryName} leftIcon="back"  rightIcon="menu"/>                
 
                 <ImageBackground source={require('../../components/icon/icons/background/layer2.png')}style={styles.backImageContainer}>
-                    <View style={styles.container2}>
+                    
 
-                    <Swiper style={styles.wrapper} 
+                    <Swiper 
                     dot={<Image style={styles.paginationStyle}
                     source={require('../../components/images/pagination/pagination.png')}/>}
                     activeDot={<Image style={styles.paginationStyle}
-                    source={require('../../components/images/paginationActive/paginationActive.png')}/>}>
+                    source={require('../../components/images/paginationActive/paginationActive.png')}/>}
+                    >
 
-                    {
-                      subcategoryData.subCategoryMedia.map((item,index)=>{
-                        console.log(item)
-                          return(
-                            <View key={index}>
-                            <Image source={{uri:item.url}}
-                                   style={styles.headingImage}/>
-                            <Text style={styles.headingText}>{item.caption}</Text>
-                            <Text style={styles.paragraphText}>
-                                   {item.description}
-                            </Text>
+                    
+                   {
+                     subcategoryData.subCategoryMedia.map((item,index)=>{
+                      console.log(item.url)
+                        return (
+                          <View key={index} style={{width:'100%',marginTop:50}}>
+                              <View style={{alignItems:'center'}}>
+                                <Image source={{uri:item.url}}  style={{width:200,height:300}}/>
+                              </View>
+                              <View style={{alignItems:'center'}}>
+                                <Text style={styles.headingText}>{item.caption}</Text>
+
+                                <HTML tagsStyles={{ ul: { color: 'white', fontSize: 16 }, p: { color: 'white', fontSize: 16 }, h2: { color: 'white' } }}
+                                  listsPrefixesRenderers={{
+                                    ul: (htmlAttribs, children, convertedCSSStyles, passProps) => {
+                                      return (
+                                        <Text style={{ color: 'white', fontSize: 16, marginRight: 5 }}>•</Text>
+                                      );
+                                    }
+                                  }}
+                                  html={'<div style="color: white">' + item.description + "</div>"}
+                                />
+                              </View>
                           </View> 
-                          )
-                          
-                      })
-                    }
+                        )            
+                    })
+                   }          
                    
-                        {/* <FlatList 
-                        data={subcategoryData.subCategoryMedia}
-                        renderItem={({ item, index }: any) => {
-                          return (
-                            <View key={index}  >
-                            <View >
-                              <Image source={{ uri: item.url }} style={styles.headingImage}/>
-
-                            </View>
-                            <View  >
-                              <Text text={item.caption} style={styles.headingText}/>
-                              <HTML tagsStyles={{ ul: { color: 'white', fontSize: 16 }, p: { color: 'white', fontSize: 16 }, h2: { color: 'white' } }}
-                                listsPrefixesRenderers={{
-                                  ul: (htmlAttribs, children, convertedCSSStyles, passProps) => {
-                                    return (
-                                      <Text style={{ color: 'white', fontSize: 16, marginRight: 5 }}>•</Text>
-                                    );
-                                  }
-                                }}
-                                html={'<div style="color: white">' + item.description + "</div>"}
-                              />
-                            </View>
-                          </View>
-                          )
-                        }}
-                        keyExtractor={(item, index) => index.toString()}
-                        />              */}
-
                     </Swiper> 
-                    </View>
+                    
                 </ImageBackground>
-
+                
     </Screen>
+    </View>
   )
 })
 
@@ -172,15 +159,14 @@ const styles = StyleSheet.create({
   paginationStyle:{        
       marginLeft: 3, 
       marginRight: 3, 
-      marginTop: 3, 
-      marginBottom: 3
+      // marginTop: 3, 
+      marginBottom: 50
   },
   backImageContainer:{
-      width:375,
-      height:812,
+      width:'100%',
+      height:'100%',
       opacity:10,
       backgroundColor:'black',
-      justifyContent:'center'
   },
   container2:{
       alignItems:'center',

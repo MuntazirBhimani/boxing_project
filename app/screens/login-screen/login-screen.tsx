@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React,{useEffect, useState} from "react"
 import { View, ViewStyle, StyleSheet,TouchableOpacity,SectionList, Image, ImageBackground, Alert } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Text } from "../../components"
@@ -6,6 +6,7 @@ import { TextInput, TouchableHighlight, FlatList } from "react-native-gesture-ha
 import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
+// import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 
 export const isSigned = true;
 
@@ -70,7 +71,35 @@ export const LoginScreen = observer(function LoginScreen(){
     }
 
 
-   
+    // useEffect(() => {
+    //     GoogleSignin.configure({
+    //       webClientId: "400169882902-vcn7snnfnajehl7vj7i0hsh41e6k8aft.apps.googleusercontent.com",
+    //       offlineAccess: true,
+    //       forceCodeForRefreshToken: true,
+    //     })
+    //   }, [])
+
+    //   const signIn = async () => {
+    //     try {
+    //       await GoogleSignin.hasPlayServices()
+    //       const userInfo = await GoogleSignin.signIn()
+    //       console.log(userInfo)
+    //       auth.setToken()
+    //     } catch (error) {
+    //       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //         // user cancelled the login flow
+    //       } else if (error.code === statusCodes.IN_PROGRESS) {
+    //         // operation (e.g. sign in) is in progress already
+    //       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //         // play services not available or outdated
+    //       } else {
+    //         console.log(error)
+    //       }
+    //     }
+    //   }
+    const signIn = () =>{
+        Alert.alert('Hello')
+    }
 
     return(
             <ImageBackground source={require('../../components/icon/icons/background/layer2.png')}style={styles.backImageContainer}>
@@ -112,15 +141,20 @@ export const LoginScreen = observer(function LoginScreen(){
                             </ImageBackground>
                        </TouchableHighlight>
 
-                        <ImageBackground style={{width:308.3,height:53.3,alignItems:'center',justifyContent:'center',marginTop:150}}
-                        source={require('../../components/icon/icons/login/roundedRectangle1Copy.png')}>
-                                <Text style={{color:'white', fontSize:15.3}}>Login with Facebook</Text>
-                        </ImageBackground>
+                       <TouchableHighlight>
+                            <ImageBackground style={{width:308.3,height:53.3,alignItems:'center',justifyContent:'center',marginTop:150}}
+                            source={require('../../components/icon/icons/login/roundedRectangle1Copy.png')}>
+                                    <Text style={{color:'white', fontSize:15.3}}>Login with Facebook</Text>
+                            </ImageBackground>
+                        </TouchableHighlight>
 
-                        <ImageBackground style={{width:308.3,height:53.3,alignItems:'center',justifyContent:'center',marginTop:10}}
-                        source={require('../../components/icon/icons/login/roundedRectangle1Copy4.png')}>
-                                <Text style={{color:'white', fontSize:15.3}}>Login with Gmail</Text>
-                        </ImageBackground>
+                        <TouchableHighlight onPress={()=>signIn()}>
+                            <ImageBackground style={{width:308.3,height:53.3,alignItems:'center',justifyContent:'center',marginTop:10}}
+                            source={require('../../components/icon/icons/login/roundedRectangle1Copy4.png')}>
+                                    <Text style={{color:'white', fontSize:15.3}}>Login with Gmail</Text>
+                            </ImageBackground>
+                        </TouchableHighlight>
+
                     </View>
             </ImageBackground>
     )
@@ -128,8 +162,7 @@ export const LoginScreen = observer(function LoginScreen(){
 
 const styles = StyleSheet.create({
     backImageContainer:{
-        width:375,
-        height:812,
+       flex:1,
         opacity:10,
         backgroundColor:'black'
     },
