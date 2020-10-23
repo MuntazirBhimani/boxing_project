@@ -40,7 +40,6 @@
 		CD56A30F92E93B58DBAD5AC5 /* libPods-MyApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA03011FD144DE09820CDA1A /* libPods-MyApp-tvOSTests.a */; };
 		D04504D8CF6349639CAC6836 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB1E6FFDBDC443D2AF64670A /* Lato-ThinItalic.ttf */; };
 		DF3341D9344808BB4583A690 /* libPods-MyApp-MyAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 499EAE6D4A4A204106B1D615 /* libPods-MyApp-MyAppTests.a */; };
-		F6FD10AF2540A579003242E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6FD10AE2540A579003242E0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +106,6 @@
 		DDB11A47113C48B890E12E63 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BlackItalic.ttf"; path = "../assets/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F6FD10AE2540A579003242E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA084112E40548BD81FD0C4C /* Lato-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Black.ttf"; path = "../assets/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +168,6 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				F6FD10AE2540A579003242E0 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -424,7 +421,6 @@
 				D04504D8CF6349639CAC6836 /* Lato-ThinItalic.ttf in Resources */,
 				3B164F7741894806B3705B20 /* CooperMdBTMedium.ttf in Resources */,
 				93E9F6FD4FAE439789EF27EF /* Lato-Hairline.ttf in Resources */,
-				F6FD10AF2540A579003242E0 /* GoogleService-Info.plist in Resources */,
 				C4773B0BC84E473A8B893091 /* Lato-HairlineItalic.ttf in Resources */,
 				6A35CA5C31E041CC8BC2C889 /* Lato-Heavy.ttf in Resources */,
 				A7784909CF1B45A2B976E7D2 /* Lato-HeavyItalic.ttf in Resources */,
