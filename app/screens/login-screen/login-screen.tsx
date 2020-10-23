@@ -6,7 +6,7 @@ import { TextInput, TouchableHighlight, FlatList } from "react-native-gesture-ha
 import { NavigationContainer, useNavigation } from "@react-navigation/native"
 import { observer } from "mobx-react-lite"
 import { useStores } from "../../models"
-// import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 
 export const isSigned = true;
 
@@ -71,35 +71,37 @@ export const LoginScreen = observer(function LoginScreen(){
     }
 
 
-    // useEffect(() => {
-    //     GoogleSignin.configure({
-    //       webClientId: "400169882902-vcn7snnfnajehl7vj7i0hsh41e6k8aft.apps.googleusercontent.com",
-    //       offlineAccess: true,
-    //       forceCodeForRefreshToken: true,
-    //     })
-    //   }, [])
+    useEffect(() => {
+        GoogleSignin.configure({
+          webClientId: "868324762140-o1gia9752scqs1kqiiadglfcrhbm4sk7.apps.googleusercontent.com",
+          offlineAccess: true,
+          forceCodeForRefreshToken: true,
+        })
+      }, [])
 
-    //   const signIn = async () => {
-    //     try {
-    //       await GoogleSignin.hasPlayServices()
-    //       const userInfo = await GoogleSignin.signIn()
-    //       console.log(userInfo)
-    //       auth.setToken()
-    //     } catch (error) {
-    //       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-    //         // user cancelled the login flow
-    //       } else if (error.code === statusCodes.IN_PROGRESS) {
-    //         // operation (e.g. sign in) is in progress already
-    //       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-    //         // play services not available or outdated
-    //       } else {
-    //         console.log(error)
-    //       }
-    //     }
-    //   }
-    const signIn = () =>{
-        Alert.alert('Hello')
-    }
+      const signIn = async () => {
+        try {
+          await GoogleSignin.hasPlayServices();
+          const userInfo = await GoogleSignin.signIn();
+          auth.setToken();
+          console.log(userInfo)
+          auth.setToken()
+        } catch (error) {
+          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+            // user cancelled the login flow
+          } else if (error.code === statusCodes.IN_PROGRESS) {
+            // operation (e.g. sign in) is in progress already
+          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+            // play services not available or outdated
+          } else {
+            console.log(error)
+          }
+        }
+      }
+
+    // const signIn = () =>{
+    //     Alert.alert('Hello')
+    // }
 
     return(
             <ImageBackground source={require('../../components/icon/icons/background/layer2.png')}style={styles.backImageContainer}>
