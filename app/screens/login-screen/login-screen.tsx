@@ -144,7 +144,7 @@ export const LoginScreen = observer(function LoginScreen(){
                        </TouchableHighlight>
 
                        <TouchableHighlight>
-                            <ImageBackground style={{width:308.3,height:53.3,alignItems:'center',justifyContent:'center',marginTop:150}}
+                            <ImageBackground style={{width:308.3,height:53.3,alignItems:'center',justifyContent:'center',marginTop:100}}
                             source={require('../../components/icon/icons/login/roundedRectangle1Copy.png')}>
                                     <Text style={{color:'white', fontSize:15.3}}>Login with Facebook</Text>
                             </ImageBackground>

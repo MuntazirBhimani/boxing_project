@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "868324762140",
+    "firebase_url": "https://boxing-c89be.firebaseio.com",
+    "project_id": "boxing-c89be",
+    "storage_bucket": "boxing-c89be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868324762140:android:740d10fa3976e630cdf5d9",
+        "android_client_info": {
+          "package_name": "com.unio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868324762140-o1gia9752scqs1kqiiadglfcrhbm4sk7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRmBGb-LR_NWnIuRyH3rY3UaWLCNTmqJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868324762140-o1gia9752scqs1kqiiadglfcrhbm4sk7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868324762140-e4lt3itja5bd5sbv6g3bjfhhj38bsqtp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.MyApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
